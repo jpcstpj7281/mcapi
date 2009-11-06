@@ -43,10 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/P"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\capi\include,..\Testapi"
+				AdditionalIncludeDirectories="..\mcapi\include,..\Testapi"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_TEST;$(NOINHERIT)"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -72,11 +71,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="TestApi.lib capi.lib "
+				AdditionalDependencies="TestApi.lib mcapi.lib dmalloc.lib"
 				OutputFile=".\Release/TestCapi.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\capi\Release,..\Testapi\Release,.\release"
+				AdditionalLibraryDirectories="..\mcapi\Release,..\Testapi\Release,.\release"
 				ProgramDatabaseFile=".\Release/TestCapi.pdb"
 				SubSystem="1"
 				TargetMachine="1"
@@ -139,7 +138,7 @@
 				Name="VCCLCompilerTool"
 				UseUnicodeResponseFiles="false"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\capi\include,..\Testapi"
+				AdditionalIncludeDirectories="..\mcapi\include,..\Testapi"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_TEST;$(NOINHERIT)"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -166,11 +165,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="capimalloc.lib TestApi.lib capi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="dmalloc.lib TestApi.lib mcapi.lib odbc32.lib odbccp32.lib"
 				OutputFile=".\Debug/TestCapi.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\capi\debug,..\Testapi\debug,.\debug"
+				AdditionalLibraryDirectories="..\mcapi\debug,..\Testapi\debug,.\debug"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/TestCapi.pdb"
