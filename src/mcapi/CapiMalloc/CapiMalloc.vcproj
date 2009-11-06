@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="CapiMalloc"
+	Name="dmalloc"
 	ProjectGUID="{4A18DCB2-8B69-4425-B71D-BE3D80E984AD}"
 	RootNamespace="CapiMalloc"
 	Keyword="Win32Proj"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="capi.lib"
+				AdditionalDependencies="mcapi.lib"
 				OutputFile="..\..\TestCapi\Debug\$(ProjectName).dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\Debug&quot;"
@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="capi.lib"
+				AdditionalDependencies="mcapi.lib"
 				OutputFile="..\..\TestCapi\Release\$(ProjectName).dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\Release&quot;"
