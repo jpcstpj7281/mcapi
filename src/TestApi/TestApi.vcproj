@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\capi\include"
+				AdditionalIncludeDirectories="..\mcapi\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;$(NOINHERIT)"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\capi\include"
+				AdditionalIncludeDirectories="..\mcapi\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;$(NOINHERIT)"
 				StringPooling="true"
 				RuntimeLibrary="0"
