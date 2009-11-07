@@ -10,7 +10,7 @@
  */
 
 #include <stdlib.h>
-#include <capiglobal.h>
+#include <CapiGlobal.h>
 
 
 struct DATA_ARRAY {
