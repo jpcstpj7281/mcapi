@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include "CapiGlobal.h"
+#include "Event.h"
 
 #define MTASK_NO_EXIT		0
 #define MTASK_EXIT			1
