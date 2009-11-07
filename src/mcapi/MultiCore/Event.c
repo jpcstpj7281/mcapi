@@ -1,4 +1,5 @@
 #ifndef _WIN32
+#include <stdlib.h>
 #include <pthread.h>
 #include "CapiGlobal.h"
 #include "Event.h"
@@ -29,7 +30,7 @@ void WaitEvent(HANDLE hEvent)
 
     pthread_mutex_lock(&(pEvent->mutex));
     
-    pthread_cond_wait(&(pEvent->cond));
+    pthread_cond_wait(&(pEvent->cond), &(pEvent->mutex));
 
     pthread_mutex_unlock(&(pEvent->mutex));
     return;
