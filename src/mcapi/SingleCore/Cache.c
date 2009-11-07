@@ -15,7 +15,9 @@
 #include "HashTable.h"
 #include "Cache.h"
 
+#ifdef _WIN32
 #pragma warning(disable : 4996)
+#endif
 
 #define     DEFAULT_COLLAGE_TIME            (1000*30)
 #define     DEFAULT_MIN_ACCESS_TIMES        5
@@ -55,9 +57,9 @@ CACHE *Cache_Create(UINT uTotalSize, UINT uCollageTime, UINT uBucketCount,
 
 	@param	CACHEFILE *pCacheFile - CACHEFILE指针	
 	@param	INT uBucketCount - 哈希表的BUCKET大小	
-	@return	INT - 计算出来的哈希值	
+	@return	UINT - 计算出来的哈希值	
 */
-INT HashCacheFile(void *p, UINT uBucketCount)
+UINT HashCacheFile(void *p, UINT uBucketCount)
 {
     return HashString(((CACHEFILE *)p)->pszFileName, uBucketCount);
 }
