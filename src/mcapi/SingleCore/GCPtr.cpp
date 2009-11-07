@@ -334,6 +334,7 @@ void MGC_CollectTask()
                 }
             }
         }
+
         Sleep(100);
     }
 
