@@ -9,6 +9,7 @@
  * in supporting documentation.  
  */
 
+#include "CapiGlobal.h"
 #include "CRWLock.h"
 
 CRWLock::CRWLock() 

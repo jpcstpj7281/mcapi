@@ -39,7 +39,7 @@ void CFastLock::Release()
 	FastLockRelease(&m_Lock);
 }
 
-
+#if 0
 CSpinLock::CSpinLock(int SpinCount):m_SpinCount(SpinCount) 
 {
 	SpinLockInit(&m_SpinLock, SpinCount);
@@ -64,3 +64,4 @@ void CSpinLock::Release()
 {
 	SpinlockRelease(&m_SpinLock);
 }
+#endif
