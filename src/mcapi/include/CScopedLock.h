@@ -42,7 +42,7 @@ public:
     void Release(UINT uType) {}; //空的函数，主要是保持和CScopedLock类的兼容性
 };
 
-
+#if 0
 class CSpinLock {
 private:
 	SPINLOCK	m_SpinLock;
@@ -57,7 +57,7 @@ public:
 
     void Release(UINT uType) {}; //空的函数，主要是保持和CScopedLock类的兼容性
 };
-
+#endif
 
 template <class T> class CScopedLock {
 private:
