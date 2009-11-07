@@ -8,8 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-
-#include <windows.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "CapiGlobal.h"
@@ -77,8 +76,11 @@ INT CacheFileCompare(void *p1, void *p2)
     
     pCacheFile = (CACHEFILE *)p1;
     pszFileName = (char *)p2;
-
+#ifdef _WIN32
     return stricmp(pCacheFile->pszFileName, pszFileName);
+#else
+    return strcmp(pCacheFile->pszFileName, pszFileName);
+#endif
 }
 
 /**	哈希表的回调函数，用来释放一个CACHEFILE结构体
