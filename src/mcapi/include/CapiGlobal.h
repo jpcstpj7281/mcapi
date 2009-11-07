@@ -170,6 +170,8 @@ LONG AtomicIncrement(LONG volatile *Target);
 BOOL TAS(LONG volatile *value);
 LONG AtomicDecrement(LONG volatile *Target);
 
+#include "Event.h"
+
 #endif /* _WIN32 */
     
 BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
