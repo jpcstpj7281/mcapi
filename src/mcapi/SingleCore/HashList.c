@@ -13,7 +13,9 @@
 #include "CapiGlobal.h"
 #include "HashList.h"
 
+#ifdef _WIN32
 #pragma warning(disable : 4996)
+#endif 
 
 /**	哈希链表的创建函数
 
@@ -467,7 +469,11 @@ UINT HashStr( void *str, UINT str_len, UINT numBuckets )
  */
 UINT	HashStrCompare( void *str1, UINT str1_len, void *str2, UINT str2_len )
 {
+#ifdef _win32
 	return stricmp( (char *)str1, (char *)str2 );
+#else
+    return strcmp( (char *)str1, (char *)str2 );
+#endif
 }
 
 void HashFree(void *pData, UINT uDataLen)

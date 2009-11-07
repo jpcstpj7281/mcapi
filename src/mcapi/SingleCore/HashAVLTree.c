@@ -9,6 +9,7 @@
  * in supporting documentation.  
  */
 
+#include <stdlib.h>
 #include "CapiGlobal.h"
 #include "BinTree.h"
 #include "AVLTree.h"
