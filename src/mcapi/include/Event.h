@@ -8,7 +8,6 @@
 extern "C" {
 #endif
 
-typedef EVENT  HANDLE;
 
 HANDLE EventCreate();
 void WaitEvent(HANDLE hEvent);
