@@ -9,8 +9,7 @@
  * in supporting documentation.  
  */
 
-#include <windows.h>
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "BinTree.h"
 #include "AVLTree.h"
 #include "HashAVLTree.h"

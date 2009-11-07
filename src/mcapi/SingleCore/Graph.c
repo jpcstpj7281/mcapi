@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 
-#include <windows.h>
+#include <stdlib.h>
 #include "CapiGlobal.h"
 #include "SingleList.h"
 #include "Graph.h"
