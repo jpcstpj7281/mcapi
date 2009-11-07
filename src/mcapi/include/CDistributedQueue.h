@@ -32,7 +32,6 @@
 #include "CapiGlobal.h"
 #include "FastLock.h"
 #include "CScopedLock.h"
-#include "CapiGlobal.h"
 
 //获取线程Id回调函数定义
 typedef int (*GetThreadIdFunc)(void *pArg); 

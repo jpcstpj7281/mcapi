@@ -55,6 +55,7 @@ typedef void *          HANDLE;
 
 #ifndef _WIN32 
 #define _stdcall
+#define __stdcall
 typedef long long int LONGLONG;
 #define Sleep(x)      usleep(x)
 #endif
@@ -175,6 +176,16 @@ BOOL TAS(LONG volatile *value);
 LONG AtomicDecrement(LONG volatile *Target);
 
 #endif /* _WIN32 */
+
+
+#ifdef _WIN32
+#define    TlsGetValueFunc   TlsGetValue
+#define    TlsSetValueFunc   TlsSetValue
+#else
+#define    TlsGetValueFunc   pthread_getspecific
+#define    TlsSetValueFunc   pthread_setspecific
+#endif
+
     
 BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
 
