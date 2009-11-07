@@ -13,7 +13,7 @@
 #include <windows.h>
 #endif 
 
-
+#include <stdlib.h>
 #include "CapiGlobal.h"
 
 #define MTASK_NO_EXIT		0

@@ -10,6 +10,7 @@
  */
 
 #include "CapiGlobal.h"
+#include "Event.h"
 #include "CMTask.h"
 
 /**	CMTask的构造函数
