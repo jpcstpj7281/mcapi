@@ -267,7 +267,7 @@ struct PARALLEL_SEARCHDATA {
     COMPAREFUNC comp;
 }; 
 
-void SearchTask(LPVOID args)
+void SearchTask(void * args)
 {
     PARALLEL_SEARCHDATA  *pNode = (PARALLEL_SEARCHDATA *)args;
 

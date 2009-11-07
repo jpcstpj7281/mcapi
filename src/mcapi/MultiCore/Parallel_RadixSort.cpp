@@ -13,9 +13,9 @@
 #include <stdio.h>
 
 #include <omp.h>
-#include <capiglobal.h>
-#include <singlelist.h>
-#include <sorttable.h>
+#include <CapiGlobal.h>
+#include <SingleList.h>
+#include <SortTable.h>
 #include "ArrayList.h"
 #include "SerialRadixSort.h"
 #include "Parallel_RadixSort_Array.h"

@@ -10,7 +10,7 @@
  */
 
 #include <stdlib.h>
-#include <capiglobal.h>
+#include <CapiGlobal.h>
 #include <time.h>
 #include <stdio.h>
 #include <omp.h>
