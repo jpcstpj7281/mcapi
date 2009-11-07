@@ -28,7 +28,6 @@
 extern "C" {
 #endif
 
-typedef BINTREEBASENODE AVLTREENODE;
 
 typedef struct HASHAVLTREE_st {
     AVLTREENODE **ppBucket;	/* Ë÷Òý±íÖ¸Õë */

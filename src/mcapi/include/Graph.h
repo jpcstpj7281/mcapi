@@ -62,7 +62,6 @@ typedef struct GRAPH_st {
 } GRAPH, *LPGRAPH;
 
 /* Destroy callback function definition */
-typedef void (*DESTROYFUNC)( void *pData );
 typedef INT  (*EDGEDUMPFUNC)(LPEDGE pEdge);
 typedef INT  (*GRAPHNODEDUMPFUNC)(LPGRAPHNODE pGraphNode);
 
