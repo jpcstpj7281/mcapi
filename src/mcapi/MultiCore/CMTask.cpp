@@ -9,7 +9,6 @@
  * in supporting documentation.  
  */
 
-#include <windows.h>
 #include "CapiGlobal.h"
 #include "CMTask.h"
 

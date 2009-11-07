@@ -8,8 +8,10 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
+#ifdef _WIN32
 #define _WIN32_WINNT 0x0403
 #include <windows.h>
+#endif 
 
 #define MTASK_NO_EXIT		0
 #define MTASK_EXIT			1
