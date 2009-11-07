@@ -9,7 +9,6 @@
  * in supporting documentation.  
  */
 
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "CapiGlobal.h"
