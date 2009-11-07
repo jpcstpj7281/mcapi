@@ -13,16 +13,11 @@
 #include <windows.h>
 #endif 
 
+
+#include "CapiGlobal.h"
+
 #define MTASK_NO_EXIT		0
 #define MTASK_EXIT			1
-
-#define LOCK	HANDLE
-#define EVENT	HANDLE
-
-#define EventCreate()   CreateEvent(NULL, FALSE, FALSE, NULL)
-#define WaitEvent(x)    WaitForSingleObject(x, INFINITE)
-#define SendEvent(x)	SetEvent(x)
-#define EventClose(x)	CloseHandle(x)
 
 
 //#define AtomicDecrement(x)  InterlockedDecrement(x)
@@ -31,6 +26,7 @@
 
 //#define AtomicWrite(x, y)   InterlockedExchange(x, y)
 
+#ifndef _WIN32
 
 LONG AtomicWrite(LONG volatile *Target, LONG Value)
 {
@@ -94,7 +90,9 @@ LONG AtomicDecrement(LONG volatile *Target)
 	return Old;
 }
 
+#endif
 
+#ifdef _WIN32
 HANDLE LockCreate()  	
 {
 	CRITICAL_SECTION	*pcs = new CRITICAL_SECTION;
@@ -121,6 +119,7 @@ void LockClose(HANDLE hLock)
 	delete (CRITICAL_SECTION *)hLock;
 }
 
+#endif /*_WIN32 */
 
 typedef struct MTASK_st {
 	EVENT pExitEvent;	/* ÍË³öÊÂ¼þ */
