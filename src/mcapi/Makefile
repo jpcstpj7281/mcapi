@@ -50,7 +50,8 @@ CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/CapiAlloc.c \
     ./SingleCore/DeQueue.c \
     ./SingleCore/DoubleList.c \
-    ./SingleCore/DSpaceList.c 
+    ./SingleCore/DSpaceList.c \
+    ./MultiCore/Event.c \
 #    ./SingleCore/Emalloc.c \
 #    ./SingleCore/Graph.c \
 #    ./SingleCore/HashAVLTree.c \
