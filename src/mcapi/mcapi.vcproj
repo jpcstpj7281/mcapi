@@ -220,6 +220,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MultiCore\Event.c"
+				>
+			</File>
+			<File
 				RelativePath=".\MultiCore\MsgQueue.c"
 				>
 			</File>
