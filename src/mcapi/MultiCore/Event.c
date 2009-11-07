@@ -59,7 +59,7 @@ void EventClose(HANDLE hEvent)
     pthread_cond_destroy(&(pEvent->cond));
     pthread_mutex_destroy(&(pEvent->mutex));
 
-    free(Event);
+    free(pEvent);
     return;
 }
 
