@@ -1,5 +1,6 @@
 #ifndef _WIN32
 #include <pthread.h>
+#include "CapiGlobal.h"
 #include "Event.h"
 
 typedef struct MCAPI_EVENT_st {
