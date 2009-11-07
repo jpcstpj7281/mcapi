@@ -8,6 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
+#include <stdlib.h>
 #include "CapiGlobal.h"
 #include "MTask.h"
 
