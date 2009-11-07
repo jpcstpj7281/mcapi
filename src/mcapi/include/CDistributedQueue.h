@@ -47,7 +47,11 @@ private:
     int             m_nSharedQueueSize;
     int             m_nLocalQueueCount;
     int             m_nSharedQueueCount; 
+#ifdef _WIN32
     DWORD           m_dwTlsIndex;        //线程本地存储索引
+#else
+    pthread_key_t   m_dwTlsIndex;
+#endif
     LONG volatile   m_lThreadIdIndex;    //线程编号最大值
     GetThreadIdFunc m_GetThreadIdFunc;   //获取线程编号回调函数指针，如果由外面
 										 //的线程池提供编号时，需要传入回调函数
