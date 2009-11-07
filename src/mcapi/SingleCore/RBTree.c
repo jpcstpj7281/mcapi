@@ -14,8 +14,9 @@
 #include "BinTree.h"
 #include "RBTree.h"
 
+#ifdef _WIN32
 #pragma warning(disable : 4996)
-
+#endif
 
 /**	红黑树的创建函数
 
