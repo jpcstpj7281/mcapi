@@ -12,6 +12,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
+#include <stdlib.h>
 #include "CapiGlobal.h"
 #include "DoubleList.h"
 #include "MTask.h"

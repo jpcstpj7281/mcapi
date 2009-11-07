@@ -425,9 +425,9 @@ void RadixBox_Init(RADIX_BOX *pBox, UINT uRadix)
 }
 
 
-
+#if 0
 /**	并行基数排序
-对数组进行并行基数排序
+对数组进行并行基数排序, 未完成
 
 @param	void **ppData - 待排序数据	
 @param	UINT uDataLen - 数据长度	
@@ -515,7 +515,7 @@ void Parallel_RadixSort_Array1(T *pData, UINT uDataLen,
     }	//for ( uKeyIndex = 0; uKeyIndex < uMaxKeyLen; uKeyIndex++ )
 }
 
-
+#endif
 
 
 

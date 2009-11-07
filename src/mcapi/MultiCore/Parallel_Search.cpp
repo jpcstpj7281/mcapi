@@ -266,13 +266,19 @@ struct PARALLEL_SEARCHDATA {
     void    *pData;
     COMPAREFUNC comp;
 }; 
-
+#ifdef _WIN32
 void SearchTask(void * args)
+#else
+void *SearchTask(void * args)
+#endif
 {
     PARALLEL_SEARCHDATA  *pNode = (PARALLEL_SEARCHDATA *)args;
 
     SerialSearch(pNode->ppdata, pNode->begin, pNode->end,
         pNode->pData, pNode->comp);
+#ifndef _WIN32
+    return NULL;
+#endif
 }
 
 
