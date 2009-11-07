@@ -40,8 +40,8 @@ OBJS	=        AVLTree.o \
     SpaceList.o \
     SpList.o \
     Stack.o \
-    Tree.o \
-    Xcopy.o 
+    Tree.o 
+    
 
 CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/BinTree.c \
@@ -67,8 +67,8 @@ CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/SpaceList.c \
     ./SingleCore/SpList.c \
     ./SingleCore/Stack.c \
-    ./SingleCore/Tree.c \
-    ./SingleCore/Xcopy.c 
+    ./SingleCore/Tree.c 
+    
 
 CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./SingleCore/SerialRadixSort.cpp \
