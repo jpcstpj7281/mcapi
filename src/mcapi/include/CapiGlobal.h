@@ -132,11 +132,12 @@ typedef UINT (*GETKEYFUNC)( void *pData, UINT uKeyIndex );
 */
 typedef UINT (*HASHFUNC)(void *pKey, UINT uBucketNum);
 
+#define     EVENT           HANDLE
+#define     SEMAPHORE       HANDLE
+
 #if defined(_WIN32)
 
 //#define     LOCK            HANDLE
-#define     EVENT           HANDLE
-#define     SEMAPHORE       HANDLE
 
 //#define LockCreate()        CreateMutex(NULL, FALSE, NULL)
 //#define Lock(x)             (void)WaitForSingleObject((x), INFINITE)
