@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "dmalloc.h"
 #include "CLockFreeQueue.h"
 
