@@ -47,7 +47,7 @@ extern "C" {
 
 
 typedef int             BOOL;
-typedef long            LONG;
+typedef long int        LONG;
 typedef unsigned long   DWORD;
 typedef unsigned int    UINT;
 typedef int             INT;
