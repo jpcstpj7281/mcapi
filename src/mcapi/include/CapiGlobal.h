@@ -186,8 +186,10 @@ LONG AtomicDecrement(LONG volatile *Target);
 #define    TlsGetValueFunc   TlsGetValue
 #define    TlsSetValueFunc   TlsSetValue
 #else
+pthread_key_t TlsAlloc();
 #define    TlsGetValueFunc   pthread_getspecific
 #define    TlsSetValueFunc   pthread_setspecific
+#define    TlsFree(x)        pthread_key_delete(x)
 #endif
 
     
