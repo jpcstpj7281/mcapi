@@ -163,6 +163,7 @@ BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
 #define AtomicWrite(x, y)     InterlockedExchange(x, y)
 
 #else
+
 BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
 LONG AtomicWrite(LONG volatile *Target, LONG Value);
 LONG AtomicIncrement(LONG volatile *Target);
