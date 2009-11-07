@@ -49,7 +49,7 @@ typedef long            LONG;
 typedef unsigned long   DWORD;
 typedef unsigned int    UINT;
 typedef int             INT;
-typedef void * HANDLE;
+typedef void *          HANDLE;
 
 #ifndef _WIN32 
 #define _stdcall
@@ -170,8 +170,6 @@ LONG AtomicWrite(LONG volatile *Target, LONG Value);
 LONG AtomicIncrement(LONG volatile *Target);
 BOOL TAS(LONG volatile *value);
 LONG AtomicDecrement(LONG volatile *Target);
-
-#include "Event.h"
 
 #endif /* _WIN32 */
     
