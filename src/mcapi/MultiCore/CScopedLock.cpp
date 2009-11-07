@@ -8,7 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-
+#include "CapiGlobal.h"
 #include "CScopedLock.h"
 
 

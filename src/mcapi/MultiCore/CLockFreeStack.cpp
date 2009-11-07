@@ -8,8 +8,10 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-
+#ifdef _WIN32
 #include <windows.h>
+#endif
+
 #include "CapiGlobal.h"
 #include "dmalloc.h"
 #include "CLockFreeStack.h"
