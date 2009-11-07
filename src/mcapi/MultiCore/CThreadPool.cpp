@@ -11,11 +11,22 @@
 #ifdef _WIN32
 #include <windows.h>
 #include <process.h>
+#else
+#include <pthread.h>
 #endif
 #include <omp.h>
 #include "CapiGlobal.h"
 #include "CThreadPool.h"
 
+
+#ifndef _WIN32
+pthread_key_t TlsAlloc()
+{
+    pthread_key_t tid;
+    pthread_key_create(&tid, NULL);
+    return tid;
+}
+#endif
 
 /**	线程池的线程入口函数
     用户传入的线程入口函数在这个函数中被调用
