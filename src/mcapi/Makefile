@@ -15,33 +15,33 @@ endif
 CPPFLAGS	= $(CFLAGS)
 
 LIBS	=     -L/usr/lib 
-OBJS	=        ./SingleCore/AVLTree.o \
-    ./SingleCore/BinTree.o \
-    ./SingleCore/BlockList.o \
-    ./SingleCore/Cache.o \
-    ./SingleCore/CapiAlloc.o \
-    ./SingleCore/DeQueue.o \
-    ./SingleCore/DoubleList.o \
-    ./SingleCore/DSpaceList.o \
-    ./SingleCore/Emalloc.o \
-    ./SingleCore/GCPtr.o \
-    ./SingleCore/Graph.o \
-    ./SingleCore/HashAVLTree.o \
-    ./SingleCore/HashList.o \
-    ./SingleCore/HashRBTree.o \
-    ./SingleCore/HashTable.o \
-    ./SingleCore/Queue.o \
-    ./SingleCore/QuickSort.o \
-    ./SingleCore/RBTree.o \
-    ./SingleCore/SerialRadixSort.o \
-    ./SingleCore/ShortMsg.o \
-    ./SingleCore/SingleList.o \
-    ./SingleCore/SortTable.o \
-    ./SingleCore/SpaceList.o \
-    ./SingleCore/SpList.o \
-    ./SingleCore/Stack.o \
-    ./SingleCore/Tree.o \
-    ./SingleCore/Xcopy.o 
+OBJS	=        AVLTree.o \
+    BinTree.o \
+    BlockList.o \
+    Cache.o \
+    CapiAlloc.o \
+    DeQueue.o \
+    DoubleList.o \
+    DSpaceList.o \
+    Emalloc.o \
+    GCPtr.o \
+    Graph.o \
+    HashAVLTree.o \
+    HashList.o \
+    HashRBTree.o \
+    HashTable.o \
+    Queue.o \
+    QuickSort.o \
+    RBTree.o \
+    SerialRadixSort.o \
+    ShortMsg.o \
+    SingleList.o \
+    SortTable.o \
+    SpaceList.o \
+    SpList.o \
+    Stack.o \
+    Tree.o \
+    Xcopy.o 
 
 CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/BinTree.c \
