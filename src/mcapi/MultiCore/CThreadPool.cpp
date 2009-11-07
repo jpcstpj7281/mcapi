@@ -38,7 +38,7 @@ pthread_key_t TlsAlloc()
 unsigned __stdcall ThreadPool_StartFunc(void *pArgs)
 {
     THREADPOOL_STARTFUNC_PARMETERS *p = (THREADPOOL_STARTFUNC_PARMETERS *)pArgs;
-    TlsSetValue(p->dwTlsIndex, (void *)(p->nId));
+    TlsSetValueFunc(p->dwTlsIndex, (void *)(p->nId));
 
     return (*(p->StartFunc))(p->pArgs);
 }
@@ -116,7 +116,7 @@ CThreadPool::CThreadPool(THREADFUNC StartFunc, void *pArgs, int nThreadCount)
 */
 int CThreadPool::GetThreadId()
 {
-    int nId = (int)TlsGetValue(m_dwTlsIndex);
+    int nId = (int)TlsGetValueFunc(m_dwTlsIndex);
 
     return (nId-1);
 }
