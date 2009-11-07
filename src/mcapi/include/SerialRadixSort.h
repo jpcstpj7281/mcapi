@@ -24,7 +24,7 @@
 #define __SERIAL_RADIXSORT_H__
 
 #include <stdlib.h>
-#include <capiglobal.h>
+#include <CapiGlobal.h>
 
 
 typedef UINT (*GETUINTKEYFUNC)(UINT key, UINT index);
