@@ -22,7 +22,6 @@
 #ifndef __CSTEALQUEUE_H__
 #define __CSTEALQUEUE_H__
 
-#include  <windows.h>
 #include "CapiGlobal.h"
 #include "FastLock.h"
 #include "CScopedLock.h"

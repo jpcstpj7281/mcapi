@@ -25,7 +25,9 @@
 #if _DEBUG 
 #include <stdio.h>
 #endif
-
+#ifndef _WIN32
+#include <pthread.h>
+#endif
 #include <omp.h>
 #include "CapiGlobal.h"
 #include "FastLock.h"
@@ -128,7 +130,12 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::Create(
         m_ppLocalQueue[i] = NULL;
     }
     m_pSharedQueue = new SharedQueue(m_nSharedQueueCount, m_nSharedQueueSize);
+#ifdef _WIN32
     m_dwTlsIndex = TlsAlloc();
+#else
+    pthread_key_create( &m_dwTlsIndex, NULL );
+#endif
+
     m_lThreadIdIndex = 0;
 }
 
@@ -173,7 +180,11 @@ CDistributedQueue<T, LocalQueue, SharedQueue>::~CDistributedQueue()
     }
     delete [] m_ppLocalQueue;
     delete m_pSharedQueue;
+#ifdef _WIN32
     TlsFree(m_dwTlsIndex);
+#else
+    pthread_key_delete(m_dwTlsIndex);
+#endif
 }
 
 /**	分布式队列的将本地队列数组扩大一倍的内部成员函数
