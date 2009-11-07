@@ -10,6 +10,7 @@
  */
 #include <stdlib.h>
 #include "CapiGlobal.h"
+#include "Event.h"
 #include "MTask.h"
 
 /**	多任务资源释放的创建函数

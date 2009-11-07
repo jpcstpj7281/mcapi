@@ -8,8 +8,10 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
+#ifdef _WIN32
 #include <windows.h>
 #include <process.h>
+#endif
 #include <omp.h>
 #include "CapiGlobal.h"
 #include "CThreadPool.h"
