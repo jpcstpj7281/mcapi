@@ -3,7 +3,7 @@ CPP	= g++
 
 RM	= rm -fr
 
-CFLAGS	= -c -Wall -I./include
+CFLAGS	= -c -fopenmp -Wall -I./include
 CFLAGS  += -DCPU_X86
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
