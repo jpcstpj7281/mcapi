@@ -8,8 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-
-#include <windows.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "CapiGlobal.h"
 #include "ReadWriteLock.h"

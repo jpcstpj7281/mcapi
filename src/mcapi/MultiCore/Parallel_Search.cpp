@@ -12,10 +12,12 @@
 #ifdef _WIN32
 #include <windows.h>
 #include <process.h>
+#else
+#include <pthread.h>
 #endif
 #include <stdlib.h>
 #include <omp.h>
-#include <capiglobal.h>
+#include <CapiGlobal.h>
 #include <stdio.h>
 
 /**	Ë³Ðò²éÕÒº¯Êý
@@ -300,8 +302,12 @@ int Parallel_SearchData3(void **ppData, int nLen, void *pData, COMPAREFUNC comp)
         pNode->comp = comp;
         pNode->pData = pData;
         pNode->ppdata = ppData;
-
+#ifdef _WIN32
         _beginthread(SearchTask, 0, (void *)pNode);
+#else
+        pthread_t      tid;
+        pthread_create( &tid, NULL, SearchTask, (void *)pNode);
+#endif
     }
 
     nRet = g_SearchPos; 
