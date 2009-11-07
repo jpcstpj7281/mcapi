@@ -179,7 +179,7 @@ public:
             CScopedLock<CFastLock> slock(g_lock);
             *p -= 1;
             
-            m_pAddr = t; 
+            m_pAddr = r; 
             
             // 将新指向的内存的引用计数加1
             p = (INT *)((char *)r.m_pAddr - INT_LEN);
