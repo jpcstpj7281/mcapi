@@ -55,7 +55,6 @@ typedef void *          HANDLE;
 
 #ifndef _WIN32 
 #define _stdcall
-typedef long          LONG;
 typedef int           BOOL;
 typedef long long int LONGLONG;
 #define Sleep(x)      usleep(x)
