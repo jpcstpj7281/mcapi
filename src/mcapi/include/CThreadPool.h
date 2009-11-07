@@ -22,6 +22,9 @@
 #ifndef __CTHREADPOOL_H__
 #define __CTHREADPOOL_H__
 
+#ifndef _WIN32
+pthread_key_t TlsAlloc();
+#endif
 
 struct THREADPOOL_STARTFUNC_PARMETERS {
     DWORD       dwTlsIndex; // ±¾µØ´æ´¢Ë÷Òý
