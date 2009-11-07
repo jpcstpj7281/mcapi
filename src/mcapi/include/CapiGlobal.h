@@ -58,6 +58,10 @@ typedef void *          HANDLE;
 #define __stdcall
 typedef long long int LONGLONG;
 #define Sleep(x)      usleep(x)
+
+#define  TRUE         1
+#define  FALSE        0
+
 #endif
 
 
