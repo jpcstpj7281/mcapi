@@ -1,6 +1,6 @@
 #ifndef _WIN32
 #include <pthread.h>
-
+#include "Event.h"
 
 typedef struct MCAPI_EVENT_st {
     pthread_mutex_t   mutex;
