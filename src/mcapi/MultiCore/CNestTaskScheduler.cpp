@@ -10,7 +10,10 @@
  */
 #define _WIN32_WINNT 0x0401
 
-#include <windows.h>
+#ifndef _WIN32
+#include <pthread.h>
+#endif
+
 #include "CapiGlobal.h"
 #include "CThreadPool.h"
 #include "CLocalQueue.h"
