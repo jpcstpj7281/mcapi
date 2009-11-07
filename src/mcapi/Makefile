@@ -3,7 +3,7 @@ CPP	= g++
 
 RM	= rm -fr
 
-CFLAGS	= -c -Wall -I./Include
+CFLAGS	= -c -Wall -I./include
 CFLAGS  += -DCPU_X86
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
@@ -72,7 +72,7 @@ CSRCS	=     /SingleCore/AVLTree.c \
 CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./SingleCore/SerialRadixSort.cpp \
 
-CARGS  =    -Wall -c -I../Include
+CARGS  =    -Wall -c -I../include
 
 APPS	=   libcapi.a
 
