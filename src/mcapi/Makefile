@@ -40,7 +40,43 @@ OBJS	=        AVLTree.o \
     SpaceList.o \
     SpList.o \
     Stack.o \
-    Tree.o 
+    Tree.o \
+    GCPtr.o \
+    SerialRadixSort.o \
+    ArrayList.o \
+    Atomic.o \
+    CapiCommon.o \
+    CDHashAVLTree.o \
+    CFastRandom.o \
+    CLockFreeQueue.o \
+    CLockFreeStack.o \
+    CMTask.o \
+    CNestTaskScheduler.o \
+    CRWLock.o \
+    CScopedLock.o \
+    CSegmentHashTable.o \
+    CTaskGraphScheduler.o \
+    CTaskTeam.o \
+    CThreadPool.o \
+    CWaitTaskScheduler.o \
+    DHashAVLTree.o \
+    Event.o \
+    Matrix.o \
+    MsgQueue.o \
+    MStack.o \
+    MTask.o \
+    MTask.o \
+    MTList.o \
+    MTree.o \
+    Parallel_BubbleSort.o \
+    Parallel_For.o \
+    Parallel_Graph.o \
+    Parallel_MergeSort.o \
+    Parallel_RadixSort.o \
+    Parallel_Search.o \
+    ReadWriteLock.o
+
+
     
 
 CSRCS	=     ./SingleCore/AVLTree.c \
@@ -72,6 +108,39 @@ CSRCS	=     ./SingleCore/AVLTree.c \
 
 CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./SingleCore/SerialRadixSort.cpp \
+    ./MultiCore/ArrayList.c \
+    ./MultiCore/Atomic.cpp \
+    ./MultiCore/CapiCommon.cpp \
+    ./MultiCore/CDHashAVLTree.cpp \
+    ./MultiCore/CFastRandom.cpp \
+    ./MultiCore/CLockFreeQueue.cpp \
+    ./MultiCore/CLockFreeStack.cpp \
+    ./MultiCore/CMTask.cpp \
+    ./MultiCore/CNestTaskScheduler.cpp \
+    ./MultiCore/CRWLock.cpp \
+    ./MultiCore/CScopedLock.cpp \
+    ./MultiCore/CSegmentHashTable.cpp \
+    ./MultiCore/CTaskGraphScheduler.cpp \
+    ./MultiCore/CTaskTeam.cpp \
+    ./MultiCore/CThreadPool.cpp \
+    ./MultiCore/CWaitTaskScheduler.cpp \
+    ./MultiCore/DHashAVLTree.cpp \
+    ./MultiCore/Event.c \
+    ./MultiCore/Matrix.cpp \
+    ./MultiCore/MsgQueue.c \
+    ./MultiCore/MStack.c \
+    ./MultiCore/MTask.c \
+    ./MultiCore/MTask.cpp \
+    ./MultiCore/MTList.c \
+    ./MultiCore/MTree.c \
+    ./MultiCore/Parallel_BubbleSort.cpp \
+    ./MultiCore/Parallel_For.cpp \
+    ./MultiCore/Parallel_Graph.cpp \
+    ./MultiCore/Parallel_MergeSort.cpp \
+    ./MultiCore/Parallel_RadixSort.cpp \
+    ./MultiCore/Parallel_Search.cpp \
+    ./MultiCore/ReadWriteLock.c
+
 
 CARGS  =    -Wall -c -I../include
 
