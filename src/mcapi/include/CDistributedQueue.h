@@ -248,11 +248,11 @@ LONG CDistributedQueue<T, LocalQueue, SharedQueue>::ThreadIdGet()
     }
     else
     {
-        Id = (LONG )TlsGetValue(m_dwTlsIndex);
+        Id = (LONG )TlsGetValueFunc(m_dwTlsIndex);
         if ( Id == 0 )
         {
             Id = AtomicIncrement(&m_lThreadIdIndex);
-            TlsSetValue(m_dwTlsIndex, (void *)Id);
+            TlsSetValueFunc(m_dwTlsIndex, (void *)Id);
             pQueue = new LocalQueue(m_nLocalQueueSize);
         }
         --Id;
