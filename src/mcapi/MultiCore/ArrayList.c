@@ -10,7 +10,7 @@
  */
 
 #include <stdlib.h>
-#include "CAPIGLOBAL.H"
+#include "CapiGlobal.H"
 #include "ArrayList.h"
 
 ARRAYNODE *ArrayNode_Create(UINT uDataLen)
