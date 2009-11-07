@@ -15,7 +15,7 @@ endif
 CPPFLAGS	= $(CFLAGS)
 
 LIBS	=     -L/usr/lib 
-OBJS	=         /SingleCore/AVLTree.o \
+OBJS	=        ./SingleCore/AVLTree.o \
     ./SingleCore/BinTree.o \
     ./SingleCore/BlockList.o \
     ./SingleCore/Cache.o \
@@ -43,7 +43,7 @@ OBJS	=         /SingleCore/AVLTree.o \
     ./SingleCore/Tree.o \
     ./SingleCore/Xcopy.o 
 
-CSRCS	=     /SingleCore/AVLTree.c \
+CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/BinTree.c \
     ./SingleCore/BlockList.c \
     ./SingleCore/Cache.c \
