@@ -52,23 +52,23 @@ CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/DoubleList.c \
     ./SingleCore/DSpaceList.c \
     ./MultiCore/Event.c \
-#    ./SingleCore/Emalloc.c \
-#    ./SingleCore/Graph.c \
-#    ./SingleCore/HashAVLTree.c \
-#    ./SingleCore/HashList.c \
-#    ./SingleCore/HashRBTree.c \
-#    ./SingleCore/HashTable.c \
-#    ./SingleCore/Queue.c \
-#    ./SingleCore/QuickSort.c \
-#    ./SingleCore/RBTree.c \
-#    ./SingleCore/ShortMsg.c \
-#    ./SingleCore/SingleList.c \
-#    ./SingleCore/SortTable.c \
-#    ./SingleCore/SpaceList.c \
-#    ./SingleCore/SpList.c \
-#    ./SingleCore/Stack.c \
-#    ./SingleCore/Tree.c \
-#    ./SingleCore/Xcopy.c 
+    ./SingleCore/Emalloc.c \
+    ./SingleCore/Graph.c \
+    ./SingleCore/HashAVLTree.c \
+    ./SingleCore/HashList.c \
+    ./SingleCore/HashRBTree.c \
+    ./SingleCore/HashTable.c \
+    ./SingleCore/Queue.c \
+    ./SingleCore/QuickSort.c \
+    ./SingleCore/RBTree.c \
+    ./SingleCore/ShortMsg.c \
+    ./SingleCore/SingleList.c \
+    ./SingleCore/SortTable.c \
+    ./SingleCore/SpaceList.c \
+    ./SingleCore/SpList.c \
+    ./SingleCore/Stack.c \
+    ./SingleCore/Tree.c \
+    ./SingleCore/Xcopy.c 
 
 CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./SingleCore/SerialRadixSort.cpp \
