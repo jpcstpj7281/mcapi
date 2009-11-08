@@ -62,7 +62,7 @@ static int Task_Compare(void *p1, void *p2)
 void Edge_Destroy(void *p)
 {
     EDGE    *pEdge = (EDGE *)p;
-    delete p;
+    delete pEdge;
 }
 
 
@@ -282,7 +282,7 @@ void CTaskTeam::Schedule()
             }
         }
 
-        if ( i == dwCurPos) //边界条件，单个的任务耗时大于平均时间的情况
+        if ( i == (int)dwCurPos) //边界条件，单个的任务耗时大于平均时间的情况
         {
             SingleList_InsertTail(ppList[nTurn], m_ppTaskArray[i]);
             m_ppTaskArray[i] = NULL;

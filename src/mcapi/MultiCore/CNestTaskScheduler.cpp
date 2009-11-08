@@ -21,7 +21,11 @@
 #include "CDistributedQueue.h"
 #include "CNestTaskScheduler.h"
 
+#ifdef _WIN32
 static unsigned int WINAPI NestTaskScheduler_StartFunc(void *pArgs);
+#else
+static void * NestTaskScheduler_StartFunc(void *pArgs);
+#endif
 
 #define     NESTTASK_QUEUE_SIZE     128
 
@@ -151,7 +155,11 @@ void CNestTaskScheduler::BeginRootThread(TASK &Task)
 	@param	void *pArgs - CNestTaskScheduler类型的参数	
 	@return	unsigned int WINAPI - 返回0	
 */
-unsigned int WINAPI NestTaskScheduler_StartFunc(void *pArgs)
+#ifdef _WIN32
+static unsigned int WINAPI NestTaskScheduler_StartFunc(void *pArgs)
+#else
+static void * NestTaskScheduler_StartFunc(void *pArgs)
+#endif
 {
     CNestTaskScheduler  *pSched = (CNestTaskScheduler *)pArgs;
 
