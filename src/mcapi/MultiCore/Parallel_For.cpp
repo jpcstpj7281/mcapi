@@ -8,6 +8,11 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
+
+#ifndef _WIN32
+#include <pthread.h>
+#endif
+
 #include "CapiGlobal.h"
 #include "Parallel_For.h"
 
