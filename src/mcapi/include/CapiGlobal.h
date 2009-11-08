@@ -63,6 +63,7 @@ typedef void *          HANDLE;
 #define __stdcall
 typedef long long int LONGLONG;
 typedef long long int int64_t;
+typedef long int      int32_t;
 #define Sleep(x)      usleep(x)
 
 #define  TRUE         1
@@ -177,14 +178,22 @@ BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
 #define AtomicDecrement(x)  InterlockedDecrement(x)
 #define AtomicWrite(x, y)     InterlockedExchange(x, y)
 
+BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
+
+#define AtomicIncrement64(x)  InterlockedIncrement64(x)
+#define AtomicDecrement64(x)  InterlockedDecrement64(x)
+#define AtomicWrite64(x, y)   InterlockedExchange64(x, y)
+
 #else
 
-BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
+BOOL AtomicCAS(volatile void *ptr, int value, int comparand);
 LONG AtomicWrite(LONG volatile *Target, LONG Value);
 LONG AtomicIncrement(LONG volatile *Target);
 LONG AtomicDecrement(LONG volatile *Target);
+int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand );
 
 #endif /* _WIN32 */
+
 BOOL TAS(LONG volatile *value);
 
 
@@ -198,11 +207,6 @@ BOOL TAS(LONG volatile *value);
 #endif
 
     
-BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
-
-#define AtomicIncrement64(x)  InterlockedIncrement64(x)
-#define AtomicDecrement64(x)  InterlockedDecrement64(x)
-#define AtomicWrite64(x, y)   InterlockedExchange64(x, y)
 
 #define    CAPI_EXIT_TASK      1
 #define    CAPI_NOT_EXIT_TASK  0
