@@ -30,7 +30,7 @@
 class CNestTaskScheduler {
 private:
     CThreadPool     m_ThreadPool;//(TaskScheduler_StartFunc, NULL, 0);
-    CDistributedQueue<TASK, CLocalQueue<TASK>, CStealQueue<TASK>, CStealQueue<TASK>> m_DQueue;
+    CDistributedQueue<TASK, CLocalQueue<TASK>, CStealQueue<TASK>, CStealQueue<TASK> > m_DQueue;
     THREADFUNC      m_StartFunc;  //为线程池使用的线程入口函数指针
     LONG  volatile  m_lTaskId;    //Task Id,用于判断是否唤醒对应的线程
 
