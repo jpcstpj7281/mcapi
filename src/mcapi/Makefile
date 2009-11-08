@@ -23,6 +23,7 @@ OBJS	=        AVLTree.o \
     DeQueue.o \
     DoubleList.o \
     DSpaceList.o \
+    Event.o \
     Emalloc.o \
     GCPtr.o \
     Graph.o \
