@@ -10,6 +10,8 @@
  */
 #if _WIN32 || _WIN64
 #include <windows.h>
+#else
+#include <sys/types.h>
 #endif
 
 #include "CapiGlobal.h"
