@@ -102,8 +102,8 @@ public:
 
     T *Find(T *pData)
     {
-        return (reinterpret_cast<T *>)DHashAVLTree_Find(m_pTree, 
-            (reinterpret_cast<T *>)pData, m_HashFunc, m_CompareFunc, m_CopyFunc);
+        return (T *)DHashAVLTree_Find(m_pTree, 
+            (T *)pData, m_HashFunc, m_CompareFunc, m_CopyFunc);
     }
 };
 
