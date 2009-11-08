@@ -53,21 +53,29 @@ CNestTaskScheduler *CRange::GetTaskScheduler()
 #ifdef _WIN32
 unsigned int WINAPI RangeProcessTask(void *pArg)
 #else
-void *RangeProcessTask(void *pArg)
+void * RangeProcessTask(void *pArg)
 #endif
 {
     CRange *pRange = (CRange *)pArg;
 
     if ( pRange == NULL )
     {
+#ifdef _WIN32
         return CAPI_FAILED;
+#else
+        return NULL;
+#endif
     }
 
     CRange *pNewRange = pRange->Split();
     if ( pNewRange == NULL )
     {
         delete pRange;
+#ifdef _WIN32
         return CAPI_SUCCESS;
+#else
+        return NULL;
+#endif
     }
 
     CNestTaskScheduler *pTaskSched = pRange->GetTaskScheduler();
@@ -83,7 +91,11 @@ void *RangeProcessTask(void *pArg)
     pTaskSched->SpawnLocalTask(t1);
     pTaskSched->SpawnTask(t2);
 
+#ifdef _WIN32
     return CAPI_SUCCESS;
+#else
+    return NULL;
+#endif
 }
 
 
