@@ -83,7 +83,11 @@ typedef struct DOUBLENODE_st {
     void    *pData;                  /* 数据指针 */
 } DOUBLENODE;
 
+#ifdef _WIN32
 typedef unsigned int (_stdcall *THREADFUNC)(void *pArgs);
+#else
+typedef void *(*THREADFUNC)(void *pArgs);
+#endif
 
 typedef struct  TASK_st {
     THREADFUNC      func;         //任务执行函数
