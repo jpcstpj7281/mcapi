@@ -191,6 +191,8 @@ LONG AtomicIncrement(LONG volatile *Target);
 LONG AtomicDecrement(LONG volatile *Target);
 int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand );
 
+#define CAPI_Yield()        sched_yield()
+
 #endif /* _WIN32 */
 
 BOOL TAS(LONG volatile *value);
