@@ -63,7 +63,6 @@ typedef void *          HANDLE;
 #define __stdcall
 typedef long long int LONGLONG;
 typedef long long int int64_t;
-typedef long int      int32_t;
 #define Sleep(x)      usleep(x)
 
 #define  TRUE         1
