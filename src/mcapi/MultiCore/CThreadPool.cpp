@@ -35,7 +35,11 @@ pthread_key_t TlsAlloc()
 	@param	void *pArgs - 一个THREADPOOL_STARTFUNC_PARMETERS类型的参数	
 	@return	unsigned __stdcall - 由用户定义的返回值	
 */
+#ifdef _WIN32
 unsigned __stdcall ThreadPool_StartFunc(void *pArgs)
+#else
+void * ThreadPool_StartFunc(void *pArgs)
+#endif
 {
     THREADPOOL_STARTFUNC_PARMETERS *p = (THREADPOOL_STARTFUNC_PARMETERS *)pArgs;
     TlsSetValueFunc(p->dwTlsIndex, (void *)(p->nId));
