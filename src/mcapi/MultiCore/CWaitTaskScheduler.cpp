@@ -8,9 +8,13 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
+#ifdef _WIN32
 #define _WIN32_WINNT 0x0401
 
 #include <windows.h>
+#else
+#include <pthread.h>
+#endif
 #include "CapiGlobal.h"
 #include "CThreadPool.h"
 #include "CLocalQueue.h"

@@ -21,77 +21,7 @@
 #define MTASK_EXIT			1
 
 
-//#define AtomicDecrement(x)  InterlockedDecrement(x)
-//#define AtomicIncrement(x)  InterlockedIncrement(x)
-#define AtomicCAS(x, y, z)  InterlockedCompareExchange(x, y, z)
 
-//#define AtomicWrite(x, y)   InterlockedExchange(x, y)
-
-#ifndef _WIN32
-
-LONG AtomicWrite(LONG volatile *Target, LONG Value)
-{
-	LONG	Old;
-
-	do {
-		Old = *Target;
-
-	}while (!AtomicCAS(Target, Value, Old));
-
-	return Old;
-}
-
-LONG AtomicIncrement(LONG volatile *Target)
-{
-	LONG	Old;
-
-	do {
-		Old = *Target;
-
-	}while (!AtomicCAS(Target, Old + 1, Old));
-
-	return Old;
-}
-
-BOOL TAS(LONG volatile *value)
-{
-	LONG	ret;
-	ret = AtomicCAS(value, 1, 0);
-	if ( ret == 0 )
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
-
-#if 0	
-	atomic {
-		if (*value == 0) {
-			*value = 1;
-			return TRUE;
-		}
-		else {
-		  return FALSE;
-		}
-	}
-#endif
-}
-
-LONG AtomicDecrement(LONG volatile *Target)
-{
-	LONG	Old;
-
-	do {
-		Old = *Target;
-
-	}while (!AtomicCAS(Target, Old - 1, Old));
-
-	return Old;
-}
-
-#endif
 
 #ifdef _WIN32
 HANDLE LockCreate()  	
