@@ -22,7 +22,7 @@
 #ifndef __FASTLOCK_H__
 #define __FASTLOCK_H__
 
-#if _WIN32 || _WIN64
+#ifdef _WIN32 
 #if _WIN32_WINNT < 0x0404
 #undef _WIN32_WINNT
 #define _WIN32_WINNT  0x0404
@@ -30,7 +30,7 @@
 #include <windows.h>
 #else
 #include <pthread.h>
-#endif /* _WIN32 || _WIN64 */
+#endif /* _WIN32  */
 
 
 

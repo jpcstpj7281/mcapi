@@ -22,6 +22,11 @@
 #ifndef __CAPIGLOBAL_H__
 #define __CAPIGLOBAL_H__
 
+#if _WIN32_WINNT < 0x0404
+#undef _WIN32_WINNT
+#define _WIN32_WINNT  0x0404
+#endif
+
 #ifdef _WIN32 
 #include <windows.h>
 #else
@@ -57,6 +62,7 @@ typedef void *          HANDLE;
 #define _stdcall
 #define __stdcall
 typedef long long int LONGLONG;
+typedef long long int int64_t;
 #define Sleep(x)      usleep(x)
 
 #define  TRUE         1
@@ -176,10 +182,10 @@ BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
 BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
 LONG AtomicWrite(LONG volatile *Target, LONG Value);
 LONG AtomicIncrement(LONG volatile *Target);
-BOOL TAS(LONG volatile *value);
 LONG AtomicDecrement(LONG volatile *Target);
 
 #endif /* _WIN32 */
+BOOL TAS(LONG volatile *value);
 
 
 #ifdef _WIN32
