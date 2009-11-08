@@ -154,7 +154,7 @@ void Serial_Merge3(void **ppData, int nStart1, int nStart2, int nEnd2, COMPAREFU
 	int old = -1;
 
 	k = nStart2;
-	for ( i = nStart1; i < nStart2; k <= nEnd2 )
+	for ( i = nStart1; i < nStart2, k <= nEnd2; ; )
 	{
 		if ( (*func)(ppData[i], ppData[k]) <= 0 )
 		{
