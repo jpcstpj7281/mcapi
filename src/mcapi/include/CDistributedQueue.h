@@ -36,7 +36,7 @@
 //获取线程Id回调函数定义
 typedef int (*GetThreadIdFunc)(void *pArg); 
 
-template <class T, class LocalQueue, class SharedQueue> 
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
 class CDistributedQueue {
 private:
     LocalQueue **    m_ppLocalQueue;    // 本地队列数组
@@ -101,8 +101,8 @@ public:
                                     为0表示和CPU核数相等的个数
 	@return	void - 无 
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::Create(
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::Create(
                    int nLocalQueueSize, int nLocalQueueCount, 
                    int nSharedQueueSize, int nSharedQueueCount) 
 {
@@ -153,8 +153,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::Create(
 	@param	void * pThreadIdFuncArg - GetThreadId回调函数的参数	
 	@return	void - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::Create(
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::Create(
     int nLocalQueueSize, int nLocalQueueCount, 
     int nSharedQueueSize, int nSharedQueueCount,
     GetThreadIdFunc GetThreadId, void * pThreadIdFuncArg)
@@ -170,8 +170,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::Create(
 
 	@return	 - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-CDistributedQueue<T, LocalQueue, SharedQueue>::~CDistributedQueue()
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
 {
     int i;
     for ( i = 0; i < m_nLocalQueueCount; i++ )
@@ -194,8 +194,8 @@ CDistributedQueue<T, LocalQueue, SharedQueue>::~CDistributedQueue()
 
 	@return	void - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::ResizeLocalQueue()
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::ResizeLocalQueue()
 {
     //将本地队列数组扩大一倍, 防止线程数量多于队列数量,以保证程序安全
     int i;
@@ -223,8 +223,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::ResizeLocalQueue()
 
 	@return	LONG - 返回线程的编号	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-LONG CDistributedQueue<T, LocalQueue, SharedQueue>::ThreadIdGet()
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+LONG CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::ThreadIdGet()
 {
     LONG Id;
     LocalQueue *pQueue = NULL;
@@ -283,8 +283,8 @@ LONG CDistributedQueue<T, LocalQueue, SharedQueue>::ThreadIdGet()
 	@param	T &Data - 要进队的数据	
 	@return	void - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::EnQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::EnQueue(T &Data)
 {
     int nId = ThreadIdGet();
 
@@ -310,8 +310,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::EnQueue(T &Data)
 	@param	T &Data - 要进队的数据	
 	@return	void - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::PushToLocalQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PushToLocalQueue(T &Data)
 {
     int nId = ThreadIdGet();
     m_ppLocalQueue[nId]->EnQueue(Data);
@@ -326,8 +326,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::PushToLocalQueue(T &Data)
 	@param	int nIndex - 本地队列的序号	
 	@return	void - 无	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-void CDistributedQueue<T, LocalQueue, SharedQueue>::PushToLocalQueue(T &Data, int nIndex)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PushToLocalQueue(T &Data, int nIndex)
 {
     if ( nIndex >= m_nLocalQueueCount * 2)
     {
@@ -357,8 +357,8 @@ void CDistributedQueue<T, LocalQueue, SharedQueue>::PushToLocalQueue(T &Data, in
 	@param	T &Data - 接收出队的数据	
 	@return	int - 出队成功返回CAPI_SUCCESS, 失败(队列为空）返回CAPI_FAILED.	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-int CDistributedQueue<T, LocalQueue, SharedQueue>::PopFromLocalQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PopFromLocalQueue(T &Data)
 {
     int nId = ThreadIdGet();
     return m_ppLocalQueue[nId]->DeQueue(Data);
@@ -369,8 +369,8 @@ int CDistributedQueue<T, LocalQueue, SharedQueue>::PopFromLocalQueue(T &Data)
 	@param	T &Data - 要进队的数据	
 	@return	int - 成功返回CAPI_SUCCESS, 失败返回CAPI_FAILED.	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-int CDistributedQueue<T, LocalQueue, SharedQueue>::PushToSharedQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PushToSharedQueue(T &Data)
 {
    return m_pSharedQueue->Push(Data);
 }
@@ -380,8 +380,8 @@ int CDistributedQueue<T, LocalQueue, SharedQueue>::PushToSharedQueue(T &Data)
 	@param	T &Data - 接收出队的数据	
 	@return	int - 成功返回CAPI_SUCCESS, 失败返回CAPI_FAILED.	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-int CDistributedQueue<T, LocalQueue, SharedQueue>::PopFromSharedQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PopFromSharedQueue(T &Data)
 {
     return m_pSharedQueue->Pop(Data);
 }
@@ -392,8 +392,8 @@ int CDistributedQueue<T, LocalQueue, SharedQueue>::PopFromSharedQueue(T &Data)
 	@param	T &Data - 接收出队的数据	
 	@return	int - 成功返回CAPI_SUCCESS, 失败返回CAPI_FAILED.	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-int CDistributedQueue<T, LocalQueue, SharedQueue>::DeQueue(T &Data)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::DeQueue(T &Data)
 {
     int nRet;
 
@@ -424,15 +424,15 @@ int CDistributedQueue<T, LocalQueue, SharedQueue>::DeQueue(T &Data)
 	@param	int nSharedQueueIndex - 共享子队列序号	
 	@return	int - 成功返回CAPI_SUCCESS, 失败返回CAPI_FAILED.	
 */
-template <class T, class LocalQueue, class SharedQueue> 
-int CDistributedQueue<T, LocalQueue, SharedQueue>::PrivatizeSharedQueue(int nSharedQueueIndex)
+template <class T, class LocalQueue, class SharedQueue, class SubQueue> 
+int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PrivatizeSharedQueue(int nSharedQueueIndex)
 {
     int nRet = CAPI_FAILED;
     T   Data;
 
     int nId = ThreadIdGet();
 
-    SharedQueue::SubQueue *pQueue;
+    SubQueue *pQueue;
 
     pQueue = m_pSharedQueue->GetSubQueue(nSharedQueueIndex);
     if ( pQueue->IsEmpty() )
