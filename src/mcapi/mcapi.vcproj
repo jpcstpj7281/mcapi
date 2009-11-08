@@ -452,6 +452,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\Event.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Include\FastLock.h"
 				>
 			</File>
