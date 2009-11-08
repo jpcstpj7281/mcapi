@@ -50,7 +50,11 @@ CNestTaskScheduler *CRange::GetTaskScheduler()
 	@param	void *pArg - 实际为一个CRange指针	
 	@return	unsigned int WINAPI - 返回CAPI_FAILED表示失败，返回CAPI_SUCCESS表示成功	
 */
+#ifdef _WIN32
 unsigned int WINAPI RangeProcessTask(void *pArg)
+#else
+void *RangeProcessTask(void *pArg)
+#endif
 {
     CRange *pRange = (CRange *)pArg;
 
