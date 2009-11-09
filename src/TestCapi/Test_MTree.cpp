@@ -32,7 +32,7 @@ INT DRV_MTree_Delete(INT i);
 
 
 
-void *StrCopy(void *psz)
+void *StrCopy(const void *psz)
 {
     if ( psz != NULL )
     {
