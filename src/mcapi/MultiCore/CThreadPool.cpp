@@ -202,11 +202,11 @@ void CThreadPool::ExecAndWait()
     int i;
     for ( i = 0; i < m_nThreadCount; i++ )
     {
-        ResumeThread(m_pThreadArray[i]);
+        MCapi_ResumeThread(m_pThreadArray[i]);
     }
     for ( i = 0; i < m_nSingleThreadCount; i++ )
     {
-        ResumeThread(m_SingleThread[i]);
+        MCapi_ResumeThread(m_SingleThread[i]);
     }
     WaitAllThread();    
 }
@@ -221,7 +221,7 @@ void CThreadPool::ExecThread(int nIndex)
 {
     if ( nIndex < m_nThreadCount )
     {
-        ResumeThread(m_pThreadArray[nIndex]);
+        MCapi_ResumeThread(m_pThreadArray[nIndex]);
     }
     return;
 }
