@@ -134,7 +134,7 @@ void * SortTable_FindData(SORTTABLE *pTable, const void *pData,
     {
         INT nResult;
         uMid = ( uLow + uHigh ) / 2;
-        nResult = (*CompareFunc)( pTable->ppData[uMid], pData );
+        nResult = (*CompareFunc)( pTable->ppData[uMid], (void *)pData );
         if ( nResult > 0 )
         {
             uHigh = uMid - 1;
@@ -183,7 +183,7 @@ void * SortTable_BlurFind(SORTTABLE *pTable, const void *pData,
     {
         INT nResult;
         nMid = ( nLow + nHigh ) / 2;
-        nResult = (*CompareFunc)( pTable->ppData[nMid], pData );
+        nResult = (*CompareFunc)( pTable->ppData[nMid], (void *)pData );
         if ( nResult > 0 )
         {
             nHigh = nMid - 1;
