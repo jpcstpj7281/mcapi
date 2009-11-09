@@ -40,7 +40,7 @@ void TestCase_SerialRadixSort(void)
 
     int i;
     printf("SerialRadixSort begin, result as following:\n");
-    for ( i = 0; i < sizeof(a)/sizeof(int); i++ )
+    for ( i = 0; i < (int)(sizeof(a)/sizeof(int)); i++ )
     {
         printf("a[%d] = %d\n", i, a[i]);
     }
@@ -70,7 +70,7 @@ void TestCase_SerialRadixSortPer(void)
     Serial_RadixSort<int>(a, count, 1<<16, 2, GetDoubleByteKey);
     t2 = clock();
 
-    printf("SerialRadixSort 0x%x, %d, Total Time: %d ms\n", count, count, t2-t1);
+    printf("SerialRadixSort 0x%x, %d, Total Time: %ld ms\n", count, count, t2-t1);
 
     //check result order
     for ( i = 0; i < count-1; i++ )

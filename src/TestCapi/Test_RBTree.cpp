@@ -70,17 +70,17 @@ void DRV_RBTree_Destroy(INT i)
 		RBTree_Destroy(pTree, NULL);
         break;
     case 3:
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
 		RBTree_Destroy(pTree, free);
         break;
     case 4:
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
 		RBTree_Destroy(pTree, free);
         break;
     case 5:
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("18"), StrCompare);
-        RBTree_Insert(pTree, strdup("19"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("18"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("19"), StrCompare);
 		RBTree_Destroy(pTree, free);
         break;
     default:
@@ -97,7 +97,7 @@ void DRV_RBTree_Insert(INT i)
     switch( i )
     {
     case 1: /* 插入1个节点的情况 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && pTree->pRoot->pLeft == NULL 
             && pTree->pRoot->pRight == NULL
@@ -112,8 +112,8 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 2: /* 插入两个节点的情况 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && pTree->pRoot->pRight == NULL
@@ -129,9 +129,9 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 3: /* 插入3个节点的情况 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "22") == 0
@@ -149,10 +149,10 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 4: /* LLr型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("10"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("10"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "22") == 0
@@ -172,9 +172,9 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 5: /* LLb型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("10"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("10"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "15") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "10") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0
@@ -192,9 +192,9 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 6: /* LRb型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0
@@ -212,10 +212,10 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 7: /* LRr型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "22") == 0
@@ -235,12 +235,12 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 8: /* LRr型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
-        RBTree_Insert(pTree, strdup("13"), StrCompare);
-        RBTree_Insert(pTree, strdup("14"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("13"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("14"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "22") == 0
@@ -263,14 +263,14 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 9: /* LRr型和LLb型复合型*/
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
-        RBTree_Insert(pTree, strdup("13"), StrCompare);
-        RBTree_Insert(pTree, strdup("14"), StrCompare);
-        RBTree_Insert(pTree, strdup("10"), StrCompare);
-        RBTree_Insert(pTree, strdup("12"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("13"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("14"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("10"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("12"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "15") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "13") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0
@@ -297,15 +297,15 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 10: /* LLr型和LRb型复合型*/
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("13"), StrCompare);
-        RBTree_Insert(pTree, strdup("18"), StrCompare);
-        RBTree_Insert(pTree, strdup("11"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
-        RBTree_Insert(pTree, strdup("19"), StrCompare);
-        RBTree_Insert(pTree, strdup("16"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("13"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("18"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("11"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("19"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("16"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "18") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0
@@ -334,16 +334,16 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 11: /* LRb型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("13"), StrCompare);
-        RBTree_Insert(pTree, strdup("18"), StrCompare);
-        RBTree_Insert(pTree, strdup("11"), StrCompare);
-        RBTree_Insert(pTree, strdup("17"), StrCompare);
-        RBTree_Insert(pTree, strdup("19"), StrCompare);
-        RBTree_Insert(pTree, strdup("16"), StrCompare);
-        RBTree_Insert(pTree, strdup("12"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("13"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("18"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("11"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("19"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("16"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("12"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "18") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0
@@ -374,10 +374,10 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 12: /* RLr型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("25"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("25"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "25") == 0
@@ -397,9 +397,9 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 13: /* RLb型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("25"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("25"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "22") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "25") == 0
@@ -418,9 +418,9 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 14: /* RRb型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("25"), StrCompare);
-        RBTree_Insert(pTree, strdup("27"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("25"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("27"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "25") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "27") == 0
@@ -439,10 +439,10 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 15: /* RRr型 */
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("25"), StrCompare);
-        RBTree_Insert(pTree, strdup("27"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("25"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("27"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "15") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "25") == 0
@@ -463,14 +463,14 @@ void DRV_RBTree_Insert(INT i)
         }
         break;
     case 16: /* RRr型和RLb型复合型*/
-        RBTree_Insert(pTree, strdup("20"), StrCompare);
-        RBTree_Insert(pTree, strdup("15"), StrCompare);
-        RBTree_Insert(pTree, strdup("25"), StrCompare);
-        RBTree_Insert(pTree, strdup("27"), StrCompare);
-        RBTree_Insert(pTree, strdup("22"), StrCompare);
-        RBTree_Insert(pTree, strdup("21"), StrCompare);
-        RBTree_Insert(pTree, strdup("24"), StrCompare);
-        RBTree_Insert(pTree, strdup("23"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("25"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("27"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("22"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("21"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("24"), StrCompare);
+        RBTree_Insert(pTree, (void *)strdup("23"), StrCompare);
         if ( strcmp((char *)(pTree->pRoot->pData), "22") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0
             && strcmp((char *)(pTree->pRoot->pRight->pData), "25") == 0
@@ -518,17 +518,17 @@ RBTREE * BuildDeleteTestCase()
     pTree = RBTree_Create();
     if ( pTree != NULL )
     {
-        BinTree_Insert(&(pTree->pRoot), strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("40"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("32"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("38"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("40"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("32"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("38"), StrCompare, RBTREE_COLOR_RED);
         pTree->uNodeCount = 11;
         pTree->pCursor = NULL;
     }
@@ -543,13 +543,13 @@ RBTREE * BuildDeleteTestCase4()
     pTree = RBTree_Create();
     if ( pTree != NULL )
     {
-        BinTree_Insert(&(pTree->pRoot), strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("40"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("32"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("38"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("40"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("32"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("38"), StrCompare, RBTREE_COLOR_RED);
         pTree->uNodeCount = 7;
         pTree->pCursor = NULL;
     }
@@ -563,13 +563,13 @@ RBTREE * BuildDeleteTestCase5()
     pTree = RBTree_Create();
     if ( pTree != NULL )
     {
-        BinTree_Insert(&(pTree->pRoot), strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("20"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("40"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("15"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("22"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("28"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("20"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("40"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("15"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("22"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("28"), StrCompare, RBTREE_COLOR_RED);
         pTree->uNodeCount = 7;
         pTree->pCursor = NULL;
     }
@@ -583,17 +583,17 @@ RBTREE * BuildDeleteTestCase2()
     pTree = RBTree_Create();
     if ( pTree != NULL )
     {
-        BinTree_Insert(&(pTree->pRoot), strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("20"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("40"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("15"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("22"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("28"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("20"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("40"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("15"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("22"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("28"), StrCompare, RBTREE_COLOR_RED);
         pTree->uNodeCount = 11;
         pTree->pCursor = NULL;
     }
@@ -607,30 +607,30 @@ RBTREE * BuildDeleteTestCase3()
     pTree = RBTree_Create();
     if ( pTree != NULL )
     {
-        BinTree_Insert(&(pTree->pRoot), strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("40"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("10"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("55"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("65"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("80"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("95"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("32"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("38"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("42"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("48"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("62"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("85"), StrCompare, RBTREE_COLOR_RED);
-        BinTree_Insert(&(pTree->pRoot), strdup("31"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("33"), StrCompare, RBTREE_COLOR_BLACK);
-        BinTree_Insert(&(pTree->pRoot), strdup("36"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("50"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("30"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("70"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("20"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("40"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("60"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("90"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("10"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("25"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("35"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("45"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("55"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("65"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("80"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("95"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("32"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("38"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("42"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("48"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("62"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("85"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("31"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("33"), StrCompare, RBTREE_COLOR_BLACK);
+        BinTree_Insert(&(pTree->pRoot), (void *)strdup("36"), StrCompare, RBTREE_COLOR_RED);
         pTree->uNodeCount = 24;
         pTree->pCursor = NULL;
     }
@@ -680,9 +680,9 @@ void DRV_RBTree_Delete(INT i)
     {
     case 1:
 
-        RBTree_Delete(pTree1, "32", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
 
-        ChangeNode(pTree2, "32", NULL, -1);
+        ChangeNode(pTree2, (void *)"32", NULL, -1);
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 10
             || pTree1->uNodeCount != pTree2->uNodeCount )
@@ -692,8 +692,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 2: /* Lr-br型 */
         
-        RBTree_Delete(pTree1, "32", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -711,8 +711,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 3: /* Lr-rb型 */
         
-        RBTree_Delete(pTree1, "38", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"38", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -727,7 +727,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 4: /* Lr-rr型 */
         
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "30", "32", -1);
@@ -741,9 +741,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 5: /* Lr-bb型 */
         
-        RBTree_Delete(pTree1, "32", StrCompare, free);
-        RBTree_Delete(pTree1, "38", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"38", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -754,7 +754,7 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "30", "40", -1);
         ChangeNode(pTree2, "20", "30", -1);
 
-        BinTree_Insert(&(pTree2->pRoot), strdup("35"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("35"), StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 8
@@ -765,7 +765,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 6: /* Rr-rr型 */
         
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "30", "28", -1);
@@ -779,8 +779,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 7: /* Rr-rb型 */
 
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -796,8 +796,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 8: /* Rr-br型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -812,9 +812,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 9: /* Rr-bb型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -823,7 +823,8 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "20", "15", RBTREE_COLOR_BLACK);
         ChangeNode(pTree2, "30", "20", -1);
         ChangeNode(pTree2, "40", "30", -1);
-        BinTree_Insert(&(pTree2->pRoot), strdup("25"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("25"), 
+            StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 8
@@ -834,7 +835,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 10: /* Lb-rr型 */
         
-        RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "20", "22", -1);
@@ -848,8 +849,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 11: /* Lb-rb型 */
         
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -864,8 +865,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 12: /* Lb-br型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -881,9 +882,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 13: /* Lb-bb型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -899,7 +900,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 14: /* Lb-bb型和Rb-bb复合型 */
         
-        RBTree_Delete(pTree1, "60", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"60", StrCompare, free);
 
         BinTree_RotateRight(pTree2->pRoot, &(pTree2->pRoot));
         ChangeNode(pTree2, "60", NULL, -1);
@@ -914,9 +915,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 15: /* Rb-bb型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "25", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"25", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -932,17 +933,17 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 16: /* Rb-rr型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        BinTree_Insert(&(pTree1->pRoot), strdup("55"), StrCompare, RBTREE_COLOR_RED);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        BinTree_Insert(&(pTree1->pRoot), (void *)strdup("55"), StrCompare, RBTREE_COLOR_RED);
         pTree1->uNodeCount += 1;
-        BinTree_Insert(&(pTree1->pRoot), strdup("65"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree1->pRoot), (void *)strdup("65"), StrCompare, RBTREE_COLOR_RED);
         pTree1->uNodeCount += 1;
-        RBTree_Delete(pTree1, "90", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"90", StrCompare, free);
         
-        BinTree_Insert(&(pTree2->pRoot), strdup("55"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("55"), StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
-        BinTree_Insert(&(pTree2->pRoot), strdup("65"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("65"), StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -959,13 +960,14 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 17: /* Rb-br型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        BinTree_Insert(&(pTree1->pRoot), strdup("65"), StrCompare, RBTREE_COLOR_RED);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        BinTree_Insert(&(pTree1->pRoot), (void *)strdup("65"), 
+            StrCompare, RBTREE_COLOR_RED);
         pTree1->uNodeCount += 1;
-        RBTree_Delete(pTree1, "90", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"90", StrCompare, free);
         
-        BinTree_Insert(&(pTree2->pRoot), strdup("65"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("65"), StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -982,13 +984,15 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 18: /* Rb-rb型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        BinTree_Insert(&(pTree1->pRoot), strdup("55"), StrCompare, RBTREE_COLOR_RED);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        BinTree_Insert(&(pTree1->pRoot), (void *)strdup("55"),
+            StrCompare, RBTREE_COLOR_RED);
         pTree1->uNodeCount += 1;
-        RBTree_Delete(pTree1, "90", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"90", StrCompare, free);
         
-        BinTree_Insert(&(pTree2->pRoot), strdup("55"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("55"), 
+            StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -1006,9 +1010,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 19: /* Rb-bb和Rb-rb复合型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "90", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"90", StrCompare, free);
         
         ChangeNode(pTree2, "22", NULL, -1);
         ChangeNode(pTree2, "28", NULL, -1);
@@ -1023,7 +1027,8 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "60", "40", -1); /* 必须从小改到大，此行必须放在70前面，否则先改70的话会查找不到60 */
         ChangeNode(pTree2, "70", "50", -1);
         ChangeNode(pTree2, "90", "70", -1);
-        BinTree_Insert(&(pTree2->pRoot), strdup("60"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("60"), 
+            StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 8
@@ -1034,7 +1039,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 20: /* Rb-bb型和Lr－rb复合型 */
         
-        RBTree_Delete(pTree1, "30", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"30", StrCompare, free);
         
         ChangeNode(pTree2, "25", NULL, -1);
         ChangeNode(pTree2, "10", "10", RBTREE_COLOR_RED);
@@ -1042,13 +1047,13 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "30", "25", -1);
         ChangeNode(pTree2, "32", "32", RBTREE_COLOR_BLACK);
 
-        pNode = BinTree_FindNode(pTree2->pRoot, "35", StrCompare);
+        pNode = BinTree_FindNode(pTree2->pRoot, (void *)"35", StrCompare);
         BinTree_RotateRight(pNode, &(pTree2->pRoot));
 
-        pNode = BinTree_FindNode(pTree2->pRoot, "40", StrCompare);
+        pNode = BinTree_FindNode(pTree2->pRoot, (void *)"40", StrCompare);
         BinTree_RotateRight(pNode, &(pTree2->pRoot));
 
-        pNode = BinTree_FindNode(pTree2->pRoot, "25", StrCompare);
+        pNode = BinTree_FindNode(pTree2->pRoot, (void *)"25", StrCompare);
         BinTree_RotateLeft(pNode, &(pTree2->pRoot));
 
         
@@ -1061,7 +1066,7 @@ void DRV_RBTree_Delete(INT i)
         break;        
     case 21: /* A节点为红色的情况 */
         
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "36", NULL, -1);
         
@@ -1080,7 +1085,7 @@ void DRV_RBTree_Delete(INT i)
         break;        
     case 22: /* A节点为红色的情况 */
         
-        RBTree_Delete(pTree1, "70", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"70", StrCompare, free);
         
         ChangeNode(pTree2, "62", NULL, -1);
         
@@ -1099,7 +1104,7 @@ void DRV_RBTree_Delete(INT i)
         break;        
     case 23: /* Rb-bb型 */
         
-        RBTree_Delete(pTree1, "70", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"70", StrCompare, free);
         
         ChangeNode(pTree2, "62", NULL, -1);
         
@@ -1118,7 +1123,7 @@ void DRV_RBTree_Delete(INT i)
         break;        
     case 24: /* 删除节点的右节点不存在型 */
         
-        RBTree_Delete(pTree1, "65", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"65", StrCompare, free);
         
         ChangeNode(pTree2, "62", NULL, -1);
         
@@ -1135,7 +1140,7 @@ void DRV_RBTree_Delete(INT i)
         break;        
     case 25: /* 删除节点的左节点不存在型 */
         
-        RBTree_Delete(pTree1, "80", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"80", StrCompare, free);
         
         ChangeNode(pTree2, "85", NULL, -1);
         
@@ -1151,7 +1156,7 @@ void DRV_RBTree_Delete(INT i)
         }
         break;      
     case 26:
-        nRet = RBTree_Delete(pTree1, "20", StrCompare, free);
+        nRet = RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         if ( nRet == CAPI_SUCCESS )
         {
             printf("测试用例26，空树删除型失败\n");
@@ -1159,8 +1164,8 @@ void DRV_RBTree_Delete(INT i)
         }
         break;
     case 27:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         if ( nRet == CAPI_FAILED || pTree1->pRoot != NULL 
             || pTree1->uNodeCount != 0 )
         {
@@ -1169,8 +1174,8 @@ void DRV_RBTree_Delete(INT i)
         }
         break;
     case 28:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "10", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"10", StrCompare, free);
         if ( nRet == CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || pTree1->pRoot->pLeft != NULL
@@ -1183,9 +1188,9 @@ void DRV_RBTree_Delete(INT i)
         }
         break;
     case 29:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || pTree1->pRoot->pLeft != NULL
@@ -1199,9 +1204,9 @@ void DRV_RBTree_Delete(INT i)
         break;                
         
     case 30:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "15" )  != 0
             || pTree1->pRoot->pLeft != NULL
@@ -1214,9 +1219,9 @@ void DRV_RBTree_Delete(INT i)
         }
         break;                
     case 31:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "35", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"35", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || pTree1->pRoot->pLeft != NULL
@@ -1229,9 +1234,9 @@ void DRV_RBTree_Delete(INT i)
         }
         break;                
     case 32:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "35" )  != 0
             || pTree1->pRoot->pLeft != NULL
@@ -1245,10 +1250,10 @@ void DRV_RBTree_Delete(INT i)
         break;    
         
     case 33:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "15" )  != 0
             || strcmp((char *)(pTree1->pRoot->pRight->pData), "35" )  != 0
@@ -1264,10 +1269,10 @@ void DRV_RBTree_Delete(INT i)
         break;    
         
     case 34:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || strcmp((char *)(pTree1->pRoot->pRight->pData), "35" )  != 0
@@ -1282,10 +1287,10 @@ void DRV_RBTree_Delete(INT i)
         }
         break;    
     case 35:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "35", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"35", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || strcmp((char *)(pTree1->pRoot->pLeft->pData), "15" )  != 0
@@ -1300,11 +1305,11 @@ void DRV_RBTree_Delete(INT i)
         }
         break;    
     case 36:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        RBTree_Insert(pTree1, strdup("12"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "12", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("12"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"12", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || strcmp((char *)(pTree1->pRoot->pLeft->pData), "15" )  != 0
@@ -1321,11 +1326,11 @@ void DRV_RBTree_Delete(INT i)
         }
         break;            
     case 37:
-        RBTree_Insert(pTree1, strdup("20"), StrCompare);
-        RBTree_Insert(pTree1, strdup("35"), StrCompare);
-        RBTree_Insert(pTree1, strdup("15"), StrCompare);
-        RBTree_Insert(pTree1, strdup("12"), StrCompare);
-        nRet = RBTree_Delete(pTree1, "15", StrCompare, free);
+        RBTree_Insert(pTree1, (void *)strdup("20"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("35"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("15"), StrCompare);
+        RBTree_Insert(pTree1, (void *)strdup("12"), StrCompare);
+        nRet = RBTree_Delete(pTree1, (void *)"15", StrCompare, free);
         if ( nRet != CAPI_SUCCESS 
             || strcmp((char *)(pTree1->pRoot->pData), "20" )  != 0
             || strcmp((char *)(pTree1->pRoot->pLeft->pData), "12" )  != 0
@@ -1347,8 +1352,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 42: /* Lr-br型 */
         
-        RBTree_Delete(pTree1, "32", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -1366,8 +1371,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 43: /* Lr-rb型 */
         
-        RBTree_Delete(pTree1, "38", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"38", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -1382,7 +1387,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 44: /* Lr-rr型 */
         
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "30", "32", -1);
@@ -1396,9 +1401,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 45: /* Lr-bb型 */
         
-        RBTree_Delete(pTree1, "32", StrCompare, free);
-        RBTree_Delete(pTree1, "38", StrCompare, free);
-        RBTree_Delete(pTree1, "20", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"38", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"20", StrCompare, free);
         
         ChangeNode(pTree2, "32", NULL, -1);
         ChangeNode(pTree2, "38", NULL, -1);
@@ -1409,7 +1414,7 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "30", "40", -1);
         ChangeNode(pTree2, "20", "30", -1);
         
-        BinTree_Insert(&(pTree2->pRoot), strdup("35"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("35"), StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 4
@@ -1420,7 +1425,7 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 46: /* Rr-rr型 */
         
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "30", "28", -1);
@@ -1434,8 +1439,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 47: /* Rr-rb型 */
         
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -1451,8 +1456,8 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 48: /* Rr-br型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -1467,9 +1472,9 @@ void DRV_RBTree_Delete(INT i)
         break;
     case 49: /* Rr-bb型 */
         
-        RBTree_Delete(pTree1, "22", StrCompare, free);
-        RBTree_Delete(pTree1, "28", StrCompare, free);
-        RBTree_Delete(pTree1, "40", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"22", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"28", StrCompare, free);
+        RBTree_Delete(pTree1, (void *)"40", StrCompare, free);
         
         ChangeNode(pTree2, "28", NULL, -1);
         ChangeNode(pTree2, "22", NULL, -1);
@@ -1478,7 +1483,8 @@ void DRV_RBTree_Delete(INT i)
         ChangeNode(pTree2, "20", "15", RBTREE_COLOR_BLACK);
         ChangeNode(pTree2, "30", "20", -1);
         ChangeNode(pTree2, "40", "30", -1);
-        BinTree_Insert(&(pTree2->pRoot), strdup("25"), StrCompare, RBTREE_COLOR_RED);
+        BinTree_Insert(&(pTree2->pRoot), (void *)strdup("25"), 
+            StrCompare, RBTREE_COLOR_RED);
         pTree2->uNodeCount += 1;
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 4
@@ -1508,80 +1514,80 @@ void DRV_RBTree_Find(UINT i)
 {
 	char *pszTemp;
     RBTREE *pTree = RBTree_Create();
-    RBTree_Insert(pTree, strdup("20"), StrCompare);
-    RBTree_Insert(pTree, strdup("16"), StrCompare);
-    RBTree_Insert(pTree, strdup("28"), StrCompare);
-    RBTree_Insert(pTree, strdup("29"), StrCompare);
-    RBTree_Insert(pTree, strdup("15"), StrCompare);
-    RBTree_Insert(pTree, strdup("17"), StrCompare);
-    RBTree_Insert(pTree, strdup("19"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("20"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("16"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("28"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("29"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("15"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("17"), StrCompare);
+    RBTree_Insert(pTree, (void *)strdup("19"), StrCompare);
     switch( i )
     {
     case 1:
-		pszTemp = (char *)RBTree_Find(pTree, "20", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"20", StrCompare);
 		if ( strcmp(pszTemp, "20") != 0 )
 		{
 			printf("RBTree_Find()测试用例1 失败\n");
 		}
         break;
     case 2:
-		pszTemp = (char *)RBTree_Find(pTree, "28", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"28", StrCompare);
 		if ( strcmp(pszTemp, "28") != 0 )
 		{
 			printf("RBTree_Find()测试用例2 失败\n");
 		}
         break;
     case 3:
-		pszTemp = (char *)RBTree_Find(pTree, "16", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"16", StrCompare);
 		if ( strcmp(pszTemp, "16") != 0 )
 		{
 			printf("RBTree_Find()测试用例3 失败\n");
 		}
         break;
     case 4:
-		pszTemp = (char *)RBTree_Find(pTree, "29", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"29", StrCompare);
 		if ( strcmp(pszTemp, "29") != 0 )
 		{
 			printf("RBTree_Find()测试用例4 失败\n");
 		}
         break;
     case 5:
-		pszTemp = (char *)RBTree_Find(pTree, "15", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"15", StrCompare);
 		if ( strcmp(pszTemp, "15") != 0 )
 		{
 			printf("RBTree_Find()测试用例5 失败\n");
 		}
         break;    
 	case 6:
-		pszTemp = (char *)RBTree_Find(pTree, "17", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"17", StrCompare);
 		if ( strcmp(pszTemp, "17") != 0 )
 		{
 			printf("RBTree_Find()测试用例6 失败\n");
 		}
         break;    
 	case 7:
-		pszTemp = (char *)RBTree_Find(pTree, "19", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"19", StrCompare);
 		if ( strcmp(pszTemp, "19") != 0 )
 		{
 			printf("RBTree_Find()测试用例7 失败\n");
 		}
         break;    
 	case 8:
-		RBTree_Delete(pTree,"17", StrCompare, free);
-		pszTemp = (char *)RBTree_Find(pTree, "17", StrCompare);
+		RBTree_Delete(pTree, (void *)"17", StrCompare, free);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"17", StrCompare);
 		if ( pszTemp != NULL )
 		{
 			printf("RBTree_Find()测试用例8 失败\n");
 		}
         break;    		
 	case 9:
-		RBTree_Delete(pTree,"17", StrCompare, free);
-		RBTree_Delete(pTree,"20", StrCompare, free);
-		RBTree_Delete(pTree,"16", StrCompare, free);
-		RBTree_Delete(pTree,"15", StrCompare, free);
-		RBTree_Delete(pTree,"29", StrCompare, free);
+		RBTree_Delete(pTree, (void *)"17", StrCompare, free);
+		RBTree_Delete(pTree, (void *)"20", StrCompare, free);
+		RBTree_Delete(pTree, (void *)"16", StrCompare, free);
+		RBTree_Delete(pTree, (void *)"15", StrCompare, free);
+		RBTree_Delete(pTree, (void *)"29", StrCompare, free);
 
-		pszTemp = (char *)RBTree_Find(pTree, "28", StrCompare);
+		pszTemp = (char *)RBTree_Find(pTree, (void *)"28", StrCompare);
 		if ( strcmp(pszTemp, "28") != 0 )
 		{
 			printf("RBTree_Find()测试用例9 失败\n");
