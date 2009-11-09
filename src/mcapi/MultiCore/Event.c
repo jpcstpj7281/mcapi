@@ -110,7 +110,7 @@ void MCapi_WaitThread(HANDLE hThread, INT nMilliSeconds)
     @param  NGTHREAD * pThread - 线程指针
     @return void - 无
 */
-void MCapi_SuspendThread(HANDLE hThread;)
+void MCapi_SuspendThread(HANDLE hThread)
 {
     MCAPI_THREAD *pThread;
 
