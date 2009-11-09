@@ -106,7 +106,7 @@ void DRV_HashAVLTree_Insert(UINT i)
     UINT         uIndex;
     HashAVLTree *pTable = NULL;
     pTable = HashAVLTree_Create(128);
-    uIndex = HashString("100", 128);
+    uIndex = HashString((void *)"100", 128);
 	
     switch( i )
     {
@@ -117,7 +117,7 @@ void DRV_HashAVLTree_Insert(UINT i)
             || pTable->ppBucket[uIndex]->pRight != NULL 
             || pTable->ppBucket[uIndex]->pLeft != NULL 
             || pTable->ppBucket[uIndex]->pParent != NULL 
-            || pTable->ppBucket[uIndex]->nMagic != NULL 
+            || pTable->ppBucket[uIndex]->nMagic != 0 
 			|| pTable->pCurEntry != NULL
 			|| pTable->uCurBucketNo != 0
 			|| pTable->uNodeCount != 1  
@@ -188,13 +188,13 @@ void DRV_HashAVLTree_Delete(UINT i)
     UINT         uIndex;
     HashAVLTree *pTable = NULL;
     pTable = HashAVLTree_Create(128);
-    uIndex = HashString("100", 128);
+    uIndex = HashString((void *)"100", 128);
 	
     switch( i )
     {
     case 1:
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        HashAVLTree_Delete(pTable, "100", HashString, StrCompare, free);
+        HashAVLTree_Delete(pTable, (void *)"100", HashString, StrCompare, free);
 
         if ( nRet != CAPI_SUCCESS
 			|| pTable->ppBucket == NULL 
@@ -211,7 +211,7 @@ void DRV_HashAVLTree_Delete(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        HashAVLTree_Delete(pTable, "728", HashString, StrCompare, free);
+        HashAVLTree_Delete(pTable, (void *)"728", HashString, StrCompare, free);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "252") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pLeft->pData, "100") != 0 
@@ -233,7 +233,7 @@ void DRV_HashAVLTree_Delete(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        HashAVLTree_Delete(pTable, "100", HashString, StrCompare, free);
+        HashAVLTree_Delete(pTable, (void *)"100", HashString, StrCompare, free);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "252") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pRight->pData, "728") != 0 
@@ -255,7 +255,7 @@ void DRV_HashAVLTree_Delete(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        HashAVLTree_Delete(pTable, "252", HashString, StrCompare, free);
+        HashAVLTree_Delete(pTable, (void *)"252", HashString, StrCompare, free);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pRight->pData, "728") != 0 
@@ -293,7 +293,7 @@ void DRV_HashAVLTree_Find(UINT i)
     case 1:
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
 
-        pData = HashAVLTree_Find(pTable, "100", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -302,7 +302,7 @@ void DRV_HashAVLTree_Find(UINT i)
     case 2:
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
 //        nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        pData = HashAVLTree_Find(pTable, "100", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -312,7 +312,7 @@ void DRV_HashAVLTree_Find(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        pData = HashAVLTree_Find(pTable, "252", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"252", HashString, StrCompare);
         if ( strcmp((char *)pData, "252") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
@@ -322,7 +322,7 @@ void DRV_HashAVLTree_Find(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        pData = HashAVLTree_Find(pTable, "728", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"728", HashString, StrCompare);
         if ( strcmp((char *)pData, "728") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝4 ß∞‹!\n" );
@@ -332,7 +332,7 @@ void DRV_HashAVLTree_Find(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("252"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("728"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
-        pData = HashAVLTree_Find(pTable, "100", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝5 ß∞‹!\n" );
@@ -344,7 +344,7 @@ void DRV_HashAVLTree_Find(UINT i)
         nRet = HashAVLTree_Insert(pTable, strdup("100"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("45"), HashString, StrCompare);
         nRet = HashAVLTree_Insert(pTable, strdup("300"), HashString, StrCompare);
-        pData = HashAVLTree_Find(pTable, "45", HashString, StrCompare);
+        pData = HashAVLTree_Find(pTable, (void *)"45", HashString, StrCompare);
         if ( strcmp((char *)pData, "45") != 0 )
         {           
             printf( "HashAVLTree_HashFind() ≤‚ ‘”√¿˝6 ß∞‹!\n" );

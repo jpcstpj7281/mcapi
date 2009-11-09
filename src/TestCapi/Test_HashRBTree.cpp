@@ -423,7 +423,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
     case 1:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
         
-        pData = HashRBTree_TreeFind(pTable, "100", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *0"100", StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -432,7 +432,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
     case 2:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
 //        nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_TreeFind(pTable, "100", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *)"100", StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -442,7 +442,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_TreeFind(pTable, "252", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *)"252", StrCompare);
         if ( strcmp((char *)pData, "252") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
@@ -452,7 +452,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_TreeFind(pTable, "728", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *)"728", StrCompare);
         if ( strcmp((char *)pData, "728") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝4 ß∞‹!\n" );
@@ -462,7 +462,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_TreeFind(pTable, "100", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *)"100", StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝5 ß∞‹!\n" );
