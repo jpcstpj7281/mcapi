@@ -4,7 +4,7 @@ CPP	= g++
 RM	= rm -fr
 
 CFLAGS	= -fopenmp -Wall -I../mcapi/include -I../TestApi
-CFLAGS  += -DCPU_X86
+CFLAGS  += -DCPU_X86 -D_TEST
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
 endif
