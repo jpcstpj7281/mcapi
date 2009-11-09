@@ -131,7 +131,6 @@ CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./MultiCore/MsgQueue.c \
     ./MultiCore/MStack.c \
     ./MultiCore/MTask.c \
-    ./MultiCore/MTask.cpp \
     ./MultiCore/MTList.c \
     ./MultiCore/MTree.c \
     ./MultiCore/Parallel_BubbleSort.cpp \
