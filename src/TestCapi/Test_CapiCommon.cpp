@@ -29,23 +29,23 @@ void TestCase_GetCacheAlignedAddr(void)
 {
     void * pAddr = (void *)0x8012ff45;
     void *pRet = GetCacheAlignedAddr(pAddr);
-    printf( "Cache Aligned Addr for %lx = %lx\n", (UINT)pAddr, (UINT)pRet);
+    printf( "Cache Aligned Addr for %x = %x\n", (UINT)pAddr, (UINT)pRet);
     assertTrue(pRet == (void *)0x8012ff80);
 
     pAddr = (void *)0x8012ff40;
     pRet = GetCacheAlignedAddr(pAddr);
-    printf( "Cache Aligned Addr for %lx = %lx\n", (UINT)pAddr, (UINT)pRet);
+    printf( "Cache Aligned Addr for %x = %x\n", (UINT)pAddr, (UINT)pRet);
     assertTrue(pRet == (void *)0x8012ff40);
 
 
     pAddr = (void *)0x8012ff39;
     pRet = GetCacheAlignedAddr(pAddr);
-    printf( "Cache Aligned Addr for %lx = %lx\n", (UINT)pAddr, (UINT)pRet);
+    printf( "Cache Aligned Addr for %x = %x\n", (UINT)pAddr, (UINT)pRet);
     assertTrue(pRet == (void *)0x8012ff40);
 
     pAddr = (void *)0x8012ff79;
     pRet = GetCacheAlignedAddr(pAddr);
-    printf( "Cache Aligned Addr for %lx = %lx\n", (UINT)pAddr, (UINT)pRet);
+    printf( "Cache Aligned Addr for %x = %x\n", (UINT)pAddr, (UINT)pRet);
     assertTrue(pRet == (void *)0x8012ff80);
 
 }

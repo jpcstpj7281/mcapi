@@ -638,7 +638,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("28"), StrCompare);
         AVLTree_Insert(pTree, strdup("18"), StrCompare);
         
-        AVLTree_Delete(pTree, "28", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"28", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "18") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0 
@@ -661,7 +661,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("19"), StrCompare);
         AVLTree_Insert(pTree, strdup("17"), StrCompare);
         
-        AVLTree_Delete(pTree, "28", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"28", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "19") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "16") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0 
@@ -690,7 +690,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("17"), StrCompare);
         AVLTree_Insert(pTree, strdup("19"), StrCompare);
         
-        AVLTree_Delete(pTree, "28", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"28", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "16") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0 
@@ -727,7 +727,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("16"), StrCompare);
         AVLTree_Insert(pTree, strdup("24"), StrCompare);
         
-        AVLTree_Delete(pTree, "12", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"12", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "25") == 0 
@@ -768,7 +768,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("16"), StrCompare);
         AVLTree_Insert(pTree, strdup("24"), StrCompare);
         
-        AVLTree_Delete(pTree, "25", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"25", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "14") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "24") == 0 

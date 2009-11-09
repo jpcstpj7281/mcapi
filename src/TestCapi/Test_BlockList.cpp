@@ -128,7 +128,7 @@ void DRV_BlockList_Alloc(UINT i)
 				|| (UINT)p->pBlock - (UINT)p != sizeof(BLOCKLIST) 
 				|| pData != (BYTE *)p->pBlock + k * (32 + sizeof(SINGLENODE))
 				|| (UINT)p->pEmpty - (UINT)p->pBlock != (k+1) * (sizeof(SINGLENODE) + 32)
-				|| p->uFreeCount != 127 - k )
+				|| p->uFreeCount != (int)(127 - k) )
 			{           
 				printf( "BlockList_Alloc() 测试用例3失败1!, k = %d \n", k);
 			}
@@ -213,7 +213,7 @@ void DRV_BlockList_Free(UINT i)
 			BlockList_Free(p, (BYTE *)p->pBlock + k * (32 + sizeof(SINGLENODE)));
 			if ( (BYTE *)p->pEmpty != (BYTE *)p->pBlock + k * (32 + sizeof(SINGLENODE))
 				|| (BYTE *)p->pEmpty->pNext != (BYTE *)p->pEmpty - 32 - sizeof(SINGLENODE)
-				|| p->uFreeCount != k + 1)
+				|| p->uFreeCount != (unsigned int)(k + 1))
 			{
 	            printf( "BlockList_Free() 测试用例3失败4!\n" );
 			}
@@ -241,7 +241,7 @@ void DRV_BlockList_InsertHead(UINT i)
     switch( i )
     {
     case 1: /* 链表为空时的插入 */
-        BlockList_InsertHead(pList, "1234", 5);
+        BlockList_InsertHead(pList, (void *)"1234", 5);
         if ( strcmp((char *)(pList->pHead->pData), "1234") != 0 
             || pList->pHead->pNext != NULL
             || pList->uFreeCount != 127 
@@ -252,8 +252,8 @@ void DRV_BlockList_InsertHead(UINT i)
         }
         break;
     case 2: /* 已有1个节点时的插入 */
-        BlockList_InsertHead(pList, "1234", 5);
-        BlockList_InsertHead(pList, "5678", 5);
+        BlockList_InsertHead(pList, (void *)"1234", 5);
+        BlockList_InsertHead(pList, (void *)"5678", 5);
         if ( strcmp((char *)(pList->pHead->pData), "5678") != 0 
             || strcmp((char *)(pList->pHead->pNext->pData), "1234") != 0 
             || pList->uFreeCount != 126 
@@ -266,7 +266,7 @@ void DRV_BlockList_InsertHead(UINT i)
     case 3: /* 128个节点的插入 */
 		for ( k = 0; k < 128; k++ )
 		{
-			BlockList_InsertHead(pList, "1234", 5);
+			BlockList_InsertHead(pList, (void *)"1234", 5);
 		}
 		pNode = pList->pHead;
 		for ( k = 0; k < 128 && pNode != NULL; k++ )
@@ -285,7 +285,7 @@ void DRV_BlockList_InsertHead(UINT i)
         {
             printf( "BlockList_InsertHead() 测试用例3 失败2!\n" );
         }
-        if ( BlockList_InsertHead(pList, "5678", 5) != -1 )
+        if ( BlockList_InsertHead(pList, (voi *)"5678", 5) != -1 )
 		{
             printf( "BlockList_InsertHead() 测试用例3 失败3!\n" );
 		}
@@ -316,7 +316,7 @@ void DRV_BlockList_DeleteHead(UINT i)
         }
         break;
     case 2: /* 已有1个节点时的删除 */
-        BlockList_InsertHead(pList, "1234", 5);
+        BlockList_InsertHead(pList, (void *)"1234", 5);
         BlockList_DeleteHead(pList);
         if ( pList->pHead != NULL
             || pList->uFreeCount != 128 
@@ -328,7 +328,7 @@ void DRV_BlockList_DeleteHead(UINT i)
     case 3: /* 已有128个节点时的删除 */
 		for ( k = 0; k < 128; k++ )
 		{
-			BlockList_InsertHead(pList, "1234", 5);
+			BlockList_InsertHead(pList, (void *)"1234", 5);
 		}
 		for ( k = 0; k < 127; k++ )
 		{
@@ -347,7 +347,7 @@ void DRV_BlockList_DeleteHead(UINT i)
 		{
 			printf( "BlockList_DeleteHead() 测试用例3 失败2!\n");
 		}
-		BlockList_InsertHead(pList, "1234", 5);
+		BlockList_InsertHead(pList, (void *)"1234", 5);
 		
         if ( strcmp((char *)(pList->pHead->pData), "1234") != 0 
             || pList->pHead->pNext != NULL

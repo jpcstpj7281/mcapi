@@ -11,7 +11,6 @@
 
 
 #include "TestCapi.h"
-#include <process.h>
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>
@@ -37,7 +36,7 @@ void Test_CDHashArray()
 
 void TestCase_CDHashArray_TestCase1(void)
 {
-	CDHashArray<int, CSearchArray<int>>	ds(2, HashInt);
+	CDHashArray<int, CSearchArray<int> >	ds(2, HashInt);
 
 	int i;
 	for ( i = 400; i > 0 ; i-- )
@@ -90,7 +89,7 @@ void TestCase_CDHashArray_TestCase1(void)
 
 void CDHashArray_Find_Thread(LPVOID args)
 {
-	CDHashArray<int, CSearchArray<int>> *p = (CDHashArray<int, CSearchArray<int>> *)args;
+	CDHashArray<int, CSearchArray<int> > *p = (CDHashArray<int, CSearchArray<int>> *)args;
 
 	int Key;
 	int i;
@@ -109,7 +108,7 @@ void CDHashArray_Find_Thread(LPVOID args)
 
 void TestCase_CDHashArray_TestCase2(void)
 {
-	CDHashArray<int, CSearchArray<int>>	ds(32768, HashInt);
+	CDHashArray<int, CSearchArray<int> >	ds(32768, HashInt);
 
 	int i;
 	clock_t  t1, t2;
@@ -156,7 +155,7 @@ void TestCase_CDHashArray_TestCase2(void)
 
 void TestCase_CDHashArray_TestCase3(void)
 {
-	CDHashArray<int, CSearchArray<int>>	ds(65536, HashInt);
+	CDHashArray<int, CSearchArray<int> >	ds(65536, HashInt);
 
 	int i;
 	clock_t  t1, t2;
@@ -196,7 +195,7 @@ void TestCase_CDHashArray_TestCase3(void)
 
 void TestCase_CDHashArray_TestCase4(void)
 {
-	CDHashArray<int, CSearchArray<int>>	ds(65536, HashInt);
+	CDHashArray<int, CSearchArray<int> >	ds(65536, HashInt);
 
 	int i;
 	clock_t  t1, t2;

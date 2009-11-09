@@ -81,7 +81,7 @@ void TestCase_CDHashAVLTree_TestCase1(void)
 }
 
 
-void CDHashAVLTree_Find_Thread(LPVOID args)
+unsigned int CDHashAVLTree_Find_Thread(void * args)
 {
 	CDHashAVLTree *p = (CDHashAVLTree *)args;
 
