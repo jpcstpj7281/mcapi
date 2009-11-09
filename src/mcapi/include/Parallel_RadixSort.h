@@ -87,7 +87,7 @@ void Parallel_RadixSort_LBR(T *pData, UINT uDataLen,
                 ppuBoxDataCount[i], pOut, ppDataArray[i]);
         t2 = clock();
 
-        printf( "Serial_Partitioned, ThreadId = %ld, time = %ld\n", omp_get_thread_num(), t2 - t1);
+        printf( "Serial_Partitioned, ThreadId = %d, time = %ld\n", omp_get_thread_num(), t2 - t1);
 
         }//for ( i = 0; i < nProcessors; i++ )
 
