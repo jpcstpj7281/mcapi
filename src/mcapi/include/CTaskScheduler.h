@@ -21,8 +21,10 @@
  */
 #ifndef __CTASKSCHEDULER_H__
 #define __CTASKSCHEDULER_H__
+#ifdef _WIN32
 #define _WIN32_WINNT 0x0404
 #include <Windows.h>
+#endif
 #include "CapiGlobal.h"
 #include "CLocalQueue.h"
 #include "CStealQueue.h"
@@ -70,7 +72,7 @@ CTaskScheduler<T>::CTaskScheduler(int nThreadCount)
 template <class T>
 void CTaskScheduler<T>::CreateThreadPool(THREADFUNC StartFunc, void *pArg)
 {
-    m_ThreadPool.Create(StartFunc, pArg, m_nThreadCount);
+    m_ThreadPool.CreateThreadPool(StartFunc, pArg, m_nThreadCount);
 
     m_ThreadPool.ExecAndWait();
 }
@@ -91,7 +93,7 @@ int CTaskScheduler<T>::PopTask(T &Data)
         int flag = 0;
         int i;
 
-        CQueuePool<T, CStealQueue<T>> *pQueue = m_DQueue.GetSharedQueue();
+        CQueuePool<T, CStealQueue<T> > *pQueue = m_DQueue.GetSharedQueue();
 
         for ( i = start; i < pQueue->GetQueueCount(); i++)
         {
@@ -129,7 +131,7 @@ int CTaskScheduler<T>::PopTask(T &Data)
 template <class T>
 int CTaskScheduler<T>::PushTask(T &Data)
 {
-    CQueuePool<T, CStealQueue<T>> *queue_pool = m_DQueue.GetSharedQueue();
+    CQueuePool<T, CStealQueue<T> > *queue_pool = m_DQueue.GetSharedQueue();
 
     return queue_pool->Push(Data); 
 }
@@ -165,7 +167,7 @@ void CTaskScheduler<T>::PopTaskAndWait(T &Data)
 template <class T>
 void CTaskScheduler<T>::PushTaskAndWait(T &Data)
 {
-    CQueuePool<T, CStealQueue<T>> *queue_pool = m_DQueue.GetSharedQueue();
+    CQueuePool<T, CStealQueue<T> > *queue_pool = m_DQueue.GetSharedQueue();
 
     //下面代码采用循环等待方式将数据压入队列池中
     //如果队列池一直满，将一直循环下去
