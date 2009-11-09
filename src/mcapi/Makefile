@@ -66,7 +66,6 @@ OBJS	=        AVLTree.o \
     MsgQueue.o \
     MStack.o \
     MTask.o \
-    MTask.o \
     MTList.o \
     MTree.o \
     Parallel_BubbleSort.o \
@@ -77,8 +76,6 @@ OBJS	=        AVLTree.o \
     Parallel_Search.o \
     ReadWriteLock.o
 
-
-    
 
 CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/BinTree.c \
@@ -148,7 +145,7 @@ APPS	=   libmcapi.a
 
 all: $(APPS)
 
-$(APPS): $(SRCS) $(OBJS) Makefile 
+$(APPS): $(SRCS) Makefile 
 	$(GCC) $(CFLAGS) $(CSRCS) $(CPPSRCS)
 	ar r libmcapi.a  $(OBJS)
 
