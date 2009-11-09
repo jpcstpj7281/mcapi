@@ -91,12 +91,16 @@ DSPACELIST *DSpaceList_Create(UINT uDataSize, UINT uDataCount,
 
 /**	动态等尺寸内存分配管理的释放函数
 
-	@param	DSPACELIST *pList -动态等尺寸内存分配管理指针	
+	@param	void *pSpList -动态等尺寸内存分配管理指针,
+                           必须为DSPACELIST *类型
 	@return	void -无	
 */
-void DSpaceList_Destroy(DSPACELIST *pList)
+void DSpaceList_Destroy(void *pSpList)
 {
     UINT    i;
+
+    DSPACELIST  *pList;
+    pList = pSpList;
 
     if ( pList != NULL )
     {
