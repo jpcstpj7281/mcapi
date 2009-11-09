@@ -128,7 +128,7 @@ void DRV_BlockList_Alloc(UINT i)
 				|| (UINT)p->pBlock - (UINT)p != sizeof(BLOCKLIST) 
 				|| pData != (BYTE *)p->pBlock + k * (32 + sizeof(SINGLENODE))
 				|| (UINT)p->pEmpty - (UINT)p->pBlock != (k+1) * (sizeof(SINGLENODE) + 32)
-				|| p->uFreeCount != (int)(127 - k) )
+				|| p->uFreeCount != (unsigned int)(127 - k) )
 			{           
 				printf( "BlockList_Alloc() ²âÊÔÓÃÀı3Ê§°Ü1!, k = %d \n", k);
 			}
@@ -285,7 +285,7 @@ void DRV_BlockList_InsertHead(UINT i)
         {
             printf( "BlockList_InsertHead() ²âÊÔÓÃÀı3 Ê§°Ü2!\n" );
         }
-        if ( BlockList_InsertHead(pList, (voi *)"5678", 5) != -1 )
+        if ( BlockList_InsertHead(pList, (void *)"5678", 5) != -1 )
 		{
             printf( "BlockList_InsertHead() ²âÊÔÓÃÀı3 Ê§°Ü3!\n" );
 		}
@@ -302,7 +302,6 @@ void DRV_BlockList_DeleteHead(UINT i)
 {
 	int k = 0;
     BLOCKLIST *pList;
-	SINGLENODE	*pNode = NULL;
     pList = BlockList_Create(8, 128);
     switch( i )
     {
@@ -335,7 +334,7 @@ void DRV_BlockList_DeleteHead(UINT i)
 			BlockList_DeleteHead(pList);
 			if ( (UINT)pList->pEmpty - (UINT)pList->pBlock != (127-k) * (sizeof(SINGLENODE)+8)
 				|| (UINT)pList->pEmpty - (UINT)pList->pHead != sizeof(SINGLENODE) + 8 
-				|| pList->uFreeCount != k + 1 )
+				|| pList->uFreeCount != (UINT)(k + 1) )
 			{
 				printf( "BlockList_DeleteHead() ²âÊÔÓÃÀı3 Ê§°Ü1!\n");
 			}

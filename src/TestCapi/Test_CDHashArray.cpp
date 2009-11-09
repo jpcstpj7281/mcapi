@@ -43,7 +43,7 @@ void TestCase_CDHashArray_TestCase1(void)
 	{
 		if ( i == 32 )
 		{
-			printf( "i = %ld\n", i);
+			printf( "i = %d\n", i);
 		}
 		ds.Insert(i);
 	}
@@ -59,7 +59,7 @@ void TestCase_CDHashArray_TestCase1(void)
 		ds.Find(i, ret);
 		if ( ret != i )
 		{
-			printf("ret = %ld, i = %ld\n", ret, i);
+			printf("ret = %d, i = %d\n", ret, i);
 		}
 	}
 
@@ -80,14 +80,14 @@ void TestCase_CDHashArray_TestCase1(void)
 		ds.Find(i, ret);
 		if ( ret != i )
 		{
-			printf("ret = %ld, i = %ld\n", ret, i);
+			printf("ret = %d, i = %d\n", ret, i);
 		}
 	}
 
 }
 
 
-void CDHashArray_Find_Thread(LPVOID args)
+unsigned int WINAPI CDHashArray_Find_Thread(void * args)
 {
 	CDHashArray<int, CSearchArray<int> > *p = (CDHashArray<int, CSearchArray<int>> *)args;
 
@@ -102,6 +102,8 @@ void CDHashArray_Find_Thread(LPVOID args)
 
 		assertTrue(Key == data || Key == -1);
 	}
+
+    return 0;
 }
 
 
@@ -122,7 +124,7 @@ void TestCase_CDHashArray_TestCase2(void)
 	printf("CDHashArray::Insert, time = %ld\n", t2-t1);
 
 	int data = 1001;
-	_beginthread(CDHashArray_Find_Thread, 0, (void *)&ds);
+	MCapi_CreateThread(CDHashArray_Find_Thread, (void *)&ds, MCAPI_THREAD_RUNNING);
 	for ( i = 0; i < 100000; i++ )
 	{
 		ds.Delete(data);
