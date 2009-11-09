@@ -114,7 +114,7 @@ INT	SortTable_Add( SORTTABLE *pTable, void *pData )
 	@param	COMPAREFUNC CompareFunc - 比较函数
 	@return	void * - 成功返回查到的数据，失败返回NULL
 */
-void * SortTable_FindData(SORTTABLE *pTable, void *pData, 
+void * SortTable_FindData(SORTTABLE *pTable, const void *pData, 
                                COMPAREFUNC CompareFunc)
 {
     UINT uLow;
@@ -163,7 +163,7 @@ void * SortTable_FindData(SORTTABLE *pTable, void *pData,
 	@return	void * - 成功返回查到的精确数据或刚好比要查找的数据大的数据,
                         失败返回NULL。
 */
-void * SortTable_BlurFind(SORTTABLE *pTable, void *pData, 
+void * SortTable_BlurFind(SORTTABLE *pTable, const void *pData, 
                                COMPAREFUNC CompareFunc)
 {
     INT nLow;
