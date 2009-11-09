@@ -197,6 +197,23 @@ int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand );
 
 #define CAPI_Yield()        sched_yield()
 
+
+HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag);
+void MCapi_WaitThread(HANDLE hThread, INT nMilliSeconds);
+void MCapi_SuspendThread(HANDLE hThread);
+void MCapi_ResumeThread(HANDLE hThread);
+void MCapi_CloseThread(HANDLE hThread);
+
+HANDLE EventCreate();
+void WaitEvent(HANDLE hEvent);
+void SendEvent(HANDLE hEvent); 
+void EventClose(HANDLE hEvent);
+
+HANDLE SemaCreate(int nInitCount, int nMaxCount);
+void SemaWait(HANDLE hSem);
+void SemaRelease(HANDLE hSem, int nIncCount);
+void SemaClose(HANDLE hSem);
+
 #endif /* _WIN32 */
 
 BOOL TAS(LONG volatile *value);
