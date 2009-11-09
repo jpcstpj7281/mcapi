@@ -12,6 +12,23 @@
 #include "Event.h"
 
 
+typedef struct DOUBLE_PARA_st {
+    void *pArg1;
+    void *pArg2;
+} DOUBLE_PARA;
+
+void *LinuxThreadFunc(void *pArg)
+{
+    THREADFUNC  func;
+    DOUBLE_PARA *pPara;
+
+    pPara = (DOUBLE_PARA *)pArg;
+
+    func = (THREADFUNC)pPara->pArg2;
+    (*func)(pPara->pArg1);
+
+    return NULL;
+}
 
 
 typedef struct MCAPI_THREAD_st {
@@ -37,6 +54,7 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     MCAPI_THREAD  *pThread;
     pthread_t      tid;
     pthread_attr_t attr;
+    DOUBLE_PARA    ThreadPara;
     
     (void)nFlag;
 
@@ -49,7 +67,10 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     (void)pthread_attr_init(&attr);
     (void)pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-    if ( pthread_create( &tid, NULL, func, args) != 0 )
+
+    ThreadPara.pArg1 = args;
+    ThreadPara.pArg2 = func
+    if ( pthread_create( &tid, NULL, LinuxThreadFunc, &ThreadPara) != 0 )
     {
         (void)pthread_attr_destroy(&attr);
         free(pThread);
