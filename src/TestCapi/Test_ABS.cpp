@@ -9,9 +9,9 @@
  * in supporting documentation.  
  */
  // Test_ABS.cpp
-#include <windows.h>
 #include <stdio.h>
 #include "Testapi.h"
+#include "TestCapi.h"
 
 UINT ABS( UINT a, UINT b)
 {

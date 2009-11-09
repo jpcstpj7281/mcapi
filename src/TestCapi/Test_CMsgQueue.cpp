@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 #define _WIN32_WINNT 0x0401
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>

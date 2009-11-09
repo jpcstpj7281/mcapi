@@ -8,8 +8,8 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-#include <windows.h>
 #include <stdio.h>
+#include "TestCapi.h"
 #include "CapiGlobal.h"
 #include "TestApi.h"
 #include "BinTree.h"
