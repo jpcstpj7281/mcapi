@@ -10,7 +10,7 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "TestApi.h"
 #include "BinTree.h"
 #include "RBTree.h"
@@ -111,7 +111,7 @@ void DRV_HashRBTree_Insert(UINT i)
     {
     case 1:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "100") != 0 
             || pTable->ppBucket[uIndex]->pNext != NULL 
@@ -125,7 +125,7 @@ void DRV_HashRBTree_Insert(UINT i)
     case 2:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
 //        nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "100") != 0 
             || pTable->ppBucket[uIndex]->pNext != NULL 
@@ -140,7 +140,7 @@ void DRV_HashRBTree_Insert(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->TreeNode.pData, "728") != 0 
@@ -175,9 +175,9 @@ void DRV_HashRBTree_Delete(UINT i)
     {
     case 1:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        HashRBTree_Delete(pTable, "100", HashString, StrCompare, free);
+        HashRBTree_Delete(pTable, (void *)"100", HashString, StrCompare, free);
 
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || pTable->ppBucket[uIndex] != NULL
             || pTable->pTree->uNodeCount != 0
@@ -190,8 +190,8 @@ void DRV_HashRBTree_Delete(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        HashRBTree_Delete(pTable, "728", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashRBTree_Delete(pTable, (void *)"728", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->TreeNode.pData, "252") != 0 
@@ -207,8 +207,8 @@ void DRV_HashRBTree_Delete(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        HashRBTree_Delete(pTable, "100", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashRBTree_Delete(pTable, (void *)"100", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "728") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->TreeNode.pData, "252") != 0 
@@ -224,8 +224,8 @@ void DRV_HashRBTree_Delete(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        HashRBTree_Delete(pTable, "252", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashRBTree_Delete(pTable, (void *)"252", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->TreeNode.pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->TreeNode.pData, "728") != 0 
@@ -257,7 +257,7 @@ void DRV_HashRBTree_HashFind(UINT i)
     case 1:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
 
-        pData = HashRBTree_HashFind(pTable, "100", HashString, StrCompare);
+        pData = HashRBTree_HashFind(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_HashFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -266,7 +266,7 @@ void DRV_HashRBTree_HashFind(UINT i)
     case 2:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
 //        nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_HashFind(pTable, "100", HashString, StrCompare);
+        pData = HashRBTree_HashFind(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_HashFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -276,7 +276,7 @@ void DRV_HashRBTree_HashFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_HashFind(pTable, "252", HashString, StrCompare);
+        pData = HashRBTree_HashFind(pTable, (void *)"252", HashString, StrCompare);
         if ( strcmp((char *)pData, "252") != 0 )
         {           
             printf( "HashRBTree_HashFind() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
@@ -286,7 +286,7 @@ void DRV_HashRBTree_HashFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_HashFind(pTable, "728", HashString, StrCompare);
+        pData = HashRBTree_HashFind(pTable, (void *)"728", HashString, StrCompare);
         if ( strcmp((char *)pData, "728") != 0 )
         {           
             printf( "HashRBTree_HashFind() ≤‚ ‘”√¿˝4 ß∞‹!\n" );
@@ -296,7 +296,7 @@ void DRV_HashRBTree_HashFind(UINT i)
         nRet = HashRBTree_Insert(pTable, strdup("252"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("728"), HashString, StrCompare, free);
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
-        pData = HashRBTree_HashFind(pTable, "100", HashString, StrCompare);
+        pData = HashRBTree_HashFind(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_HashFind() ≤‚ ‘”√¿˝5 ß∞‹!\n" );

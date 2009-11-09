@@ -305,7 +305,7 @@ void DRV_HashTable_Find(UINT i)
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
         pData = HashTable_Find(pTable, (void *)"252", HashString, StrCompare);
-        if ( strcmp((char *)pData, (void *)"252") != 0 )
+        if ( strcmp((char *)pData, "252") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
         }
@@ -314,7 +314,7 @@ void DRV_HashTable_Find(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        pData = HashTable_Find(pTable, "728", HashString, StrCompare);
+        pData = HashTable_Find(pTable, (void *)"728", HashString, StrCompare);
         if ( strcmp((char *)pData, "728") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝4 ß∞‹!\n" );
@@ -324,7 +324,7 @@ void DRV_HashTable_Find(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        pData = HashTable_Find(pTable, "100", HashString, StrCompare);
+        pData = HashTable_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝5 ß∞‹!\n" );
