@@ -52,7 +52,7 @@ void *StrCpy(void *psz)
 }
 
 
-unsigned int  MTree_TraverseTask(void * args)
+unsigned int  WINAPI MTree_TraverseTask(void * args)
 {
     HANDLE   hTree = (HANDLE)args;
     MTree_EnterTask(hTree);

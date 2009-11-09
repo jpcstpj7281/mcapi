@@ -57,7 +57,7 @@ void TestCase_DHashAVLTree_TestCase1(void)
 	DHashAVLTree_Destroy(pTree, NULL);
 }
 
-unsigned int Find_Thread(void * args)
+unsigned int WINAPI Find_Thread(void * args)
 {
 	DHASHAVLTREE *pTree = (DHASHAVLTREE *)args;
 

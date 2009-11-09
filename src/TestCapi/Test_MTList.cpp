@@ -40,7 +40,7 @@ INT Visit(void *p)
     return CAPI_FAILED;
 }
 
-unsigned int MTList_TraverseTask(void * args)
+unsigned int WINAPI MTList_TraverseTask(void * args)
 {
     MTLIST *pList = (MTLIST *)args;
     MTList_EnterTask(pList);

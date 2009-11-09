@@ -81,7 +81,7 @@ void TestCase_CDHashAVLTree_TestCase1(void)
 }
 
 
-unsigned int CDHashAVLTree_Find_Thread(void * args)
+unsigned int WINAPI CDHashAVLTree_Find_Thread(void * args)
 {
 	CDHashAVLTree *p = (CDHashAVLTree *)args;
 
