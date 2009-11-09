@@ -97,7 +97,7 @@ void DRV_SpList_Alloc(UINT i)
 				|| (UINT)p->pBlock - (UINT)p != sizeof(SPLIST) 
 				|| pData != (BYTE *)p->pBlock + sizeof(SPNODE) + k * (32 + sizeof(SPNODE))
 				|| (UINT)p->pHead - (UINT)p->pBlock != (k+1) * (sizeof(SPNODE) + 32)
-				|| p->uFreeCount != 127 - k )
+				|| p->uFreeCount != (UINT)(127 - k) )
 			{           
 				printf( "SpList_Alloc() ≤‚ ‘”√¿˝2 ß∞‹1!, k = %d \n", k);
 			}
@@ -125,7 +125,7 @@ void DRV_SpList_Alloc(UINT i)
 				|| (UINT)p->pBlock - (UINT)p != sizeof(SPLIST) 
 				|| pData != (BYTE *)p->pBlock + sizeof(SPNODE) + k * (32 + sizeof(SPNODE))
 				|| (UINT)p->pHead - (UINT)p->pBlock != (k+1) * (sizeof(SPNODE) + 32)
-				|| p->uFreeCount != 127 - k )
+				|| p->uFreeCount != (UINT)(127 - k) )
 			{           
 				printf( "SpList_Alloc() ≤‚ ‘”√¿˝3 ß∞‹1!, k = %d \n", k);
 			}
@@ -217,7 +217,7 @@ void DRV_SpList_Free(UINT i)
 			SpList_Free(p, (BYTE *)p->pBlock + sizeof(SPNODE) + k * (32 + sizeof(SPNODE)));
 			if ( (BYTE *)p->pHead != (BYTE *)p->pBlock + k * (32 + sizeof(SPNODE))
 				|| (BYTE *)p->pHead->pNext != (BYTE *)p->pHead - 32 - sizeof(SPNODE)
-				|| p->uFreeCount != k + 1)
+				|| p->uFreeCount != (UINT)(k + 1))
 			{
 	            printf( "SpList_Free() ≤‚ ‘”√¿˝3 ß∞‹4!\n" );
 			}

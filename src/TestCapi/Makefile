@@ -63,8 +63,8 @@ OBJS	=  TestCapi.o \
     Test_SingleList.o \
     Test_SortTable.o \
     Test_SpList.o \
-    Test_Stack.o \
-    Test_XCopy.o
+    Test_Stack.o 
+
 
 
 CPPSRCS =         TestCapi.cpp \
@@ -114,8 +114,8 @@ CPPSRCS =         TestCapi.cpp \
     Test_SingleList.cpp \
     Test_SortTable.cpp \
     Test_SpList.cpp \
-    Test_Stack.cpp \
-    Test_XCopy.cpp
+    Test_Stack.cpp 
+
 
 
 
