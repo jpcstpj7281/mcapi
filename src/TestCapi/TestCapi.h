@@ -26,6 +26,7 @@
 #include <stdlib.h>
 typedef   unsigned char  BYTE;
 typedef   unsigned int   UINT;
+char* itoa(int value, char *psz, int radix); 
 #else
 #include <windows.h>
 #endif
