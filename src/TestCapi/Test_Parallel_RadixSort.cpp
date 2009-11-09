@@ -322,7 +322,7 @@ void TestCase_Parallel_RadixSort_Array(void)
     {
 //        assertTrue( (int)ppData[i] == (100000+i+1) );
     }
-    printf("ppData[5] = %ld\n", ppData[5]);
+    printf("ppData[5] = %d\n", ppData[5]);
     printf("Parallel_RadixSort_Array1: time = %ld\n", t2-t1);
 
 }
@@ -355,10 +355,10 @@ void TestCase_Parallel_RadixSort_LBR(void)
 //        assertTrue( pData[i] == (1000000+i+1) );
         if ( pData[i] > pData[i+1] )
         {
-            printf("pData[%d] = %ld, pData[%d] = %ld\n", i, pData[i], i+1, pData[i+1]);
+            printf("pData[%d] = %d, pData[%d] = %d\n", i, pData[i], i+1, pData[i+1]);
         }
     }
-    printf("pData[5] = %ld\n", pData[5]);
+    printf("pData[5] = %d\n", pData[5]);
     printf("Parallel_RadixSort_LBR: %ld,  time = %ld\n", nTestCount, t2-t1);
 
 	delete [] pData;
@@ -393,11 +393,11 @@ void TestCase_Parallel_RadixSort_PPR(void)
 //        assertTrue( pData[i] == (1000000+i+1) );
         if ( pData[i] > pData[i+1] )
         {
-            printf("pData[%d] = %ld, pData[%d] = %ld\n", i, pData[i], i+1, pData[i+1]);
+            printf("pData[%d] = %d, pData[%d] = %d\n", i, pData[i], i+1, pData[i+1]);
         }
     }
     printf("pData[5] = %ld\n", pData[5]);
-    printf("Parallel_RadixSort_PPR: %ld,  time = %ld\n", nTestCount, t2-t1);
+    printf("Parallel_RadixSort_PPR: %d,  time = %ld\n", nTestCount, t2-t1);
 	delete [] pData;
 }
 
@@ -454,10 +454,10 @@ void TestCase_Parallel_RadixSort_Performance(void)
         //assertTrue( (int)ppData[i] <= (DATA_COUNT + i + 1) );
         if ( ppData[i] > ppData[i+1] )
         {
-            printf("ppData[%d] = %ld, ppData[%d] = %ld\n", i, ppData[i], i+1, ppData[i+1]);
+            printf("ppData[%d] = %d, ppData[%d] = %d\n", i, ppData[i], i+1, ppData[i+1]);
         }
     }
-    printf("ppData[100] = %ld\n", ppData[100]);
+    printf("ppData[100] = %d\n", ppData[100]);
 	printf( "parallel_RadixSort_Array on million data, time = %ld\n", t2-t1);
 	free(psz);
 	free(ppData);

@@ -52,7 +52,7 @@ void TestCase_Parallel_MergeSort(void)
 	}
 	t2 = clock();
 
-	printf("Serial_Merge() Time = %d\n", t2-t1);
+	printf("Serial_Merge() Time = %ld\n", t2-t1);
 
 	Serial_Merge(ppIntData, 0, 7, 8, 15, IntCompare, pp);
 
@@ -129,7 +129,7 @@ void TestCase_Parallel_MergeSort(void)
         assertTrue( (int)pp[i] <= (int)pp[i+1] );
         if ( pp[i] > pp[i+1] )
         {
-            printf("Parallel_MergeSort failed in i = %d, ppOut1[%d] = %ld, ppOut1[%d] = %ld\n", 
+            printf("Parallel_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %ld\n", 
                 i, i, pp[i], i+1, pp[i+1]);
         }
     }
@@ -145,7 +145,7 @@ void TestCase_Parallel_MergeSort(void)
         assertTrue( (int)ppOut[i] <= (int)ppOut[i+1] );
         if ( ppOut[i] > ppOut[i+1] )
         {
-            printf("Serial_MergeSort failed in i = %d, ppOut1[%d] = %ld, ppOut1[%d] = %ld\n", 
+            printf("Serial_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %ld\n", 
                 i, i, ppOut[i], i+1, ppOut[i+1]);
         }
     }

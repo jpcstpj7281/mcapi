@@ -14,7 +14,8 @@
 #include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
-#include "Testapi.h"
+#include "CapiGlobal.h"
+#include "TestApi.h"
 #include "CapiCommon.h"
 #include "Parallel_For.h"
 #include "CQuickSortRange.h"

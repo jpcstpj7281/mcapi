@@ -13,7 +13,7 @@
 #include <iostream>
 using namespace std;
 
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "Testapi.h"
 #include "CScopedLock.h"
 #include "CRWLock.h"

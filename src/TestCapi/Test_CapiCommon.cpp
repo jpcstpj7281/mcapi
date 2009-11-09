@@ -10,7 +10,7 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include "Testapi.h"
+#include "TestApi.h"
 #include "CapiCommon.h"
 
 

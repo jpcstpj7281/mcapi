@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <process.h>
 #include "CapiGlobal.h"
-#include "Testapi.h"
+#include "TestApi.h"
 #include "BinTree.h"
 #include "RBTree.h"
 #include "MTask.h"

@@ -10,7 +10,7 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "TestApi.h"
 #include "BinTree.h"
 #include "AVLTree.h"
