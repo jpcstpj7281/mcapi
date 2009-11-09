@@ -165,8 +165,8 @@ void CThreadPool::CreateThreadPool(THREADFUNC StartFunc, void *pArgs, int nThrea
         m_pPara[i].pArgs = m_pArgs;
         m_pPara[i].StartFunc = m_StartFunc;
 
-        m_pThreadArray[i] = (HANDLE)_beginthreadex( NULL, 0, 
-            &ThreadPool_StartFunc, &(m_pPara[i]), CREATE_SUSPENDED , NULL );
+        m_pThreadArray[i] = MCapi_CreateThread(ThreadPool_StartFunc, 
+            &(m_pPara[i]), MCAPI_THREAD_SUSPEND);
     }
 }
 
@@ -187,9 +187,8 @@ void CThreadPool::CreateThread(THREADFUNC StartFunc, void *pArgs)
     m_SinglePara[nIndex].pArgs = m_pArgs;
     m_SinglePara[nIndex].StartFunc = m_StartFunc;
 
-    m_pThreadArray[nIndex] = (HANDLE)_beginthreadex( NULL, 0, 
-        &ThreadPool_StartFunc, &(m_SinglePara[nIndex]), 
-        CREATE_SUSPENDED, NULL );
+    m_pThreadArray[nIndex] = MCapi_CreateThread(ThreadPool_StartFunc, 
+        &(m_SinglePara[nIndex]), MCAPI_THREAD_SUSPEND);
 }
 
 
@@ -233,6 +232,15 @@ void CThreadPool::ExecThread(int nIndex)
 */
 void CThreadPool::WaitAllThread()
 {
-    WaitForMultipleObjects(m_nThreadCount,m_pThreadArray, TRUE, INFINITE);
-    WaitForMultipleObjects(m_nSingleThreadCount, m_SingleThread, TRUE, INFINITE);
+    int i;
+
+    for ( i = 0; i < m_nThreadCount; i++ )
+    {
+        MCapi_WaitThread(m_pThreadArray[i], INFINITE);
+    }
+
+    for ( i = 0; i < m_nSingleThreadCount; i++ )
+    {
+        MCapi_WaitThread(m_SingleThread[i], INFINITE);
+    }
 }

@@ -12,10 +12,6 @@
 #include "Event.h"
 
 
-#define         MCAPI_THREAD_RUNNING      1
-#define         MCAPI_THREAD_EXIT         2
-#define         MCAPI_THREAD_SUSPEND      3
-
 
 
 typedef struct MCAPI_THREAD_st {
@@ -138,6 +134,8 @@ void MCapi_ResumeThread(HANDLE hThread)
         pthread_cond_signal(&(pThread->cond));
 
         pthread_mutex_unlock(&(pThread->mutex));
+
+        pThread->nState = MCAPI_THREAD_RUNNING;
     }
     return;
 }
