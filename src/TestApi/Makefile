@@ -3,7 +3,7 @@ CPP	= g++
 
 RM	= rm -fr
 
-CFLAGS	= -g -pthread -c -Wall -W -I../mcapi/Include -L../mcapi -L/usr/lib  -lmcapi -lpthread
+CFLAGS	= -g -pthread -c -Wall -W -I../mcapi/include -L../mcapi -L/usr/lib  -lmcapi -lpthread
 CFLAGS  += -DCPU_X86
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
