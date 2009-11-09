@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 // Test_Parallel_Search.cpp
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include "Testapi.h"
 #include "Parallel_Search.h"

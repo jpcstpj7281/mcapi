@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 // Test_Parallel_PrefixSum.cpp
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
 #include "Testapi.h"

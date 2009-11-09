@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 // Test_Parallel_MergeSort.cpp
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
 #include "Testapi.h"
