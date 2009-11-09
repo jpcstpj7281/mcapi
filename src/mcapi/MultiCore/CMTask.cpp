@@ -16,8 +16,10 @@
 /**	CMTask的构造函数
 
 */
-CMTask::CMTask():m_lTaskCount(0), m_lExitFlag(0)
+CMTask::CMTask()
 {
+    m_lTaskCount = 0;
+    m_lExitFlag = 0;
     m_ExitEvent = EventCreate();
     if ( m_ExitEvent == NULL )
     {
