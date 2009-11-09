@@ -56,7 +56,7 @@ void TestCase_Parallel_MergeSort(void)
 
 	Serial_Merge(ppIntData, 0, 7, 8, 15, IntCompare, pp);
 
-	for ( i = 0; i < sizeof(nData)/sizeof(int); i++ )
+	for ( i = 0; i < (int)(sizeof(nData)/sizeof(int)); i++ )
 	{
 		printf( "pp[%d] = %d\n", i, (int)pp[i]);
 	}
@@ -81,7 +81,7 @@ void TestCase_Parallel_MergeSort(void)
 
 	pn = MergeInt(nData, 0, 7, 8, 15 );
 
-	for ( i = 0; i < sizeof(nData)/sizeof(int); i++ )
+	for ( i = 0; i < (int)(sizeof(nData)/sizeof(int)); i++ )
 	{
 		printf( "pn[%d] = %d\n", i, pn[i]);
 	}
@@ -122,15 +122,15 @@ void TestCase_Parallel_MergeSort(void)
 
     t2 = clock();
 
-    printf( "Parallel merge sort %ld time = %ld\n", DATA_SIZE, t2-t1);
+    printf( "Parallel merge sort %d time = %ld\n", DATA_SIZE, t2-t1);
 
     for ( i = 0; i < DATA_SIZE - 1; i++ )
     {
         assertTrue( (int)pp[i] <= (int)pp[i+1] );
         if ( pp[i] > pp[i+1] )
         {
-            printf("Parallel_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %ld\n", 
-                i, i, pp[i], i+1, pp[i+1]);
+            printf("Parallel_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %d\n", 
+                i, i, (int)pp[i], i+1, (int)pp[i+1]);
         }
     }
 
@@ -145,13 +145,13 @@ void TestCase_Parallel_MergeSort(void)
         assertTrue( (int)ppOut[i] <= (int)ppOut[i+1] );
         if ( ppOut[i] > ppOut[i+1] )
         {
-            printf("Serial_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %ld\n", 
-                i, i, ppOut[i], i+1, ppOut[i+1]);
+            printf("Serial_MergeSort failed in i = %d, ppOut1[%d] = %d, ppOut1[%d] = %d\n", 
+                i, i, (int)ppOut[i], i+1, (int)ppOut[i+1]);
         }
     }
 
 
-    printf( "Serial merge sort %ld time = %ld\n", DATA_SIZE, t2-t1);
+    printf( "Serial merge sort %d time = %ld\n", DATA_SIZE, t2-t1);
 
 	free(pp);
     free(ppOut);

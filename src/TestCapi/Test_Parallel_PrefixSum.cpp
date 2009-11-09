@@ -37,15 +37,15 @@ void TestCase_Parallel_PrefixSum(void)
 
     Sequential_PrefixSum(a, b, sizeof(a)/sizeof(int));
 
-    for ( i = 0; i < sizeof(a)/sizeof(int); i++ )
+    for ( i = 0; i < (int)(sizeof(a)/sizeof(int)); i++ )
     {
-        printf("b[%d] = %ld\n", i, b[i]);
+        printf("b[%d] = %d\n", i, b[i]);
     }
 
     int c[17];
 
     Parallel_PrefixSum(a, c, sizeof(a)/sizeof(int));
-    for ( i = 0; i < sizeof(a)/sizeof(int); i++ )
+    for ( i = 0; i < (int)(sizeof(a)/sizeof(int)); i++ )
     {
         assertTrue(c[i] == b[i]);
     }

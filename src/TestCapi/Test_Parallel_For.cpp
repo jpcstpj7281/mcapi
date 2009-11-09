@@ -189,7 +189,7 @@ void TestCase_Parallel_For_Merge(void)
         MERGE_SIZE/2 + 1, MERGE_SIZE - 1, pOutData);
     t2 = clock();
 
-    printf("SequentialMerge %ld time = %ld\n", MERGE_SIZE, t2-t1);
+    printf("SequentialMerge %d time = %ld\n", MERGE_SIZE, t2-t1);
 
     for (i = 0; i < MERGE_SIZE/2; i++ )
     {
@@ -205,7 +205,7 @@ void TestCase_Parallel_For_Merge(void)
     t1 = clock();
     Parallel_For(pRange);
     t2 = clock();
-    printf("ParallelMerge %ld time = %ld\n", MERGE_SIZE, t2-t1);
+    printf("ParallelMerge %d time = %ld\n", MERGE_SIZE, t2-t1);
 
     QuickSort(pCopyData, 0, MERGE_SIZE -1);
 
@@ -266,9 +266,9 @@ void TestCase_Parallel_For_Merge(void)
         assertTrue( pCopyData[i] == pOutData2[i] );
         if ( pCopyData[i] != pOutData2[i] )
         {
-            printf("pCopyData[%d] = %ld, pOutData2[%d] = %ld\n", i-1, pCopyData[i-1],
+            printf("pCopyData[%d] = %d, pOutData2[%d] = %d\n", i-1, pCopyData[i-1],
                 i-1, pOutData2[i-1]);
-            printf("pCopyData[%d] = %ld, pOutData2[%d] = %ld\n", i, pCopyData[i],
+            printf("pCopyData[%d] = %d, pOutData2[%d] = %d\n", i, pCopyData[i],
                 i, pOutData2[i]);
         }
     }

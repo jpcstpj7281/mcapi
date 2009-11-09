@@ -10,7 +10,6 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include <process.h>
 #include "CapiGlobal.h"
 #include "TestApi.h"
 #include "BinTree.h"
@@ -48,7 +47,7 @@ void *StrCopy(void *psz)
     }
 }
 
-void MTree_TraverseTask(LPVOID args)
+void MTree_TraverseTask(void * args)
 {
     HANDLE   hTree = (HANDLE)args;
     MTree_EnterTask(hTree);
@@ -116,7 +115,7 @@ void Test_MTree()
     psz = StrCopy("33");
     MTree_Insert(hTree, psz, StrCompare);
 
-    _beginthread(MTree_TraverseTask, 0, hTree);
+    MCapi_CreateThread(MTree_TraverseTask, hTree, MCAPI_THREAD_RUNNING);
     //hThread = CreateThread(NULL, 0, MTree_TraverseTask, (void *)hTree, 0, &dwId);
 #if 1
     for ( i = 0; i < 1000; i++ )
