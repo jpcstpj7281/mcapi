@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "Testapi.h"
+#include "TestApi.h"
 
 #include "CapiGlobal.h"
 #include "CapiCommon.h"
@@ -89,14 +89,14 @@ void operator delete[](void *p)
 
 
 
-void main(int argc, char *argv[])
+int  main(int argc, char *argv[])
 {
 //    TMemHookInit();
 //    TCheckMemory    mem;
 
     if ( TestCase_Init() != CAPI_SUCCESS )
 	{
-		return;
+		return -1;
 	}
 
     TestManager *pManager = new TestManager(NULL);
@@ -114,7 +114,7 @@ void main(int argc, char *argv[])
 //    atexit(TMemHookClose);
 
     printf("Test Finished.\n");
-    return;
+    return 0;
 }
 
 
