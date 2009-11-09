@@ -35,15 +35,15 @@ typedef struct SORTTABLE_st {
 
 SORTTABLE *	SortTable_Create(UINT uMaxCount);
 INT		SortTable_Add( SORTTABLE *pTable, void *pData );
-void		SortTable_Destroy( SORTTABLE *pTable, DESTROYFUNC DestroyFunc );
+void	SortTable_Destroy( SORTTABLE *pTable, DESTROYFUNC DestroyFunc );
 
-void *		SortTable_FindData(SORTTABLE *pTable, void *pData, 
+void *	SortTable_FindData(SORTTABLE *pTable, const void *pData, 
                                COMPAREFUNC CompareFunc);
-void *          SortTable_BlurFind(SORTTABLE *pTable, void *pData, 
+void *  SortTable_BlurFind(SORTTABLE *pTable, const void *pData, 
                                COMPAREFUNC CompareFunc);
-void *		SortTable_GetByID( SORTTABLE *pTable, UINT uId );
+void *	SortTable_GetByID( SORTTABLE *pTable, UINT uId );
 
-INT             SortTable_Sort(SORTTABLE *pTable, COMPAREFUNC CompareFunc);
+INT     SortTable_Sort(SORTTABLE *pTable, COMPAREFUNC CompareFunc);
 
 #ifdef __cplusplus
 }
