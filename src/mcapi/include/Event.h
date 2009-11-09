@@ -14,6 +14,12 @@ void WaitEvent(HANDLE hEvent);
 void SendEvent(HANDLE hEvent); 
 void EventClose(HANDLE hEvent);
 
+HANDLE SemaCreate(x,y) 
+#define SemaWait(x)      
+#define SemaRelease(x,y)   
+#define SemaClose(x)       
+
+
 #ifdef __cplusplus
 }
 #endif
