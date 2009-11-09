@@ -976,7 +976,7 @@ void *RBTree_GetMaxium(RBTREE *pTree, RBTREENODE *pNode)
     return pTempNode->pData;
 }
 
-INT ChangeNode(RBTREE *pTree, char *pSrcData, char *pTagData, INT nMagic)
+INT ChangeNode(RBTREE *pTree, const char *pSrcData, const char *pTagData, INT nMagic)
 {
     RBTREENODE *pNode;
     
