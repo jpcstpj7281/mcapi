@@ -903,7 +903,7 @@ void DRV_AVLTree_Find(UINT i)
 		}
         break;    
 	case 8:
-		AVLTree_Delete(pTree,"17", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"17", StrCompare, free);
 		pszTemp = (char *)AVLTree_Find(pTree, (void *)"17", StrCompare);
 		if ( pszTemp != NULL )
 		{

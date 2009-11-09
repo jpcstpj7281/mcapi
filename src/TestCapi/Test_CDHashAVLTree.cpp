@@ -113,7 +113,8 @@ void TestCase_CDHashAVLTree_TestCase2(void)
 	printf("CDHashAVLTree::Insert, time = %ld\n", t2-t1);
 
 	int data = 1001;
-	_beginthread(CDHashAVLTree_Find_Thread, 0, (void *)&dtree);
+	MCapi_CreateThread(CDHashAVLTree_Find_Thread, (void *)&dtree,
+        MCAPI_THREAD_RUNNING);
 	for ( i = 0; i < 100000; i++ )
 	{
 		dtree.Delete((void *)data);

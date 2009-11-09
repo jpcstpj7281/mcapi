@@ -89,7 +89,7 @@ void TestCase_CDHashArray_TestCase1(void)
 
 unsigned int WINAPI CDHashArray_Find_Thread(void * args)
 {
-	CDHashArray<int, CSearchArray<int> > *p = (CDHashArray<int, CSearchArray<int>> *)args;
+	CDHashArray<int, CSearchArray<int> > *p = (CDHashArray<int, CSearchArray<int> > *)args;
 
 	int Key;
 	int i;
@@ -190,7 +190,7 @@ void TestCase_CDHashArray_TestCase3(void)
 		ds.Find(pData[i], Key);
 	}
 	t2 = clock();
-	printf("CDHashArray::Find %ld, time = %ld\n", nTestCount, t2-t1);
+	printf("CDHashArray::Find %d, time = %ld\n", nTestCount, t2-t1);
 
 	Sleep(100);
 }
@@ -234,7 +234,7 @@ void TestCase_CDHashArray_TestCase4(void)
 		}
 	}
 	t2 = clock();
-	printf("CDHashArray::Find %ld, time = %ld\n", nTestCount*8, t2-t1);
+	printf("CDHashArray::Find %d, time = %ld\n", nTestCount*8, t2-t1);
 
 	Sleep(100);
     //printf("sizeof(INDEXNODE) = %ld\n", sizeof(INDEXNODE<int>));
