@@ -254,10 +254,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\MultiCore\MTask.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\MultiCore\MTList.c"
 				>
 			</File>
