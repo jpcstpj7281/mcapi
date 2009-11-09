@@ -145,13 +145,13 @@ CPPSRCS =     ./SingleCore/GCPtr.cpp \
 
 CARGS  =    -Wall -c -I../include
 
-APPS	=   libcapi.a
+APPS	=   libmcapi.a
 
 all: $(APPS)
 
 $(APPS): $(SRCS) Makefile 
 	$(GCC) $(CFLAGS) $(CSRCS) $(CPPSRCS)
-	ar r libcapi.a  $(OBJS)
+	ar r libmcapi.a  $(OBJS)
 
 clean:
 	$(RM) $(APPS) $(OBJS)  *.orig
