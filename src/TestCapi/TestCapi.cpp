@@ -8,7 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -16,7 +16,9 @@
 
 #include "CapiGlobal.h"
 #include "CapiCommon.h"
+#ifdef _WIN32
 #include "ApiHook.h"
+#endif
 #include <iostream>
 using namespace std;
 
