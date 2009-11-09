@@ -23,8 +23,9 @@
 #ifndef _WIN32
 #include <unistd.h>
 #include <sys/types.h>
-
+#include <stdlib.h>
 typedef   unsigned char  BYTE;
+typedef   unsigned int   UINT;
 #else
 #include <windows.h>
 #endif
