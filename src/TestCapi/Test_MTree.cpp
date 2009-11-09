@@ -55,7 +55,7 @@ void *StrCpy(void *psz)
 #ifdef _WIN32
 void MTree_TraverseTask(void * args)
 #else
-void *MTree_TraverseTask(const void * args)
+void *MTree_TraverseTask(void * args)
 #endif
 {
     HANDLE   hTree = (HANDLE)args;
@@ -231,7 +231,7 @@ INT DRV_MTree_Delete(INT i)
     {
     case 1:
         MTree_Insert(hTree, StrCopy("20"), StrCompare);
-        MTree_Delete(hTree, "20", StrCompare, free);
+        MTree_Delete(hTree, (void *)"20", StrCompare, free);
         if ( pTree->pRBTree->pRoot == NULL
             && pTree->pRBTree->uNodeCount == 0
             && pTree->pCursor == NULL )
