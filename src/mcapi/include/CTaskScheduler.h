@@ -21,7 +21,7 @@
  */
 #ifndef __CTASKSCHEDULER_H__
 #define __CTASKSCHEDULER_H__
-#define _WIN32_WINNT 0x0401
+#define _WIN32_WINNT 0x0404
 #include <Windows.h>
 #include "CapiGlobal.h"
 #include "CLocalQueue.h"
@@ -35,7 +35,7 @@ class CTaskScheduler {
 private:
     int             m_nThreadCount;
     CThreadPool     m_ThreadPool;
-    CDistributedQueue<T, CLocalQueue<T>, CQueuePool<T,CStealQueue<T>>> m_DQueue;
+    CDistributedQueue<T, CLocalQueue<T>, CQueuePool<T,CStealQueue<T> >, CStealQueue<T> > m_DQueue;
 public:
     CTaskScheduler(int nThreadCount);
     virtual ~CTaskScheduler(){};
