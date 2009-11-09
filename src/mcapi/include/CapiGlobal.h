@@ -86,7 +86,7 @@ typedef struct DOUBLENODE_st {
 #ifdef _WIN32
 typedef unsigned int (_stdcall *THREADFUNC)(void *pArgs);
 #else
-typedef void *(*THREADFUNC)(void *pArgs);
+typedef unsigned int (*THREADFUNC)(void *pArgs);
 #endif
 
 typedef struct  TASK_st {
