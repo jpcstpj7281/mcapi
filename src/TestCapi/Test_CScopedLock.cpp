@@ -8,7 +8,7 @@
  * that both that copyright notice and this permission notice appear
  * in supporting documentation.  
  */
-#include <windows.h>
+#include "TestCapi.h"
 
 #include <iostream>
 using namespace std;

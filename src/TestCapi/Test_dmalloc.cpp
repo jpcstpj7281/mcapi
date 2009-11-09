@@ -11,7 +11,7 @@
 
 
 
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>

@@ -10,7 +10,7 @@
  */
 
 
-#include <windows.h>
+#include "TestCapi.h"
 #include <process.h>
 #include <stdio.h>
 #include <time.h>

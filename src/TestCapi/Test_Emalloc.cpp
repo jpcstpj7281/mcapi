@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 // Test_Emalloc.cpp
-#include <windows.h>
+#include "TestCapi.h"
 #include <stdio.h>
 #include "CapiGlobal.h"
 #include "TestApi.h"
