@@ -62,8 +62,11 @@ void *MTList_TraverseTask(void * args)
         }
     }
     MTList_LeaveTask(pList);
-
+#ifdef _WIN32
     return ;
+#else
+    return NULL;
+#endif
 }
 
 

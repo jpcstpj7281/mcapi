@@ -10,7 +10,7 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include <time.H>
+#include <time.h>
 #include "CapiGlobal.h"
 #include "TestApi.h"
 #include "TestCapi.h"

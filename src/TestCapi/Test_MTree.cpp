@@ -30,10 +30,6 @@ INT DRV_MTree_Destroy(INT i);
 INT DRV_MTree_Insert(INT i);
 INT DRV_MTree_Delete(INT i);
 
-void *StrCpy(void *psz)
-{
-    return StrCopy((const void *)psz);
-}
 
 void *StrCopy(const void *psz)
 {
@@ -49,6 +45,13 @@ void *StrCopy(const void *psz)
         return NULL;
     }
 }
+
+void *StrCpy(void *psz)
+{
+    return StrCopy((const void *)psz);
+}
+
+
 #ifdef _WIN32
 void MTree_TraverseTask(void * args)
 #else
