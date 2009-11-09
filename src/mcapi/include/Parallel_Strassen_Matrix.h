@@ -133,13 +133,8 @@ void CStrassenParam<T>::SetPara(T *a, int row_a, int col_a, int as,
 	@param	void *pArg - 实际为一个CStrassenParam指针	
 	@return	unsigned int WINAPI - 返回CAPI_FAILED表示失败，返回CAPI_SUCCESS表示成功	
 */
-#ifdef _WIN32
 template <class T>
-unsigned int WINAPI  Strassen_Matrix_Task(LPVOID pArg)
-#else
-template <class T>
-void *  Strassen_Matrix_Task(void * pArg)
-#endif
+unsigned int WINAPI  Strassen_Matrix_Task(void *pArg)
 {
     CStrassenParam<T> *pPara = (CStrassenParam<T> *)pArg;
 
