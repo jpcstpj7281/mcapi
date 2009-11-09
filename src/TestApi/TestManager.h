@@ -89,7 +89,7 @@ public:
     TESTFUNC            m_TestFunc;
 	char				*m_pFuncName;
 
-    TestManager(TESTFUNC TestFunc, char *pszName);
+    TestManager(TESTFUNC TestFunc, const char *pszName);
 	TestManager(TestCase *pTestCase);
 	~TestManager();
 

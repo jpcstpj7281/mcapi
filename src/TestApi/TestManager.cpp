@@ -48,7 +48,7 @@ void TestCase_Destroy(void *p)
 	delete pTestCase;
 }
 
-TestManager::TestManager(TESTFUNC TestFunc, char *pszName):m_TestFunc(TestFunc)
+TestManager::TestManager(TESTFUNC TestFunc, const char *pszName):m_TestFunc(TestFunc)
 {
     if (m_bFirstRun)
     {
