@@ -14,10 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "Testapi.h"
+#include "TestApi.h"
 #include "CapiGlobal.h"
 #include "CapiCommon.h"
-#include "singlelist.h"
+#include "SingleList.h"
 #include "ArrayList.h"
 #include "Parallel_RadixSort.h"
 #include "Parallel_RadixSort_Array.h"

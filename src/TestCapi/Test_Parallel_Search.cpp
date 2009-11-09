@@ -10,8 +10,9 @@
  */
 // Test_Parallel_Search.cpp
 #include "TestCapi.h"
+#include "CapiGlobal.h"
 #include <stdio.h>
-#include "Testapi.h"
+#include "TestApi.h"
 #include "Parallel_Search.h"
 
 void TestCase_Parallel_SearchData(void);

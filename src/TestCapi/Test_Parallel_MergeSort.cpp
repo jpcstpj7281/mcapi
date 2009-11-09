@@ -12,7 +12,7 @@
 #include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
-#include "Testapi.h"
+#include "TestApi.h"
 #include "CapiGlobal.h"
 #include "Parallel_MergeSort.h"
 #include "CapiCommon.h"
@@ -52,13 +52,13 @@ void TestCase_Parallel_MergeSort(void)
 	}
 	t2 = clock();
 
-	printf("Serial_Merge() Time = %ld\n", t2-t1);
+	printf("Serial_Merge() Time = %d\n", t2-t1);
 
 	Serial_Merge(ppIntData, 0, 7, 8, 15, IntCompare, pp);
 
 	for ( i = 0; i < sizeof(nData)/sizeof(int); i++ )
 	{
-		printf( "pp[%d] = %ld\n", i, (int)pp[i]);
+		printf( "pp[%d] = %d\n", i, (int)pp[i]);
 	}
 
 	free(pp);
@@ -83,7 +83,7 @@ void TestCase_Parallel_MergeSort(void)
 
 	for ( i = 0; i < sizeof(nData)/sizeof(int); i++ )
 	{
-		printf( "pn[%d] = %ld\n", i, pn[i]);
+		printf( "pn[%d] = %d\n", i, pn[i]);
 	}
 
 	free(pn);
