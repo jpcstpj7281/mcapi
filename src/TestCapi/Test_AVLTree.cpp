@@ -49,7 +49,7 @@ int AVLTree_CheckCount(AVLTREENODE *pStartNode)
     assertEquals(uCount, pStartNode->uCount);
     if ( uCount != pStartNode->uCount )
     {
-        printf("pStartNode->pData = %s\n", pStartNode->pData);
+        printf("pStartNode->pData = %s\n", (char *)(pStartNode->pData));
     }
     pLeftNode = pStartNode->pLeft;
     pRightNode = pStartNode->pRight;
@@ -469,11 +469,11 @@ void DRV_AVLTree_Delete(UINT i)
     switch( i )
     {
     case 1: /* ≤‚ ‘ ˜Œ™ø’ ±µƒ…æ≥˝«Èøˆ */
-        AVLTree_Delete(pTree, "hELLO", StrCompare, free );
+        AVLTree_Delete(pTree, (void *)"hELLO", StrCompare, free );
         break;
     case 2: /* ≤‚ ‘≤Â»Î“ª∏ˆΩ⁄µ„£¨…æ≥˝“ª∏ˆΩ⁄µ„µƒ«Èøˆ */
         AVLTree_Insert(pTree, strdup("Hello"), StrCompare);
-        AVLTree_Delete(pTree, "Hello", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"Hello", StrCompare, free);
         if ( pTree->pRoot == NULL
             && pTree->uNodeCount == 0 )
         {
@@ -487,7 +487,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("Hello"), StrCompare);
         AVLTree_Insert(pTree, strdup("zhouweiming"), StrCompare);
 
-        AVLTree_Delete(pTree, "Hello", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"Hello", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "zhouweiming") == 0 
             && pTree->pRoot->nMagic == 0 
             && pTree->pRoot->pLeft == NULL 
@@ -505,7 +505,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("Hello"), StrCompare);
         AVLTree_Insert(pTree, strdup("zhouweiming"), StrCompare);
 
-        AVLTree_Delete(pTree, "zhouweiming", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"zhouweiming", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "Hello") == 0 
             && pTree->pRoot->nMagic == 0 
             && pTree->pRoot->pLeft == NULL 
@@ -527,7 +527,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("22"), StrCompare);
         AVLTree_Insert(pTree, strdup("28"), StrCompare);
 
-        AVLTree_Delete(pTree, "18", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"18", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "27") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "28") == 0 
@@ -550,7 +550,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("27"), StrCompare);
         AVLTree_Insert(pTree, strdup("28"), StrCompare);
         
-        AVLTree_Delete(pTree, "18", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"18", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "27") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "28") == 0 
@@ -571,7 +571,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("27"), StrCompare);
         AVLTree_Insert(pTree, strdup("25"), StrCompare);
         
-        AVLTree_Delete(pTree, "18", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"18", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "25") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "27") == 0 
@@ -593,7 +593,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("18"), StrCompare);
         AVLTree_Insert(pTree, strdup("12"), StrCompare);
         
-        AVLTree_Delete(pTree, "28", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"28", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "12") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0 
@@ -617,7 +617,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("28"), StrCompare);
         AVLTree_Insert(pTree, strdup("12"), StrCompare);
         
-        AVLTree_Delete(pTree, "28", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"28", StrCompare, free);
         if ( strcmp((char *)(pTree->pRoot->pData), "17") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "12") == 0 
             && strcmp((char *)(pTree->pRoot->pRight->pData), "20") == 0 
@@ -787,7 +787,7 @@ void DRV_AVLTree_Delete(UINT i)
     case 16: /* 2∏ˆΩ⁄µ„µƒ∆Ω∫‚≤‚ ‘ */
         AVLTree_Insert(pTree, strdup("20"), StrCompare);
         AVLTree_Insert(pTree, strdup("18"), StrCompare);
-        AVLTree_Delete(pTree, "18", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"18", StrCompare, free);
 
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && pTree->pRoot->pLeft == NULL 
@@ -805,7 +805,7 @@ void DRV_AVLTree_Delete(UINT i)
         AVLTree_Insert(pTree, strdup("18"), StrCompare);
         AVLTree_Insert(pTree, strdup("22"), StrCompare);
         AVLTree_Insert(pTree, strdup("15"), StrCompare);
-        AVLTree_Delete(pTree, "15", StrCompare, free);
+        AVLTree_Delete(pTree, (void *)"15", StrCompare, free);
         
         if ( strcmp((char *)(pTree->pRoot->pData), "20") == 0 
             && strcmp((char *)(pTree->pRoot->pLeft->pData), "18") == 0 
@@ -854,49 +854,49 @@ void DRV_AVLTree_Find(UINT i)
     switch( i )
     {
     case 1:
-		pszTemp = (char *)AVLTree_Find(pTree, "20", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"20", StrCompare);
 		if ( strcmp(pszTemp, "20") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝1  ß∞‹\n");
 		}
         break;
     case 2:
-		pszTemp = (char *)AVLTree_Find(pTree, "28", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"28", StrCompare);
 		if ( strcmp(pszTemp, "28") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝2  ß∞‹\n");
 		}
         break;
     case 3:
-		pszTemp = (char *)AVLTree_Find(pTree, "16", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"16", StrCompare);
 		if ( strcmp(pszTemp, "16") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝3  ß∞‹\n");
 		}
         break;
     case 4:
-		pszTemp = (char *)AVLTree_Find(pTree, "29", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"29", StrCompare);
 		if ( strcmp(pszTemp, "29") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝4  ß∞‹\n");
 		}
         break;
     case 5:
-		pszTemp = (char *)AVLTree_Find(pTree, "15", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"15", StrCompare);
 		if ( strcmp(pszTemp, "15") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝5  ß∞‹\n");
 		}
         break;    
 	case 6:
-		pszTemp = (char *)AVLTree_Find(pTree, "17", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"17", StrCompare);
 		if ( strcmp(pszTemp, "17") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝6  ß∞‹\n");
 		}
         break;    
 	case 7:
-		pszTemp = (char *)AVLTree_Find(pTree, "19", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"19", StrCompare);
 		if ( strcmp(pszTemp, "19") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝7  ß∞‹\n");
@@ -904,22 +904,22 @@ void DRV_AVLTree_Find(UINT i)
         break;    
 	case 8:
 		AVLTree_Delete(pTree,"17", StrCompare, free);
-		pszTemp = (char *)AVLTree_Find(pTree, "17", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"17", StrCompare);
 		if ( pszTemp != NULL )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝8  ß∞‹\n");
 		}
         break;    		
 	case 9:
-		AVLTree_Delete(pTree,"17", StrCompare, free);
-		AVLTree_Delete(pTree,"20", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"17", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"20", StrCompare, free);
         AVLTree_CheckCount(pTree->pRoot);
-		AVLTree_Delete(pTree,"16", StrCompare, free);
-		AVLTree_Delete(pTree,"15", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"16", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"15", StrCompare, free);
         AVLTree_CheckCount(pTree->pRoot);
-		AVLTree_Delete(pTree,"29", StrCompare, free);
+		AVLTree_Delete(pTree, (void *)"29", StrCompare, free);
 
-		pszTemp = (char *)AVLTree_Find(pTree, "28", StrCompare);
+		pszTemp = (char *)AVLTree_Find(pTree, (void *)"28", StrCompare);
 		if ( strcmp(pszTemp, "28") != 0 )
 		{
 			printf("AVLTree_Find()≤‚ ‘”√¿˝9  ß∞‹\n");

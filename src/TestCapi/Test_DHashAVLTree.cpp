@@ -73,6 +73,9 @@ void *Find_Thread(void * args)
 
 		assertTrue(pKey == (void *)1001 || pKey == (void *)0);
 	}
+#ifndef _WIN32
+    return NULL;
+#endif
 }
 
 
