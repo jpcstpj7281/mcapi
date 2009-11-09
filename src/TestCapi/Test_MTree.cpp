@@ -30,7 +30,10 @@ INT DRV_MTree_Destroy(INT i);
 INT DRV_MTree_Insert(INT i);
 INT DRV_MTree_Delete(INT i);
 
-
+void *StrCpy(void *psz)
+{
+    return StrCopy((const void *)psz);
+}
 
 void *StrCopy(const void *psz)
 {
@@ -49,7 +52,7 @@ void *StrCopy(const void *psz)
 #ifdef _WIN32
 void MTree_TraverseTask(void * args)
 #else
-void *MTree_TraverseTask(void * args)
+void *MTree_TraverseTask(const void * args)
 #endif
 {
     HANDLE   hTree = (HANDLE)args;
@@ -62,7 +65,7 @@ void *MTree_TraverseTask(void * args)
         }
         void *p;
         MTree_EnumBegin(hTree);
-        while ( (p = MTree_EnumNextCopy(hTree, StrCopy)) != NULL )
+        while ( (p = MTree_EnumNextCopy(hTree, StrCpy)) != NULL )
         {
           //  printf("%s\n", p);
             free(p);
@@ -126,7 +129,7 @@ void Test_MTree()
 #if 1
     for ( i = 0; i < 1000; i++ )
     {
-        int ret = MTree_Delete(hTree, "27", StrCompare, free);
+        int ret = MTree_Delete(hTree, (void *)"27", StrCompare, free);
         if ( ret != CAPI_SUCCESS )
         {
             printf( "MTree_Delete(27) Failed.\n" );

@@ -10,14 +10,14 @@
  */
 #include "TestCapi.h"
 #include <stdio.h>
-#include <process.h>
+
 #include "CapiGlobal.h"
 #include "TestApi.h"
 #include "DoubleList.h"
 #include "MTask.h"
 #include "MTList.h"
 
-extern void *StrCopy(void *psz);
+extern void *StrCopy(const void *psz);
 
 
 void TestCase_MTList_Insert();
@@ -43,7 +43,7 @@ INT Visit(void *p)
 #ifdef _WIN32
 void MTList_TraverseTask(void * args)
 #else
-void MTList_TraverseTask(void * args)
+void *MTList_TraverseTask(void * args)
 #endif
 {
     MTLIST *pList = (MTLIST *)args;
@@ -92,7 +92,7 @@ void TestCase_MTList_Insert()
     MTList_InsertHead(pList, StrCopy("36"));
     MTList_InsertHead(pList, StrCopy("37"));
 
-    _beginthread(MTList_TraverseTask, 0, pList);
+    MCapi_CreateThread(MTList_TraverseTask, pList, MCAPI_THREAD_RUNNING);
 
     int i;
     for ( i = 0; i < 100; i++ )
