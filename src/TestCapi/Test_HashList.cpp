@@ -82,7 +82,7 @@ INT DRV_HashList_AddHead(INT i)
         }
         HashList_InsertHead(pHashList, strdup("Hello"), HashString);
 
-        p = HashList_FindData(pHashList, "Hello", HashString, StrCompare);
+        p = HashList_FindData(pHashList, (void *)"Hello", HashString, StrCompare);
 
         printf( "result = %s\r\n", (char *)p);
 

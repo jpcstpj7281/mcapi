@@ -423,7 +423,7 @@ void DRV_HashRBTree_TreeFind(UINT i)
     case 1:
         nRet = HashRBTree_Insert(pTable, strdup("100"), HashString, StrCompare, free);
         
-        pData = HashRBTree_TreeFind(pTable, (void *0"100", StrCompare);
+        pData = HashRBTree_TreeFind(pTable, (void *)"100", StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashRBTree_TreeFind() ≤‚ ‘”√¿˝1 ß∞‹!\n" );

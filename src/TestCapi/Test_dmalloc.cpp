@@ -65,7 +65,7 @@ void TestCase_dmalloc_TestCase1(void)
     }
     t2 = clock();
 
-    printf("parallel dmalloc() and dfree() called %ld times, time = %ld\n", i, t2-t1);
+    printf("parallel dmalloc() and dfree() called %d times, time = %ld\n", i, t2-t1);
 
     t1 = clock();
 
@@ -76,7 +76,7 @@ void TestCase_dmalloc_TestCase1(void)
         dfree(p);
     }
     t2 = clock();
-    printf("one thread: dmalloc() and dfree() called %ld times, time = %ld\n", i, t2-t1);
+    printf("one thread: dmalloc() and dfree() called %d times, time = %ld\n", i, t2-t1);
 
 
 
@@ -89,7 +89,7 @@ void TestCase_dmalloc_TestCase1(void)
         free(p);
     }
     t2 = clock();
-    printf("one thread: malloc() and free() called %ld times, time = %ld\n", i, t2-t1);
+    printf("one thread: malloc() and free() called %d times, time = %ld\n", i, t2-t1);
 
 
 }

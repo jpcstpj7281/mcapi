@@ -142,7 +142,7 @@ void DRV_DSpaceList_Alloc(UINT i)
 			|| p->pDSNode[0].pSpList->pBlock == NULL 
 			|| p->pDSNode[0].pSpList->uFreeCount != 0
 			|| (INT)pData - (INT)p->pDSNode[0].pSpList->pBlock != sizeof(SPNODE) + 127 * (sizeof(SPNODE)+32)
-			|| (INT)p->pDSNode[0].pSpList->pHead != NULL )
+			|| p->pDSNode[0].pSpList->pHead != NULL )
         {
             printf( "DSpaceList_Alloc() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
         }

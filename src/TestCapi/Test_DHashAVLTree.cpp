@@ -11,7 +11,6 @@
 
 
 #include "TestCapi.h"
-#include <process.h>
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>
@@ -58,8 +57,11 @@ void TestCase_DHashAVLTree_TestCase1(void)
 	DHashAVLTree_Destroy(pTree, NULL);
 }
 
-
-void Find_Thread(LPVOID args)
+#ifdef _WIN32
+void Find_Thread(void * args)
+#else
+void *Find_Thread(void * args)
+#endif
 {
 	DHASHAVLTREE *pTree = (DHASHAVLTREE *)args;
 
@@ -89,7 +91,7 @@ void TestCase_DHashAVLTree_TestCase2(void)
 	t2 = clock();
 	printf("DHashAVLTree_Insert, time = %ld\n", t2-t1);
 
-	_beginthread(Find_Thread, 0, (void *)pTree);
+	MCapi_CreateThread(Find_Thread, (void *)pTree, MCAPI_THREAD_RUNNING);
 	for ( i = 0; i < 100000; i++ )
 	{
 		DHashAVLTree_Delete(pTree, (void *)1001, HashInt, IntCompare, NULL);
