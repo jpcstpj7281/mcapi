@@ -40,11 +40,7 @@ INT Visit(void *p)
     return CAPI_FAILED;
 }
 
-#ifdef _WIN32
-void MTList_TraverseTask(void * args)
-#else
-void *MTList_TraverseTask(void * args)
-#endif
+unsigned int MTList_TraverseTask(void * args)
 {
     MTLIST *pList = (MTLIST *)args;
     MTList_EnterTask(pList);
@@ -62,11 +58,7 @@ void *MTList_TraverseTask(void * args)
         }
     }
     MTList_LeaveTask(pList);
-#ifdef _WIN32
-    return ;
-#else
-    return NULL;
-#endif
+    return 0;
 }
 
 
