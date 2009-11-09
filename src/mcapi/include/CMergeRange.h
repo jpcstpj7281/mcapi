@@ -246,7 +246,7 @@ template <class T>
 void Parallel_Merge(T *pData, int nBegin1, int nEnd1, 
                     int nBegin2, int nEnd2, T *pOutData)
 {
-    CMergeRange  *pRange = new CMergeRange<T>(pData, nBegin1, nEnd1, 
+    CMergeRange<T>  *pRange = new CMergeRange<T>(pData, nBegin1, nEnd1, 
                                 nBegin2, nEnd2, pOutData);
     Parallel_For( pRange );
 
