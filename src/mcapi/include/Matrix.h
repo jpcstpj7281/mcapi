@@ -293,7 +293,6 @@ void Matrix_Turn2(T *a, int row_a_begin, int row_a_end,
                   T *b)
 {
     int row_size = row_a_end - row_a_begin;
-    int col_size = col_a_end - col_a_begin;
 
     int i, j;
     for ( i = col_a_begin; i < col_a_end; i++ )

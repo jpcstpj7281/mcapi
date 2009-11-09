@@ -145,7 +145,11 @@ void *  Strassen_Matrix_Task(void * pArg)
 
     if ( pPara == NULL )
     {
+#ifdef _WIN32
         return CAPI_FAILED;
+#else
+        return NULL;
+#endif
     }
 
     T *a = pPara->m_a;
@@ -541,8 +545,11 @@ void *  Strassen_Matrix_Task(void * pArg)
     {
         delete (CStrassenParam<T> *)(task_array1.m_pTaskArray[i].pArg);
     }
-
+#ifdef _WIN32
     return CAPI_SUCCESS;
+#else
+    return NULL;
+#endif
 }
 
 
