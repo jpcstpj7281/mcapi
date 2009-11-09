@@ -70,7 +70,7 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
 
     ThreadPara.pArg1 = args;
     ThreadPara.pArg2 = func
-    if ( pthread_create( &tid, NULL, LinuxThreadFunc, &ThreadPara) != 0 )
+    if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)&ThreadPara) != 0 )
     {
         (void)pthread_attr_destroy(&attr);
         free(pThread);

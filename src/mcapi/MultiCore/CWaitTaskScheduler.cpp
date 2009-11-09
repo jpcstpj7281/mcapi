@@ -22,11 +22,7 @@
 #include "CDistributedQueue.h"
 #include "CWaitTaskScheduler.h"
 
-#ifdef _WIN32
 static unsigned int WINAPI WaitTaskScheduler_StartFunc(void *pArgs);
-#else
-static void * WaitTaskScheduler_StartFunc(void *pArgs);
-#endif
 
 #define     WAITTASK_QUEUE_SIZE     128
 
@@ -208,11 +204,7 @@ void CWaitTaskScheduler::BeginRootThread(CWaitTask &Task)
 	@param	void *pArgs - CWaitTaskScheduler类型的参数	
 	@return	unsigned int WINAPI - 返回0	
 */
-#ifdef _WIN32
 static unsigned int WINAPI WaitTaskScheduler_StartFunc(void *pArgs)
-#else
-static void * WaitTaskScheduler_StartFunc(void *pArgs)
-#endif
 {
     CWaitTaskScheduler  *pSched = (CWaitTaskScheduler *)pArgs;
 
