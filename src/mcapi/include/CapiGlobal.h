@@ -61,6 +61,7 @@ typedef void *          HANDLE;
 #ifndef _WIN32 
 #define _stdcall
 #define __stdcall
+#define WINAPI
 typedef long long int LONGLONG;
 typedef long long int int64_t;
 #define Sleep(x)      usleep(x)
