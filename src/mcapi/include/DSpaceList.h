@@ -54,7 +54,7 @@ typedef struct DSPACELIST_st {
 
 DSPACELIST *DSpaceList_Create(UINT uDataSize, UINT uDataCount,
                               UINT uMinDSNodeCount, UINT uDSNodeCount);
-void        DSpaceList_Destroy(DSPACELIST *pList);
+void        DSpaceList_Destroy(void *pSpList);
 
 void       *DSpaceList_Alloc(DSPACELIST *pList);
 void        DSpaceList_Free(DSPACELIST *pList, void *pData);
