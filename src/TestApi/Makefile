@@ -3,7 +3,7 @@ CPP	= g++
 
 RM	= rm -fr
 
-CFLAGS	= -g -pthread -c -Wall -W -I../capi/Include -L../capi -L/usr/lib  -lcapi -lpthread
+CFLAGS	= -g -pthread -c -Wall -W -I../mcapi/Include -L../mcapi -L/usr/lib  -lmcapi -lpthread
 CFLAGS  += -DCPU_X86
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
@@ -14,7 +14,7 @@ endif
 
 CPPFLAGS	= $(CFLAGS)
 
-LIBS	=     -L../capi -L/usr/lib  -lcapi -lpthread
+LIBS	=     -L../capi -L/usr/lib  -lmcapi -lpthread
 OBJS	=     THashTable.o TestCaseMgr.o TestManager.o 
 SRCS	=     THashTable.cpp TestCaseMgr.cpp TestManager.cpp
 
