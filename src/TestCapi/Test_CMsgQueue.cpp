@@ -36,7 +36,7 @@ REGISTER_TESTFUNC(Test_CMsgQueue)
 
 void TestCase_CMsgQueue_TestCase1(void)
 {
-    CMsgQueue<int, CSharedQueue<int, CLocalQueue<int>>>  Q(4);
+    CMsgQueue<int, CSharedQueue<int, CLocalQueue<int> > >  Q(4);
 
     int a = 4;
     Q.Send(a);

@@ -37,7 +37,7 @@ void TestCase_CStealQueue_Constructor1(void)
 
     nSize = DEFAULT_STEALQUEUE_SIZE;
 
-    assertTrue(nSize == Q.m_uMaxSize);
+    assertTrue(nSize == (int)Q.m_uMaxSize);
     assertTrue(Q.m_uHead == 0 && Q.m_uTail == 0);
     assertTrue(Q.m_lEmptyFlag == 1 && Q.m_lFullFlag == 0);
     assertTrue(Q.IsEmpty());

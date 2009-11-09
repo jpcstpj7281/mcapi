@@ -41,9 +41,9 @@ void TestCase_CRankList_RankSort(void)
 
     int i;
     printf("RankSort begin, result as following:\n");
-    for ( i = 0; i < sizeof(a)/sizeof(int); i++ )
+    for ( i = 0; i < (int)(sizeof(a)/sizeof(int)); i++ )
     {
-        printf("a[%ld] = %ld\n", i, a[i]);
+        printf("a[%d] = %d\n", i, a[i]);
     }
 }
 
@@ -74,14 +74,14 @@ void TestCase_CRankList_RankSortPer(void)
     ranklist.RankSort(a, count, 22, 4);
     t2 = clock();
 
-    printf("RankSort 0x%lx, %ld, Total Time: %ld ms\n", count, count, t2-t1);
+    printf("RankSort 0x%x, %d, Total Time: %ld ms\n", count, count, t2-t1);
 
     //check result order
     for ( i = 0; i < count-1; i++ )
     {
         if ( a[i] > a[i+1] )
         {
-            printf( "Result Error: a[%d] = %ld, a[%d] = %ld\n", i, a[i], i+1, a[i+1]);
+            printf( "Result Error: a[%d] = %d, a[%d] = %d\n", i, a[i], i+1, a[i+1]);
         }
     }
 

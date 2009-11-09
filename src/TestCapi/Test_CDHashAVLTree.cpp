@@ -11,7 +11,6 @@
 
 
 #include "TestCapi.h"
-#include <process.h>
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>
@@ -41,7 +40,7 @@ void TestCase_CDHashAVLTree_TestCase1(void)
 	{
 		if ( i == 32 )
 		{
-			printf( "i = %ld\n", i);
+			printf( "i = %d\n", i);
 		}
 		dtree.Insert((void *)i);
 	}
@@ -56,7 +55,7 @@ void TestCase_CDHashAVLTree_TestCase1(void)
 		ret = (int)dtree.Find((void *)i);
 		if ( ret != i )
 		{
-			printf("ret = %ld, i = %ld\n", ret, i);
+			printf("ret = %d, i = %d\n", ret, i);
 		}
 	}
 
@@ -74,7 +73,7 @@ void TestCase_CDHashAVLTree_TestCase1(void)
 		ret = (int)dtree.Find((void *)i);
 		if ( ret != i )
 		{
-			printf("ret = %ld, i = %ld\n", ret, i);
+			printf("ret = %d, i = %d\n", ret, i);
 		}
 	}
 	printf("TestCase1 Finished.\n");

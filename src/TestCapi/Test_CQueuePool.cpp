@@ -31,7 +31,7 @@ REGISTER_TESTFUNC(Test_CQueuePool)
 void TestCase_CQueuePool_Constructor1(void)
 {
     int ret = -1;
-    CQueuePool<int, CStealQueue<int>>     Q;
+    CQueuePool<int, CStealQueue<int> >     Q;
 
     Q.Create(4, 5);
     assertTrue(Q.m_nQueueCount == 4 && Q.m_nQueueSize == 5 );

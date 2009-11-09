@@ -14,7 +14,7 @@
 using namespace std;
 
 #include "CapiGlobal.h"
-#include "Testapi.h"
+#include "TestApi.h"
 #include "CScopedLock.h"
 #include "CRWLock.h"
 #include "FastLock.h"

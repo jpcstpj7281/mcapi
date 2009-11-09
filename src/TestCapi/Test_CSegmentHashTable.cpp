@@ -41,7 +41,7 @@ void TestCase_CSegmentHashTable_Insert(void)
     assertTrue( pData == (void *)2024);
 
 
-    printf("sizeof(CSegmentHashTable) = %ld\n", sizeof(t));
+    printf("sizeof(CSegmentHashTable) = %d\n", sizeof(t));
 }
 
 

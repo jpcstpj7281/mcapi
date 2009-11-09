@@ -57,11 +57,7 @@ void TestCase_DHashAVLTree_TestCase1(void)
 	DHashAVLTree_Destroy(pTree, NULL);
 }
 
-#ifdef _WIN32
-void Find_Thread(void * args)
-#else
-void *Find_Thread(void * args)
-#endif
+unsigned int Find_Thread(void * args)
 {
 	DHASHAVLTREE *pTree = (DHASHAVLTREE *)args;
 
@@ -73,9 +69,7 @@ void *Find_Thread(void * args)
 
 		assertTrue(pKey == (void *)1001 || pKey == (void *)0);
 	}
-#ifndef _WIN32
-    return NULL;
-#endif
+    return 0;
 }
 
 

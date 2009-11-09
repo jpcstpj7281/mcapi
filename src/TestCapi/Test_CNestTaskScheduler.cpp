@@ -44,7 +44,7 @@ unsigned int WINAPI RootTask(void *args)
     RANGE  *p = (RANGE *)args;
     if ( p != NULL )
     {
-        printf("Range: %ld - %ld\n", p->begin, p->end);
+        printf("Range: %d - %d\n", p->begin, p->end);
         if ( p->end - p->begin < 128 )
         {
             //当区间大小小于128时，不再进行分拆
