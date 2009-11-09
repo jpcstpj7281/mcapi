@@ -46,8 +46,11 @@ void *StrCopy(const void *psz)
         return NULL;
     }
 }
-
+#ifdef _WIN32
 void MTree_TraverseTask(void * args)
+#else
+void *MTree_TraverseTask(void * args)
+#endif
 {
     HANDLE   hTree = (HANDLE)args;
     MTree_EnterTask(hTree);
@@ -67,8 +70,11 @@ void MTree_TraverseTask(void * args)
         //printf("Traverse one turn.\n");
     }
     MTree_LeaveTask(hTree);
-
+#ifdef _WIN32
     return ;
+#else
+    return NULL;
+#endif
 }
 
 void Test_MTree()

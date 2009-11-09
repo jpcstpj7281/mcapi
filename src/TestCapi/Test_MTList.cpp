@@ -40,8 +40,11 @@ INT Visit(void *p)
     return CAPI_FAILED;
 }
 
-
-void MTList_TraverseTask(LPVOID args)
+#ifdef _WIN32
+void MTList_TraverseTask(void * args)
+#else
+void MTList_TraverseTask(void * args)
+#endif
 {
     MTLIST *pList = (MTLIST *)args;
     MTList_EnterTask(pList);
