@@ -50,6 +50,19 @@ extern void Test_SpList();
 extern void Test_DSpaceList();
 
 
+#ifndef _WIN32
+char* itoa(int value, char *psz, int radix)  
+{
+    if ( psz!= NULL ) 
+    {
+        sprintf(psz, "%d", value);
+    }
+    return psz;
+}
+#endif
+
+
+
 #if 1
 void * operator new(size_t size)
 {

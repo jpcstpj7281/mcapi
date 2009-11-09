@@ -44,10 +44,10 @@ void TestCase_Parallel_SearchData(void)
     }
 
     int nPos = Parallel_SearchData(ppIntData, sizeof(nData)/sizeof(int), (void *)0, IntCompare);
-    printf( "nPos = %ld\n", nPos );
+    printf( "nPos = %d\n", nPos );
 
     nPos = Parallel_SearchData(ppIntData, sizeof(nData)/sizeof(int), (void *)65, IntCompare);
-    printf( "nPos = %ld\n", nPos );
+    printf( "nPos = %d\n", nPos );
 
  //   nPos = Parallel_Search_Data2(ppIntData, sizeof(nData)/sizeof(int), (void *)17, IntCompare);
  //   printf( "nPos = %ld\n", nPos );
@@ -67,7 +67,7 @@ void TestCase_Parallel_SearchMaxData(void)
     }
 
     int nPos = Parallel_SearchMaxData(ppIntData, sizeof(nData)/sizeof(int), IntCompare);
-    printf( "nPos = %ld\n", nPos );
+    printf( "nPos = %d\n", nPos );
     free(ppIntData);
 }
 
@@ -92,7 +92,7 @@ void TestCase_Parallel_SearchData2(void)
 
 
     int nPos = Parallel_SearchData2(ppIntData, SEARCH_SIZE, (void *)44, IntCompare);
-    printf( "nPos = %ld\n", nPos );
+    printf( "nPos = %d\n", nPos );
 
     free(ppIntData);
 }
