@@ -143,7 +143,7 @@ void DRV_HashTable_Insert(UINT i)
     {
     case 1:
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || pTable->ppBucket[uIndex]->pNext != NULL 
@@ -156,7 +156,7 @@ void DRV_HashTable_Insert(UINT i)
     case 2:
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
         nRet = HashTable_Insert(pTable, strdup("120"), HashString);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || pTable->ppBucket[uIndex]->pNext != NULL 
@@ -170,7 +170,7 @@ void DRV_HashTable_Insert(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->pData, "728") != 0 
@@ -203,9 +203,9 @@ void DRV_HashTable_Delete(UINT i)
     {
     case 1:
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        HashTable_Delete(pTable, "100", HashString, StrCompare, free);
+        HashTable_Delete(pTable, (void *)"100", HashString, StrCompare, free);
 
-        uIndex = HashString("100", 128);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || pTable->ppBucket[uIndex] != NULL
             || pTable->uNodeCount != 0
@@ -218,8 +218,8 @@ void DRV_HashTable_Delete(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        HashTable_Delete(pTable, "728", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashTable_Delete(pTable, (void *)"728", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->pData, "252") != 0 
@@ -235,8 +235,8 @@ void DRV_HashTable_Delete(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        HashTable_Delete(pTable, "100", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashTable_Delete(pTable, (void *)"100", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "728") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->pData, "252") != 0 
@@ -252,8 +252,8 @@ void DRV_HashTable_Delete(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        HashTable_Delete(pTable, "252", HashString, StrCompare, free);
-        uIndex = HashString("100", 128);
+        HashTable_Delete(pTable, (void *)"252", HashString, StrCompare, free);
+        uIndex = HashString((void *)"100", 128);
         if ( nRet != CAPI_SUCCESS
             || strcmp((char *)pTable->ppBucket[uIndex]->pData, "100") != 0 
             || strcmp((char *)pTable->ppBucket[uIndex]->pNext->pData, "728") != 0 
@@ -285,7 +285,7 @@ void DRV_HashTable_Find(UINT i)
     case 1:
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
 
-        pData = HashTable_Find(pTable, "100", HashString, StrCompare);
+        pData = HashTable_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -294,7 +294,7 @@ void DRV_HashTable_Find(UINT i)
     case 2:
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        pData = HashTable_Find(pTable, "100", HashString, StrCompare);
+        pData = HashTable_Find(pTable, (void *)"100", HashString, StrCompare);
         if ( strcmp((char *)pData, "100") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝1 ß∞‹!\n" );
@@ -304,8 +304,8 @@ void DRV_HashTable_Find(UINT i)
         nRet = HashTable_Insert(pTable, strdup("252"), HashString);
         nRet = HashTable_Insert(pTable, strdup("728"), HashString);
         nRet = HashTable_Insert(pTable, strdup("100"), HashString);
-        pData = HashTable_Find(pTable, "252", HashString, StrCompare);
-        if ( strcmp((char *)pData, "252") != 0 )
+        pData = HashTable_Find(pTable, (void *)"252", HashString, StrCompare);
+        if ( strcmp((char *)pData, (void *)"252") != 0 )
         {           
             printf( "HashTable_Find() ≤‚ ‘”√¿˝3 ß∞‹!\n" );
         }
