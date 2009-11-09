@@ -682,7 +682,7 @@ void DRV_RBTree_Delete(INT i)
 
         RBTree_Delete(pTree1, (void *)"32", StrCompare, free);
 
-        ChangeNode(pTree2, (void *)"32", NULL, -1);
+        ChangeNode(pTree2, "32", NULL, -1);
         if ( CompareRBTree(pTree1->pRoot, pTree2->pRoot) == 0 
             || pTree1->uNodeCount != 10
             || pTree1->uNodeCount != pTree2->uNodeCount )
