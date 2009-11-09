@@ -60,7 +60,7 @@ void *RBTree_GetMinium(RBTREE *pTree, RBTREENODE *pNode);
 void *RBTree_GetMaxium(RBTREE *pTree, RBTREENODE *pNode);
 
 
-INT ChangeNode(RBTREE *pTree, char *pSrcData, char *pTagData, INT nMagic);
+INT ChangeNode(RBTREE *pTree, const char *pSrcData, const char *pTagData, INT nMagic);
 INT CompareRBTree(RBTREENODE *pSrcNode, RBTREENODE *pTagNode);
 
 
