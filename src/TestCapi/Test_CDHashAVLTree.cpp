@@ -93,6 +93,7 @@ unsigned int CDHashAVLTree_Find_Thread(void * args)
 		Key = (int)p->Find((void *)data);
 		assertTrue(Key == data || Key == 0);
 	}
+    return 0;
 }
 
 
