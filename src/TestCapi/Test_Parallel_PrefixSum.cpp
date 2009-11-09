@@ -12,7 +12,7 @@
 #include "TestCapi.h"
 #include <stdio.h>
 #include <time.h>
-#include "Testapi.h"
+#include "TestApi.h"
 #include "CapiGlobal.h"
 #include "Parallel_PrefixSum.h"
 #include "CapiCommon.h"
