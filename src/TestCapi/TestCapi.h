@@ -20,4 +20,17 @@
 #define		NEW_MEM_FLAG	0xcdcdcdcd
 
 
+#ifndef _WIN32
+#include <unistd.h>
+#include <sys/types.h>
+
+typedef   unsigned char  BYTE;
+#else
+#include <windows.h>
+#endif
+
+
+
+
+
 #endif // __CAPITEST_H__
