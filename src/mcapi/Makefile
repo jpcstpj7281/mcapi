@@ -149,7 +149,7 @@ APPS	=   libmcapi.a
 
 all: $(APPS)
 
-$(APPS): $(SRCS) Makefile 
+$(APPS): $(SRCS) $(OBJS) Makefile 
 	$(GCC) $(CFLAGS) $(CSRCS) $(CPPSRCS)
 	ar r libmcapi.a  $(OBJS)
 
