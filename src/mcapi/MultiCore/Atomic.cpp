@@ -56,13 +56,14 @@ extern "C" BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG
 
 #else // For Linux 
 
+
 extern "C" int AtomicCAS(volatile void *ptr, int value, int comparand ) 
 {                                                                                   
     int result;                                                                       
 
-    __asm__ __volatile__("lock\ncmpxchg" "l" " %2,%1"                                     
-        : "=a"(result), "=m"(*(int32_t *)ptr)                                           
-        : "q"(value), "0"(comparand)               
+    __asm__ __volatile__("lock\ncmpxchgl %2,%1"                                     
+        : "=a" (result), "=m" (*(int32_t *)ptr)                                           
+        : "q" (value), "0"(comparand)               
         : "memory");                                             
     return result;                                                                
 }    
