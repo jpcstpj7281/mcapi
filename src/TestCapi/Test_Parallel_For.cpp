@@ -63,7 +63,7 @@ void Test_Parallel_For()
     TestCase_Add(TestCase_Inter_Split);
 }
 
-REGISTER_TESTFUNC(Test_Parallel_For)
+//REGISTER_TESTFUNC(Test_Parallel_For)
 
 
 void TestCase_Parallel_For(void)

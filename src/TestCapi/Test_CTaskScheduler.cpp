@@ -24,7 +24,7 @@ void Test_CTaskScheduler()
     TestCase_Add(TestCase_CTaskScheduler_TestCase1);
 }
 
-REGISTER_TESTFUNC(Test_CTaskScheduler)
+//REGISTER_TESTFUNC(Test_CTaskScheduler)
 
 
 
