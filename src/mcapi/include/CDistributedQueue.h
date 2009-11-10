@@ -127,7 +127,7 @@ void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::Create(
         m_nSharedQueueCount = omp_get_num_procs();
     }
 
-    m_ppLocalQueue = malloc(m_nLocalQueueCount * sizeof(void *));
+    m_ppLocalQueue = (LocalQueue **)malloc(m_nLocalQueueCount * sizeof(void *));
     int i;
     for ( i = 0; i < m_nLocalQueueCount; i++ )
     {
@@ -184,7 +184,7 @@ CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
         }
     }
 #endif
-    free(m_ppLocalQueue)
+    free(m_ppLocalQueue);
     delete m_pSharedQueue;
 #ifdef _WIN32
     TlsFree(m_dwTlsIndex);
