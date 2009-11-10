@@ -11,6 +11,7 @@
 #if _WIN32 || _WIN64
 #include <windows.h>
 #else
+#include <unistd.h>
 #include <sys/types.h>
 #endif
 
@@ -60,7 +61,7 @@ extern "C" int AtomicCAS(volatile void *ptr, int value, int comparand )
     int result;                                                                       
 
     __asm__ __volatile__("lock\ncmpxchg" "l" " %2,%1"                                     
-        : "=a"(result), "=m"(*(int *)ptr)                                           
+        : "=a"(result), "=m"(*(int32_t *)ptr)                                           
         : "q"(value), "0"(comparand)               
         : "memory");                                             
     return result;                                                                
