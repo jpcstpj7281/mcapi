@@ -104,7 +104,7 @@ int  main(int argc, char *argv[])
     pManager->RunTestCase();
     delete pManager;
 
-//	TestCase_Run();
+	TestCase_Run();
 
 	TestCase_Close();
 
