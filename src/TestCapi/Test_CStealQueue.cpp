@@ -27,7 +27,7 @@ void Test_CStealQueue()
     TestCase_Add(TestCase_CStealQueue_EnQueue);
 }
 
-//REGISTER_TESTFUNC(Test_CStealQueue)
+REGISTER_TESTFUNC(Test_CStealQueue)
 
 void TestCase_CStealQueue_Constructor1(void)
 {
