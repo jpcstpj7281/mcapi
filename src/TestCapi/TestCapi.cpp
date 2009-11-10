@@ -63,7 +63,7 @@ char* itoa(int value, char *psz, int radix)
 
 
 
-#if 1
+#if 0
 void * operator new(size_t size)
 {
     return malloc(size);
