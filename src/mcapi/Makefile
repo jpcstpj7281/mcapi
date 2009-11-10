@@ -155,7 +155,7 @@ APPS	=   libmcapi.a
 all: $(APPS)
 
 $(APPS): $(SRCS) Makefile 
-	$(GCC) $(CFLAGS) $(CSRCS) $(CPPSRCS)
+	$(GCC) $(CFLAGS) $(CSRCS) $(CPPSRCS) $(DMALLOC_SRC)
 	ar r libmcapi.a  $(OBJS)
 
 clean:
