@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="capi.lib"
+				AdditionalDependencies="mcapi.lib"
 				OutputFile="..\..\TestCapi\Release\$(ProjectName).dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\Release&quot;"

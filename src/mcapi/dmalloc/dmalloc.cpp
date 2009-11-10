@@ -47,7 +47,7 @@ typedef struct BIN_st  {
 extern "C" void ThreadExit_Notification(void* arg);
 
 
-#ifdef USE_WINTHREAD
+#ifdef _WIN32
 static DWORD	            g_TlsPointer;  // 线程本地存储索引指针
 #else
 pthread_key_t               g_TlsPointer;
@@ -67,7 +67,7 @@ CFastLock		    g_InitdmallocFastLock;
 */
 static void ThreadTls_Init(void)
 {
-#ifdef USE_WINTHREAD
+#ifdef _WIN32
 	g_TlsPointer = TlsAlloc();
 #else
     pthread_key_create( &g_TlsPointer, ThreadExit_Notification );
