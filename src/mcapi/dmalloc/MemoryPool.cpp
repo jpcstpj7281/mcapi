@@ -19,7 +19,7 @@
 #define  DEFAULT_MEMORYPOOL_QUEUE_SIZE     128
 
 typedef struct MEMORYPOOL_st {
-    CSharedQueue<FREENODE *, CLocalQueue<FREENODE *>>  freelist_queue;
+    CSharedQueue<FREENODE *, CLocalQueue<FREENODE *> >  freelist_queue;
 } MEMORYPOOL;
 
 MEMORYPOOL   g_MemoryPool[MAX_MEMORY_CLASS];

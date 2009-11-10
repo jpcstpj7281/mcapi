@@ -11,6 +11,8 @@
 #ifdef _WIN32
 #define _WIN32_WINNT 0x0403 
 #include <windows.h>
+#else
+#include <sys/sysinfo.h>
 #endif
 #include <omp.h>
 #include "CapiGlobal.h"
@@ -52,7 +54,7 @@ pthread_key_t               g_TlsPointer;
 #endif
 
 // 全局的箱子队列，主要为箱子重复利用而设计
-CSharedQueue<BIN *, CLocalQueue<BIN *>>  g_BinQueue(8); 
+CSharedQueue<BIN *, CLocalQueue<BIN *> >  g_BinQueue(8); 
 
 LONG volatile       g_InitFlag = 0;
 LONG volatile       g_dmalloc_init_finished_flag = 0;
@@ -68,7 +70,7 @@ static void ThreadTls_Init(void)
 #ifdef USE_WINTHREAD
 	g_TlsPointer = TlsAlloc();
 #else
-    int status = pthread_key_create( &g_TlsPointer, ThreadExit_Notification );
+    pthread_key_create( &g_TlsPointer, ThreadExit_Notification );
 #endif
 }
 
@@ -128,6 +130,7 @@ static void Init_dmalloc(int nMaxThreads)
 	// 初始化线程本地存储
 	ThreadTls_Init();
 
+#ifdef _WIN32
     //获取系统内存的大小
     MEMORYSTATUS stat;
     GlobalMemoryStatus (&stat);
@@ -135,6 +138,13 @@ static void Init_dmalloc(int nMaxThreads)
     // 初始化大块内存管理器,使用可用物理内存
     // 如果需要，可以改成使用可用虚拟内存
     BigMemory_Init(stat.dwAvailPhys/BIG_MEMORY_SIZE);
+#else
+    struct sysinfo s_info;
+
+    sysinfo(&s_info);
+    BigMemory_Init(s_info.freeram/BIG_MEMORY_SIZE);
+
+#endif
 
     // 初始化内存池
     MemoryPool_Init();
