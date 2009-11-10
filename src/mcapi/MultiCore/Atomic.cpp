@@ -140,7 +140,7 @@ extern "C" LONG AtomicIncrement(LONG volatile *Target)
 
     }while (!AtomicCAS(Target, Old + 1, Old));
 
-    return Old;
+    return (Old + 1);
 }
 
 
@@ -153,7 +153,7 @@ extern "C" LONG AtomicDecrement(LONG volatile *Target)
 
     }while (!AtomicCAS(Target, Old - 1, Old));
 
-    return Old;
+    return (Old - 1);
 }
 
 #endif
