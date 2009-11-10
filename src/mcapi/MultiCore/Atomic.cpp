@@ -55,7 +55,7 @@ extern "C" BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG
 
 #else // For Linux 
 
-inline int AtomicCAS(volatile void *ptr, int value, int comparand ) 
+extern "C" int AtomicCAS(volatile void *ptr, int value, int comparand ) 
 {                                                                                   
     int result;                                                                       
 
@@ -66,7 +66,7 @@ inline int AtomicCAS(volatile void *ptr, int value, int comparand )
     return result;                                                                
 }    
 
-int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand )
+extern "C" int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand )
 {
     int64_t result;
     union {
@@ -94,7 +94,7 @@ int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand )
 
 
 #ifndef _WIN32
-LONG AtomicWrite(LONG volatile *Target, LONG Value)
+extern "C" LONG AtomicWrite(LONG volatile *Target, LONG Value)
 {
     LONG	Old;
 
@@ -106,7 +106,7 @@ LONG AtomicWrite(LONG volatile *Target, LONG Value)
     return Old;
 }
 
-LONG AtomicIncrement(LONG volatile *Target)
+extern "C" LONG AtomicIncrement(LONG volatile *Target)
 {
     LONG	Old;
 
@@ -119,7 +119,7 @@ LONG AtomicIncrement(LONG volatile *Target)
 }
 
 
-LONG AtomicDecrement(LONG volatile *Target)
+extern "C" LONG AtomicDecrement(LONG volatile *Target)
 {
     LONG	Old;
 
@@ -133,7 +133,7 @@ LONG AtomicDecrement(LONG volatile *Target)
 
 #endif
 
-BOOL TAS(LONG volatile *value)
+extern "C" BOOL TAS(LONG volatile *value)
 {
     LONG	ret;
     ret = AtomicCAS(value, 1, 0);
