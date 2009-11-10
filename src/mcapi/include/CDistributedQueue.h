@@ -181,7 +181,7 @@ CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
             delete m_ppLocalQueue[i];
         }
     }
-    delete [] m_ppLocalQueue;
+    delete m_ppLocalQueue;
     delete m_pSharedQueue;
 #ifdef _WIN32
     TlsFree(m_dwTlsIndex);
