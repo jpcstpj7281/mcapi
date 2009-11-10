@@ -75,10 +75,10 @@ OBJS	=        AVLTree.o \
     Parallel_RadixSort.o \
     Parallel_Search.o \
     ReadWriteLock.o \
-	./dmalloc/FreeList.o \
-	./dmalloc/BigMemory.o \
-	./dmalloc/CapiMalloc.o \
-	./dmalloc/dmalloc.o \
+	FreeList.o \
+	BigMemory.o \
+	CapiMalloc.o \
+	dmalloc.o \
 	MemoryPool.o 
 
 CSRCS	=     ./SingleCore/AVLTree.c \
@@ -146,7 +146,7 @@ DMALLOC_SRC = ./dmalloc/FreeList.c \
 	./dmalloc/BigMemory.cpp \
 	./dmalloc/CapiMalloc.cpp \
 	./dmalloc/dmalloc.cpp \
-	MemoryPool.cpp 
+	./dmalloc/MemoryPool.cpp 
 
 CARGS  =    -Wall -c -I../include
 
