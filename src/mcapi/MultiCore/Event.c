@@ -43,9 +43,9 @@ void *LinuxThreadFunc(void *pArg)
 
         pthread_mutex_lock(pPara->pMutex);
 
-        pthread_cond_wait(pPara->pCond, pPara->pMutex));
+        pthread_cond_wait(pPara->pCond, pPara->pMutex);
 
-        pthread_mutex_unlock(pPara->pMutex));
+        pthread_mutex_unlock(pPara->pMutex);
     }
 
     (*func)(pPara->pArg);
