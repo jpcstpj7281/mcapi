@@ -12,31 +12,40 @@
 #include "Event.h"
 
 
-typedef struct DOUBLE_PARA_st {
-    void *pArg1;
-    void *pArg2;
-} DOUBLE_PARA;
-
-void *LinuxThreadFunc(void *pArg)
-{
-    THREADFUNC  func;
-    DOUBLE_PARA *pPara;
-
-    pPara = (DOUBLE_PARA *)pArg;
-
-    func = (THREADFUNC)pPara->pArg2;
-    (*func)(pPara->pArg1);
-
-    return NULL;
-}
-
 
 typedef struct MCAPI_THREAD_st {
     pthread_t        tid;      /* 线程ID */
     INT              nState;   /* 线程状态 */
     pthread_mutex_t  mutex;    /* 用于创建时处于挂起态的互斥 */
     pthread_cond_t   cond;     /* 用于恢复创建时就挂起的线程 */
+    THREADFUNC       func;     /* 线程入口函数 */
 } MCAPI_THREAD;
+
+void *LinuxThreadFunc(void *pArg)
+{
+    THREADFUNC  func;
+    MCAPI_THREAD *pThread;
+
+
+    pThread = (MCAPI_THREAD *)pArg;
+
+    func = (THREADFUNC)pThread->func;
+
+    if ( pThread->nState == MCAPI_THREAD_SUSPEND )
+    {
+
+        pthread_mutex_lock(&(pThread->mutex));
+
+        pthread_cond_wait(&(pThread->cond), &(pThread->mutex));
+
+        pthread_mutex_unlock(&(pThread->mutex));
+    }
+
+    (*func)(pPara->pArg1);
+
+    return NULL;
+}
+
 
 
 /** 创建线程的函数
@@ -70,7 +79,13 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
 
     ThreadPara.pArg1 = args;
     ThreadPara.pArg2 = func;
-    if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)&ThreadPara) != 0 )
+    ThreadPara.nFlag = nFlag;
+    pThread->nState = nFlag;
+
+    pthread_mutex_init(&(pThread->mutex), NULL);
+    pthread_cond_init(&(pThread->cond), NULL);
+
+    if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)pThread) != 0 )
     {
         (void)pthread_attr_destroy(&attr);
         free(pThread);
@@ -78,23 +93,9 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     }
 
     pThread->tid = tid;
-    pThread->nState = nFlag;
-
-    pthread_mutex_init(&(pThread->mutex), NULL);
-    pthread_cond_init(&(pThread->cond), NULL);
 
     /* Free attribute */
     (void)pthread_attr_destroy(&attr);
-
-    if ( nFlag == MCAPI_THREAD_SUSPEND )
-    {
-
-        pthread_mutex_lock(&(pThread->mutex));
-
-        pthread_cond_wait(&(pThread->cond), &(pThread->mutex));
-
-        pthread_mutex_unlock(&(pThread->mutex));
-    }
     
     return pThread;
 }
