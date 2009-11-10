@@ -138,7 +138,7 @@ void Test_MTree()
 #endif 
 }
 
-REGISTER_TESTFUNC(Test_MTree)
+//REGISTER_TESTFUNC(Test_MTree)
 
 INT DRV_MTree_Create(INT i)
 {
