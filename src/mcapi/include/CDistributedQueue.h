@@ -177,7 +177,7 @@ template <class T, class LocalQueue, class SharedQueue, class SubQueue>
 CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
 {
     int i;
-#if 0
+#if 1
     if ( m_ppLocalQueue != NULL )
     {
 #if 1
