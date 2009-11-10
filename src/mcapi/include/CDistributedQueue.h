@@ -129,7 +129,7 @@ void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::Create(
         m_nSharedQueueCount = omp_get_num_procs();
     }
 
-    m_ppLocalQueue = (LocalQueue **)malloc(m_nLocalQueueCount * sizeof(void *));
+    m_ppLocalQueue = new LocalQueue *[m_nLocalQueueCount];
     int i;
     for ( i = 0; i < m_nLocalQueueCount; i++ )
     {
@@ -189,7 +189,7 @@ CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
             }
         }
 #endif
-        free(m_ppLocalQueue);
+        delete [] m_ppLocalQueue;
 
     }
 #endif
@@ -214,7 +214,7 @@ void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::ResizeLocalQueue()
     //将本地队列数组扩大一倍, 防止线程数量多于队列数量,以保证程序安全
     int i;
 
-    LocalQueue **ppQueue = (LocalQueue **)malloc(m_nLocalQueueCount * 2 * sizeof(void *));
+    LocalQueue **ppQueue = new LocalQueue *[m_nLocalQueueCount * 2];
     for ( i = 0; i < m_nLocalQueueCount; i++ )
     {
         ppQueue[i] = m_ppLocalQueue[i];
