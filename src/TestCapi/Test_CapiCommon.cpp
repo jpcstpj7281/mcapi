@@ -67,4 +67,13 @@ void TestCase_AtomicCAS(void)
     ret = AtomicCAS(&val, newval, oldval);
 
     printf("AtomicCAS(), oldval = %ld, val = %ld, ret = %d\n", oldval, val, ret);
+
+
+    oldval = 201;
+
+    newval = 300;
+
+    ret = AtomicCAS(&val, newval, oldval);
+
+    printf("AtomicCAS(), oldval = %ld, val = %ld, ret = %d\n", oldval, val, ret);
 }
