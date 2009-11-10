@@ -65,6 +65,8 @@ public:
         m_GetThreadIdFunc = NULL;
         m_pThreadIdFuncArg = NULL;
         m_lThreadIdIndex = 0;
+        m_ppLocalQueue = NULL;
+        m_pSharedQueue = NULL;
     };
     void Create( int nLocalQueueSize, int nLocalQueueCount, 
         int nSharedQueueSize, int nSharedQueueCount); 
@@ -175,17 +177,26 @@ template <class T, class LocalQueue, class SharedQueue, class SubQueue>
 CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
 {
     int i;
-#if 1
-    for ( i = 0; i < m_nLocalQueueCount; i++ )
+#if 0
+    if ( m_ppLocalQueue != NULL )
     {
-        if ( m_ppLocalQueue[i] != NULL )
+#if 1
+        for ( i = 0; i < m_nLocalQueueCount; i++ )
         {
-            delete m_ppLocalQueue[i];
+            if ( m_ppLocalQueue[i] != NULL )
+            {
+                delete m_ppLocalQueue[i];
+            }
         }
+#endif
+        free(m_ppLocalQueue);
+
     }
 #endif
-    free(m_ppLocalQueue);
-    delete m_pSharedQueue;
+    if ( m_pSharedQueue != NULL )
+    {
+        delete m_pSharedQueue;
+    }
 #ifdef _WIN32
     TlsFree(m_dwTlsIndex);
 #else
