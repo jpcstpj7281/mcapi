@@ -367,6 +367,7 @@ CDHashArray<T, SearchArray>::~CDHashArray()
 	int i;
 	for ( i = 0; i < m_nBucketCount; i++ )
 	{
+#if 1
 		if ( m_pIndexNode[i].lType == CDHASHARRAY_FIND_TABLE )
 		{
 			SearchArray *p = (SearchArray *)m_pIndexNode[i].pSubTable;
@@ -377,9 +378,10 @@ CDHashArray<T, SearchArray>::~CDHashArray()
 			CIndexTable<T, SearchArray> *pTable = (CIndexTable<T, SearchArray> *)m_pIndexNode[i].pSubTable;
 			delete pTable;
 		}
+#endif
 		FastLockClose(&(m_pIndexNode[i].lock));
 	}
-	delete [] m_pIndexNode;
+//	delete [] m_pIndexNode;
 }
 
 /**	子表插入函数
