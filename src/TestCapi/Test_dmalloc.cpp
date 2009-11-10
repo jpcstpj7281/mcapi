@@ -25,7 +25,7 @@ void Test_dmalloc()
     TestCase_Add(TestCase_dmalloc_TestCase1);
 }
 
-//REGISTER_TESTFUNC(Test_dmalloc)
+REGISTER_TESTFUNC(Test_dmalloc)
 
 
 void TestCase_dmalloc_TestCase1(void)
