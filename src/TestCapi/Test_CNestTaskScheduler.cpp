@@ -24,7 +24,7 @@ void Test_CNestTaskScheduler()
     TestCase_Add(TestCase_CNestTaskScheduler_TestCase1);
 }
 
-//REGISTER_TESTFUNC(Test_CNestTaskScheduler)
+REGISTER_TESTFUNC(Test_CNestTaskScheduler)
 
 
 struct RANGE {
