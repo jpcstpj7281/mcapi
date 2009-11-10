@@ -381,7 +381,7 @@ CDHashArray<T, SearchArray>::~CDHashArray()
 #endif
 		FastLockClose(&(m_pIndexNode[i].lock));
 	}
-//	delete [] m_pIndexNode;
+	delete [] m_pIndexNode;
 }
 
 /**	子表插入函数
