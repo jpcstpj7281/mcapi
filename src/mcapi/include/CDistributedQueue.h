@@ -174,7 +174,7 @@ template <class T, class LocalQueue, class SharedQueue, class SubQueue>
 CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
 {
     int i;
-#if 0
+#if 1
     for ( i = 0; i < m_nLocalQueueCount; i++ )
     {
         if ( m_ppLocalQueue[i] != NULL )
@@ -183,7 +183,7 @@ CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::~CDistributedQueue()
         }
     }
 #endif
-    delete [] m_ppLocalQueue;
+//    delete [] m_ppLocalQueue;
     delete m_pSharedQueue;
 #ifdef _WIN32
     TlsFree(m_dwTlsIndex);
