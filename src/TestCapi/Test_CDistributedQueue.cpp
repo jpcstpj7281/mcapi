@@ -106,7 +106,7 @@ void TestCase_CDistributedQueue_Pop(void)
     x = 90;
     dque.PushToLocalQueue(x);
     dque.DeQueue(a);
-    assertTrue(a==90);
+    assertTrue(a == 90);
 
 
 
