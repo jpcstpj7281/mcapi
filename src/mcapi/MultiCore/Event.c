@@ -19,6 +19,7 @@ typedef struct MCAPI_THREAD_st {
     pthread_mutex_t  mutex;    /* 用于创建时处于挂起态的互斥 */
     pthread_cond_t   cond;     /* 用于恢复创建时就挂起的线程 */
     THREADFUNC       func;     /* 线程入口函数 */
+    void            *pArg;     /* 线程入口函数的参数 */
 } MCAPI_THREAD;
 
 void *LinuxThreadFunc(void *pArg)
@@ -41,7 +42,7 @@ void *LinuxThreadFunc(void *pArg)
         pthread_mutex_unlock(&(pThread->mutex));
     }
 
-    (*func)(pPara->pArg1);
+    (*func)(pThread->pArg);
 
     return NULL;
 }
@@ -63,9 +64,6 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     MCAPI_THREAD  *pThread;
     pthread_t      tid;
     pthread_attr_t attr;
-    DOUBLE_PARA    ThreadPara;
-    
-    (void)nFlag;
 
     pThread = (MCAPI_THREAD *)malloc(sizeof(MCAPI_THREAD));
     if ( pThread == NULL )
@@ -77,10 +75,8 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     (void)pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
 
-    ThreadPara.pArg1 = args;
-    ThreadPara.pArg2 = func;
-    ThreadPara.nFlag = nFlag;
     pThread->nState = nFlag;
+    pThread->pArg = args;
 
     pthread_mutex_init(&(pThread->mutex), NULL);
     pthread_cond_init(&(pThread->cond), NULL);
