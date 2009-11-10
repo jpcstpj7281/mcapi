@@ -126,7 +126,8 @@ APPS	=   test_capi
 all: $(APPS)
 
 $(APPS): $(SRCS) Makefile 
-	$(GCC) -o test_capi $(CFLAGS) $(CPPSRCS) $(LIBS)
+	$(GCC) -c $(CFLAGS) $(CPPSRCS)
+	$(GCC) -o test_capi $(OBJS) $(LIBS)
 
 clean:
 	$(RM) $(APPS) $(OBJS)  *.orig
