@@ -200,7 +200,9 @@ BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
 
 #else
 
-BOOL AtomicCAS(volatile void *ptr, int value, int comparand);
+inline int AtomicCAS(unsigned long *mem,unsigned long newval,unsigned long oldval) 
+
+/* BOOL AtomicCAS(volatile void *ptr, int value, int comparand); */
 LONG AtomicWrite(LONG volatile *Target, LONG Value);
 LONG AtomicIncrement(LONG volatile *Target);
 LONG AtomicDecrement(LONG volatile *Target);
