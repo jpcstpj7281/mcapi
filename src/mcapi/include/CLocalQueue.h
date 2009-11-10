@@ -162,7 +162,7 @@ int CLocalQueue<T>::EnQueue(T &data)
 template <class T> 
 bool CLocalQueue<T>::IsEmpty()
 {
-    return (m_uHead == m_uTail ? true : false);
+    return (m_uHead == m_uTail ? 1 : 0);
 }
 
 
