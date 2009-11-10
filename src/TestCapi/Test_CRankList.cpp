@@ -26,7 +26,7 @@ void Test_CRankList()
     TestCase_Add(TestCase_CRankList_RankSortPer);
 }
 
-//REGISTER_TESTFUNC(Test_CRankList)
+REGISTER_TESTFUNC(Test_CRankList)
 
 
 void TestCase_CRankList_RankSort(void)
