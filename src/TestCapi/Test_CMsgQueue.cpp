@@ -31,7 +31,7 @@ void Test_CMsgQueue()
     TestCase_Add(TestCase_CMsgQueue_TestCase2);
 }
 
-REGISTER_TESTFUNC(Test_CMsgQueue)
+//REGISTER_TESTFUNC(Test_CMsgQueue)
 
 
 void TestCase_CMsgQueue_TestCase1(void)
