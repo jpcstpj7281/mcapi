@@ -67,7 +67,14 @@ extern "C" int AtomicCAS(LONG volatile *mem, LONG newval, LONG oldval)
 
         : "r" (newval), "m" (*mem), "0" (oldval));
 
-    return (int) ret;
+    if ( ret == oldval )
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
 
 
