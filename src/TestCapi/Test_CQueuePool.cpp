@@ -26,7 +26,7 @@ void Test_CQueuePool()
     TestCase_Add(TestCase_CQueuePool_EnQueue);
 }
 
-REGISTER_TESTFUNC(Test_CQueuePool)
+//REGISTER_TESTFUNC(Test_CQueuePool)
 
 void TestCase_CQueuePool_Constructor1(void)
 {
