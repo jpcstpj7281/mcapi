@@ -28,6 +28,7 @@
 #ifndef _WIN32
 #include <pthread.h>
 #endif
+#include <stdlib.h>
 #include <omp.h>
 #include "CapiGlobal.h"
 #include "FastLock.h"
@@ -126,7 +127,7 @@ void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::Create(
         m_nSharedQueueCount = omp_get_num_procs();
     }
 
-    m_ppLocalQueue = (LocalQueue **)malloc(m_nLocalQueueCount * sizeof(void *));
+    m_ppLocalQueue = malloc(m_nLocalQueueCount * sizeof(void *));
     int i;
     for ( i = 0; i < m_nLocalQueueCount; i++ )
     {
