@@ -22,7 +22,7 @@ void Test_CSegmentHashTable()
 }
 
 
-REGISTER_TESTFUNC(Test_CSegmentHashTable)
+//REGISTER_TESTFUNC(Test_CSegmentHashTable)
 
 void TestCase_CSegmentHashTable_Insert(void)
 {

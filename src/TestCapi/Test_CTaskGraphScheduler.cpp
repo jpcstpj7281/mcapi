@@ -25,7 +25,7 @@ void Test_CTaskGraphScheduler()
 //    TestCase_Add(TestCase_CTaskGraphScheduler_ScheduleTaskTeam2);
 }
 
-REGISTER_TESTFUNC(Test_CTaskGraphScheduler)
+//REGISTER_TESTFUNC(Test_CTaskGraphScheduler)
 
 #define TASK_NUM        10
 

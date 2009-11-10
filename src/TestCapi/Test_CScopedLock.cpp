@@ -27,7 +27,7 @@ void Test_CScopedLock()
     TestCase_CScopedLock();
 }
 
-REGISTER_TESTFUNC(Test_CScopedLock)
+//REGISTER_TESTFUNC(Test_CScopedLock)
 
 
 void TestCase_CScopedLock(void)
