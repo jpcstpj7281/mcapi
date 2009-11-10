@@ -9,7 +9,7 @@
  * in supporting documentation.  
  */
 #include <stdlib.h>
-#include "capiglobal.h"
+#include "CapiGlobal.h"
 #include "CScopedLock.h"
 #include "BigMemory.h"
 

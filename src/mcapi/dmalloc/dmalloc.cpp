@@ -23,11 +23,12 @@
 
 #ifdef _WIN32
 #define		DLLAPI		__declspec(dllexport)
+#else
+#define     DLLAPI
 #endif
 
-#define USE_WINTHREAD
 
-#ifdef USE_WINTHREAD
+#ifdef _WIN32
 #define    TlsGetValueFunc   TlsGetValue
 #define    TlsSetValueFunc   TlsSetValue
 #else
