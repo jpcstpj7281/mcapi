@@ -30,7 +30,7 @@ void Test_CDHashArray()
 	TestCase_Add(TestCase_CDHashArray_TestCase4);
 }
 
-REGISTER_TESTFUNC(Test_CDHashArray)
+//REGISTER_TESTFUNC(Test_CDHashArray)
 
 
 
