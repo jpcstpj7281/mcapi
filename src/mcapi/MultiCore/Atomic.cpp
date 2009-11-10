@@ -56,7 +56,23 @@ extern "C" BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG
 
 #else // For Linux 
 
+inline int AtomicCAS(unsigned long *mem,unsigned long newval,unsigned long oldval) 
 
+{
+
+    __typeof (*mem) ret;
+
+    __asm __volatile ("lock; cmpxchgl %2, %1"
+
+        : "=a" (ret), "=m" (*mem)
+
+        : "r" (newval), "m" (*mem), "0" (oldval));
+
+    return (int) ret;
+}
+
+
+#if 0
 extern "C" int AtomicCAS(volatile void *ptr, int value, int comparand ) 
 {                                                                                   
     int result;                                                                       
@@ -66,7 +82,8 @@ extern "C" int AtomicCAS(volatile void *ptr, int value, int comparand )
         : "q" (value), "0"(comparand)               
         : "memory");                                             
     return result;                                                                
-}    
+}   
+#endif
 
 extern "C" int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand )
 {
