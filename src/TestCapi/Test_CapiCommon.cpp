@@ -11,18 +11,20 @@
 #include "TestCapi.h"
 #include <stdio.h>
 #include "TestApi.h"
+#include "CapiGlobal.h"
 #include "CapiCommon.h"
 
 
 void TestCase_GetCacheAlignedAddr(void);
+void TestCase_AtomicCAS(void);
 
 void Test_CapiCommon()
 {
     TestCase_Add(TestCase_GetCacheAlignedAddr);
-
+    TestCase_Add(TestCase_AtomicCAS);
 }
 
-//REGISTER_TESTFUNC(Test_CapiCommon)
+REGISTER_TESTFUNC(Test_CapiCommon)
 
 
 void TestCase_GetCacheAlignedAddr(void)
@@ -50,3 +52,19 @@ void TestCase_GetCacheAlignedAddr(void)
 
 }
 
+void TestCase_AtomicCAS(void)
+{
+    int ret;
+    int val;
+    int oldval;
+    int newval;
+
+    val = 100;
+    oldval = val;
+    
+    newval = 200;
+
+    ret = AtomicCAS(&val, newval, oldval);
+
+    printf("AtomicCAS(), oldval = %d, val = %d, ret = %d\n", oldval, val, ret);
+}
