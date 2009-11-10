@@ -442,6 +442,22 @@ INT BinCompare( void *str1, int str1_len, void *str2, int str2_len )
 
 #ifndef _WIN32
 
+char *strupr(char *s)
+{
+    int i, len;
+
+    len = strlen(s);
+
+    for ( i = 0; i < len; i++ )
+    {
+        if((s[i] >= 'a') && (s[i] <= 'z' ) )
+        {
+            s[i] = s[i] - 'a' + 'A'; 
+        }
+    }
+    return s;
+}
+
 int stricmp(char *psz1, char *psz2)
 {
     int  ret;
@@ -459,7 +475,8 @@ int stricmp(char *psz1, char *psz2)
 
     ret = strcmp(pTemp1, pTemp2);
 
-    free(pTemp1, pTemp2);
+    free(pTemp1);
+    free(pTemp2);
 
     return ret;
 }
