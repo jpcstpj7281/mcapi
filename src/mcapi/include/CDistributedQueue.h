@@ -223,7 +223,7 @@ void CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::ResizeLocalQueue()
     {
         ppQueue[i] = NULL;
     }
-    free(m_ppLocalQueue);
+    delete [] m_ppLocalQueue;
     m_ppLocalQueue = ppQueue;
 
     //使用原子操作避免m_nLocalQueueCount的数据竞争问题
