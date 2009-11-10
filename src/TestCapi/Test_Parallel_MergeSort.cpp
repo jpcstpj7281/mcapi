@@ -27,7 +27,7 @@ void Test_Parallel_MergeSort()
     TestCase_Add(TestCase_Serial_MergeSort);
 }
 
-//REGISTER_TESTFUNC(Test_Parallel_MergeSort)
+REGISTER_TESTFUNC(Test_Parallel_MergeSort)
 
 
 void TestCase_Parallel_MergeSort(void)

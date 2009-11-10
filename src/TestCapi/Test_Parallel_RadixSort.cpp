@@ -42,7 +42,7 @@ void Test_Parallel_RadixSort()
 //    TestCase_Add(TestCase_Partitioned_RadixSort);
 }
 
-//REGISTER_TESTFUNC(Test_Parallel_RadixSort)
+REGISTER_TESTFUNC(Test_Parallel_RadixSort)
 
 
 

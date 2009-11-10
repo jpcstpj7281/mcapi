@@ -24,7 +24,7 @@ void Test_Parallel_PrefixSum()
     TestCase_Add(TestCase_Parallel_PrefixSum);
 }
 
-//REGISTER_TESTFUNC(Test_Parallel_PrefixSum)
+REGISTER_TESTFUNC(Test_Parallel_PrefixSum)
 
 
 void TestCase_Parallel_PrefixSum(void)

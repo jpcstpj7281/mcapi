@@ -28,7 +28,7 @@ void Test_Parallel_Search()
     TestCase_Add(TestCase_Parallel_SearchMaxData);
 }
 
-//REGISTER_TESTFUNC(Test_Parallel_Search)
+REGISTER_TESTFUNC(Test_Parallel_Search)
 
 
 
