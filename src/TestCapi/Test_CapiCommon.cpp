@@ -22,7 +22,7 @@ void Test_CapiCommon()
 
 }
 
-REGISTER_TESTFUNC(Test_CapiCommon)
+//REGISTER_TESTFUNC(Test_CapiCommon)
 
 
 void TestCase_GetCacheAlignedAddr(void)
