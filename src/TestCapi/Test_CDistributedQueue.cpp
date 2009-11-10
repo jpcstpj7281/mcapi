@@ -30,7 +30,7 @@ void Test_CDistributedQueue()
     TestCase_Add(TestCase_CDistributedQueue_Push);
 }
 
-REGISTER_TESTFUNC(Test_CDistributedQueue)
+//REGISTER_TESTFUNC(Test_CDistributedQueue)
 
 void TestCase_CDistributedQueue_Constructor1(void)
 {
