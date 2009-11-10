@@ -26,7 +26,7 @@ void Test_CDHashAVLTree()
 	TestCase_Add(TestCase_CDHashAVLTree_TestCase2);
 }
 
-//REGISTER_TESTFUNC(Test_CDHashAVLTree)
+REGISTER_TESTFUNC(Test_CDHashAVLTree)
 
 
 extern void *IntCopy(void *p); //¼ûTest_DHashAVLTree.cpp
