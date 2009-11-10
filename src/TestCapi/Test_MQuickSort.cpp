@@ -53,7 +53,7 @@ void Test_MQuickSort()
 
 }
 
-//REGISTER_TESTFUNC(Test_MQuickSort)
+REGISTER_TESTFUNC(Test_MQuickSort)
 
 INT UIntCompare(void *p1, void *p2)
 {

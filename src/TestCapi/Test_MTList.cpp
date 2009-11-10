@@ -27,7 +27,7 @@ void Test_MTList()
     TestCase_Add(TestCase_MTList_Insert);
 }
 
-//REGISTER_TESTFUNC(Test_MTList)
+REGISTER_TESTFUNC(Test_MTList)
 
 INT Visit(void *p)
 {
