@@ -88,7 +88,6 @@ void TestCase_CDistributedQueue_Pop(void)
     int a;
     dque.DeQueue(a);
     assertTrue(a==10);
-    printf("CDstributeQueue_Pop 10: a = %d\n", a);
 
     dque.DeQueue(a);
     assertTrue(a==15 || a == 20);
@@ -133,11 +132,8 @@ void TestCase_CDistributedQueue_Push(void)
     dque.DeQueue(a);
     assertTrue(a==10);
     dque.DeQueue(a);
-    printf("CDstributeQueue_Push 10: a = %d\n", a);
     assertTrue(a==15);
-    printf("CDstributeQueue_Push: 15 a = %d\n", a);
     dque.DeQueue(a);
-    printf("CDstributeQueue_Push: 20 a = %d\n", a);
     assertTrue(a==20);
 
     x = 121;
