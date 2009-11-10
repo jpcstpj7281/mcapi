@@ -77,7 +77,6 @@ OBJS	=        AVLTree.o \
     ReadWriteLock.o \
 	FreeList.o \
 	BigMemory.o \
-	CapiMalloc.o \
 	dmalloc.o \
 	MemoryPool.o 
 
@@ -144,7 +143,6 @@ CPPSRCS =     ./SingleCore/GCPtr.cpp \
 
 DMALLOC_SRC = ./dmalloc/FreeList.c \
 	./dmalloc/BigMemory.cpp \
-	./dmalloc/CapiMalloc.cpp \
 	./dmalloc/dmalloc.cpp \
 	./dmalloc/MemoryPool.cpp 
 
