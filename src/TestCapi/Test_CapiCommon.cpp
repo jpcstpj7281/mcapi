@@ -55,9 +55,9 @@ void TestCase_GetCacheAlignedAddr(void)
 void TestCase_AtomicCAS(void)
 {
     int ret;
-    int val;
-    int oldval;
-    int newval;
+    LONG val;
+    LONG oldval;
+    LONG newval;
 
     val = 100;
     oldval = val;
@@ -66,5 +66,5 @@ void TestCase_AtomicCAS(void)
 
     ret = AtomicCAS(&val, newval, oldval);
 
-    printf("AtomicCAS(), oldval = %d, val = %d, ret = %d\n", oldval, val, ret);
+    printf("AtomicCAS(), oldval = %ld, val = %ld, ret = %d\n", oldval, val, ret);
 }
