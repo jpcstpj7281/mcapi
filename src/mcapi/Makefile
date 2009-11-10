@@ -3,7 +3,7 @@ CPP	= g++
 
 RM	= rm -fr
 
-CFLAGS	= -c -fopenmp -Wall -I./include
+CFLAGS	= -c -fopenmp -Wall -I./include -I./dmalloc
 CFLAGS  += -DCPU_X86
 ifeq "$(MAKECMDGOALS)" "debug"
   CFLAGS += -D_DEBUG
@@ -74,8 +74,12 @@ OBJS	=        AVLTree.o \
     Parallel_MergeSort.o \
     Parallel_RadixSort.o \
     Parallel_Search.o \
-    ReadWriteLock.o
-
+    ReadWriteLock.o \
+	./dmalloc/FreeList.o \
+	./dmalloc/BigMemory.o \
+	./dmalloc/CapiMalloc.o \
+	./dmalloc/dmalloc.o \
+	MemoryPool.o 
 
 CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/BinTree.c \
@@ -138,6 +142,11 @@ CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./MultiCore/Parallel_Search.cpp \
     ./MultiCore/ReadWriteLock.c
 
+DMALLOC_SRC = ./dmalloc/FreeList.c \
+	./dmalloc/BigMemory.cpp \
+	./dmalloc/CapiMalloc.cpp \
+	./dmalloc/dmalloc.cpp \
+	MemoryPool.cpp 
 
 CARGS  =    -Wall -c -I../include
 
