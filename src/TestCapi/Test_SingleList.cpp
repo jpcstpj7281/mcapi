@@ -390,7 +390,7 @@ void DRV_SingleList_Find(UINT i)
 }
 
 
-SINGLELIST *BuildSortCase1()
+SINGLELIST *BuildSortCase1_S()
 {
     SINGLELIST *pList = SingleList_Create();
 
@@ -415,7 +415,7 @@ SINGLELIST *BuildSortCase1()
     return pList;
 }
 
-SINGLELIST *BuildSortCase2()
+SINGLELIST *BuildSortCase2_S()
 {
     SINGLELIST *pList = SingleList_Create();
     
@@ -437,7 +437,7 @@ SINGLELIST *BuildSortCase2()
 }
 
 
-SINGLELIST *BuildSortCase3()
+SINGLELIST *BuildSortCase3_S()
 {
     SINGLELIST *pList = SingleList_Create();
     
@@ -519,7 +519,7 @@ void DRV_SingleList_InsertSort(UINT i)
     switch( i )
     {
     case 1:
-        pList = BuildSortCase1();
+        pList = BuildSortCase1_S();
         SingleList_InsertSort(pList, StrCompare);
         if ( CheckSortCase(pList, 24) == 0 )
         {
@@ -527,7 +527,7 @@ void DRV_SingleList_InsertSort(UINT i)
         }
         break;
     case 2:
-        pList = BuildSortCase2();
+        pList = BuildSortCase2_S();
         SingleList_InsertSort(pList, StrCompare);
         if ( CheckSortCase(pList, 20) == 0 )
         {
@@ -535,7 +535,7 @@ void DRV_SingleList_InsertSort(UINT i)
         }
         break;
     case 3:
-        pList = BuildSortCase3();
+        pList = BuildSortCase3_S();
         SingleList_InsertSort(pList, StrCompare);
         if ( CheckSortCase(pList, 20) == 0 )
         {
@@ -587,7 +587,7 @@ void DRV_SingleList_MergeSort(UINT i)
     switch( i )
     {
     case 1:
-        pList = BuildSortCase1();
+        pList = BuildSortCase1_S();
         SingleList_MergeSort(pList, StrCompare, 0);
         if ( CheckSortCase(pList, 24) == 0 )
         {
@@ -595,7 +595,7 @@ void DRV_SingleList_MergeSort(UINT i)
         }
         break;
     case 2:
-        pList = BuildSortCase2();
+        pList = BuildSortCase2_S();
         SingleList_MergeSort(pList, StrCompare, 0);
         if ( CheckSortCase(pList, 20) == 0 )
         {
@@ -603,7 +603,7 @@ void DRV_SingleList_MergeSort(UINT i)
         }
         break;
     case 3:
-        pList = BuildSortCase3();
+        pList = BuildSortCase3_S();
         SingleList_MergeSort(pList, StrCompare, 2);
         if ( CheckSortCase(pList, 20) == 0 )
         {
@@ -655,7 +655,7 @@ void DRV_SingleList_RadixSort(UINT i)
     switch( i )
     {
     case 1:
-        pList = BuildSortCase1();
+        pList = BuildSortCase1_S();
         SingleList_RadixSort(pList, 256, 5, GetStrKey);
         if ( CheckSortCase(pList, 24) == 0 )
         {
@@ -663,7 +663,7 @@ void DRV_SingleList_RadixSort(UINT i)
         }
         break;
     case 2:
-        pList = BuildSortCase2();
+        pList = BuildSortCase2_S();
         SingleList_RadixSort(pList, 256, 5, GetStrKey);
         if ( CheckSortCase(pList, 20) == 0 )
         {
@@ -671,7 +671,7 @@ void DRV_SingleList_RadixSort(UINT i)
         }
         break;
     case 3:
-        pList = BuildSortCase3();
+        pList = BuildSortCase3_S();
         SingleList_RadixSort(pList, 256, 5, GetStrKey);
         if ( CheckSortCase(pList, 20) == 0 )
         {
