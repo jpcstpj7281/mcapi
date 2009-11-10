@@ -56,11 +56,10 @@ extern "C" BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG
 
 #else // For Linux 
 
-extern "C" int AtomicCAS(unsigned long *mem,unsigned long newval,unsigned long oldval) 
-
+extern "C" int AtomicCAS(LONG volatile *mem, LONG newval, LONG oldval) 
 {
 
-    unsigned long ret;
+    LONG ret;
 
     __asm __volatile ("lock; cmpxchgl %2, %1"
 
