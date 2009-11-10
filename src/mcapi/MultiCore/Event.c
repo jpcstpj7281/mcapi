@@ -11,7 +11,13 @@
 #include "CapiGlobal.h"
 #include "Event.h"
 
-
+typedef struct THREAD_PARA_st {
+    int    nFlag;
+    pthread_mutex_t *pMutex;
+    pthread_cond_t  *pCond;
+    THREADFUNC       func;
+    void             *pArg;
+} THREAD_PARA;
 
 typedef struct MCAPI_THREAD_st {
     pthread_t        tid;      /* Ïß³ÌID */
@@ -25,24 +31,24 @@ typedef struct MCAPI_THREAD_st {
 void *LinuxThreadFunc(void *pArg)
 {
     THREADFUNC  func;
-    MCAPI_THREAD *pThread;
+    THREAD_PARA *pPara;
 
 
-    pThread = (MCAPI_THREAD *)pArg;
+    pPara = (THREAD_PARA *)pArg;
 
-    func = (THREADFUNC)pThread->func;
+    func = pPara->func;
 
-    if ( pThread->nState == MCAPI_THREAD_SUSPEND )
+    if ( pPara->nFlag == MCAPI_THREAD_SUSPEND )
     {
 
-        pthread_mutex_lock(&(pThread->mutex));
+        pthread_mutex_lock(pPara->pMutex);
 
-        pthread_cond_wait(&(pThread->cond), &(pThread->mutex));
+        pthread_cond_wait(pPara->pCond, pPara->pMutex));
 
-        pthread_mutex_unlock(&(pThread->mutex));
+        pthread_mutex_unlock(pPara->pMutex));
     }
 
-    (*func)(pThread->pArg);
+    (*func)(pPara->pArg);
 
     return NULL;
 }
@@ -61,6 +67,7 @@ void *LinuxThreadFunc(void *pArg)
 */
 HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
 {
+    THREAD_PARA   *pPara;
     MCAPI_THREAD  *pThread;
     pthread_t      tid;
     pthread_attr_t attr;
@@ -70,6 +77,14 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     {
         return NULL;
     }
+
+    pPara = (THREAD_PARA *)malloc(sizeof(THREAD_PARA));
+    if ( pPara == NULL )
+    {
+        free(pThread);
+        return NULL;
+    }
+
     /* Initialize and set thread detached attribute */
     (void)pthread_attr_init(&attr);
     (void)pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
@@ -77,11 +92,19 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
 
     pThread->nState = nFlag;
     pThread->pArg = args;
+    pThread->func = func;
 
     pthread_mutex_init(&(pThread->mutex), NULL);
     pthread_cond_init(&(pThread->cond), NULL);
 
-    if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)pThread) != 0 )
+
+    pPara->func = func;
+    pPara->nFlag = nFlag;
+    pPara->pArg = args;
+    pPara->pCond = &(pThread->cond);
+    pPara->pMutex = &(pThread->mutex);
+
+    if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)pPara) != 0 )
     {
         (void)pthread_attr_destroy(&attr);
         free(pThread);
