@@ -24,7 +24,7 @@ void Test_CLockFreeQueue()
     TestCase_Add(TestCase_CLockFreeQueue_TestCase1);
 }
 
-//REGISTER_TESTFUNC(Test_CLockFreeQueue)
+REGISTER_TESTFUNC(Test_CLockFreeQueue)
 
 
 
