@@ -32,19 +32,19 @@
 template <class T> class CInterQueue {
 public:
 
-    virtual int IsFull(){};
-    virtual int IsEmpty(){};
+    virtual int IsFull(){ return 1;};
+    virtual int IsEmpty(){return 1;};
 
     virtual void Lock(){};
     virtual void Unlock(){};
-    virtual int EnQueueNoLock(T &Data){};
-    virtual int DeQueueNoLock(T &Data){};
+    virtual int EnQueueNoLock(T &Data){return CAPI_SUCCESS;};
+    virtual int DeQueueNoLock(T &Data){return CAPI_SUCCESS;};
 
-    virtual UINT GetCountNoLock(){}; //获取队列中的数据个数
+    virtual UINT GetCountNoLock(){return 0;}; //获取队列中的数据个数
 };
 
 
-template <class T> class CStealQueue :public CInterQueue {
+template <class T> class CStealQueue :public CInterQueue<T> {
 PRIVATE:
     UINT            m_uHead;     // 队列头部位置 
     UINT            m_uTail;     // 队列尾部位置 
@@ -54,7 +54,7 @@ PRIVATE:
     LONG volatile   m_lEmptyFlag; // 队列为空的标志
     CFastLock       m_Lock;      // 锁
 public:
-    typedef  typename CStealQueue     SubQueue1;
+    typedef  typename CInterQueue<T>     SubQueue1;
 public:
     CStealQueue() { m_pData = NULL; m_lFullFlag = 0; m_lEmptyFlag = 1;};
     CStealQueue(UINT uMaxSize);
