@@ -37,7 +37,7 @@
 //获取线程Id回调函数定义
 typedef int (*GetThreadIdFunc)(void *pArg); 
 
-template <typename T, typename LocalQueue, typename SharedQueue> 
+template <class T, class LocalQueue, class SharedQueue> 
 class CDistributedQueue {
 private:
     LocalQueue **    m_ppLocalQueue;    // 本地队列数组

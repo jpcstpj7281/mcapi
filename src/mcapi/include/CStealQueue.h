@@ -47,7 +47,8 @@ public:
 };
 
 
-template <class T> class CStealQueue :public CSubSharedQueue<T> {
+template <class T> 
+class CStealQueue :public CSubSharedQueue<T> {
 PRIVATE:
     UINT            m_uHead;     // 队列头部位置 
     UINT            m_uTail;     // 队列尾部位置 
