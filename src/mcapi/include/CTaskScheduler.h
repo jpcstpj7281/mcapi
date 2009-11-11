@@ -37,7 +37,7 @@ class CTaskScheduler {
 private:
     int             m_nThreadCount;
     CThreadPool     m_ThreadPool;
-    CDistributedQueue<T, CLocalQueue<T>, CQueuePool<T,CStealQueue<T> >, CStealQueue<T> > m_DQueue;
+    CDistributedQueue<T, CLocalQueue<T>, CQueuePool<T,CStealQueue<T> > > m_DQueue;
 public:
     CTaskScheduler(int nThreadCount);
     virtual ~CTaskScheduler(){};
