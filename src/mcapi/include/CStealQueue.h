@@ -68,7 +68,7 @@ public:
     int DeQueueNoLock(T &Data);
 
     UINT GetCountNoLock(); //获取队列中的数据个数
-    SubQueue *GetSubQueue() { return this; };
+    typename SubQueue *GetSubQueue() { return this; };
 };
 
 
