@@ -35,7 +35,7 @@ PRIVATE:
     int         m_nQueueSize;
     CFastRandom m_Random;
 public:
-    typedef     SharedQueue     SubQueue;
+    typedef     SharedQueue     SubQueue1;
 public:
     CQueuePool();
     CQueuePool(int nQueueCount, int nQueueSize);
@@ -54,7 +54,7 @@ public:
 
     int GetQueueCount() { return m_nQueueCount;}
 
-    SubQueue *GetSubQueue(int nIndex) { return &(m_pQueue[nIndex]);};
+    SubQueue1 *GetSubQueue(int nIndex) { return &(m_pQueue[nIndex]);};
 };
 
 
