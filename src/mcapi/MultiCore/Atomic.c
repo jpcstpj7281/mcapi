@@ -92,14 +92,17 @@ int AtomicCAS(volatile void *dest, int newvalue, int oldvalue )
 }   
 #endif
 
+union {
+    int64_t comparand_local;
+    int32_t comparand_parts[2];
+} INT64_U;
+
 int64_t AtomicCAS64(volatile void *dest, int64_t newvalue, int64_t oldvalue )
 {
     int64_t result;
-    union {
-        int64_t comparand_local;
-        int32_t comparand_parts[2];
-    };
-    comparand_local = oldvalue;
+    INT64_U tmp;
+
+    tmp.comparand_local = oldvalue;
     /* EBX register saved for compliancy with position-independent code (PIC) rules on IA32 */
     __asm__ __volatile__ (
         "pushl %%ebx\n\t"
@@ -108,9 +111,9 @@ int64_t AtomicCAS64(volatile void *dest, int64_t newvalue, int64_t oldvalue )
         "lock\ncmpxchg8b (%2)\n\t"
         "popl  %%ebx"
         : "=A"(result), "=m"(*(int64_t *)dest)
-        : "S"(ptr),
-        "a"(comparand_parts[0]),
-        "d"(comparand_parts[1]),
+        : "S"(dest),
+        "a"(tmp.comparand_parts[0]),
+        "d"(tmp.comparand_parts[1]),
         "c"(&newvalue)
         : "memory", "esp");
 
