@@ -92,7 +92,7 @@ int AtomicCAS(volatile void *dest, int newvalue, int oldvalue )
 }   
 #endif
 
-union {
+typedef union INT64_U_u {
     int64_t comparand_local;
     int32_t comparand_parts[2];
 } INT64_U;
