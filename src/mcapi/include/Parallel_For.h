@@ -21,6 +21,7 @@
 #ifndef __PARALLEL_FOR_H__
 #define __PARALLEL_FOR_H__
 
+#include "CStealQueue.h"
 #include "CThreadPool.h"
 #include "CDistributedQueue.h"
 #include "CNestTaskScheduler.h"
