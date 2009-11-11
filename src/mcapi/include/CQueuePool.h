@@ -54,7 +54,7 @@ public:
 
     int GetQueueCount() { return m_nQueueCount;}
 
-    SubQueue1 *GetSubQueue(int nIndex) { return &(m_pQueue[nIndex]);};
+    CSubSharedQueue<T> *GetSubQueue(int nIndex) { return &(m_pQueue[nIndex]);};
 };
 
 

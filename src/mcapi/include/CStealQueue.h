@@ -29,22 +29,25 @@
 #define     DEFAULT_STEALQUEUE_SIZE    4
 
 
-template <class T> class CInterQueue {
+template <class T> class CSubSharedQueue {
 public:
+    virtual void Create(UINT uMaxSize) = 0;
+    virtual int EnQueue(T &Data) = 0;
+    virtual int DeQueue(T &Data) = 0;
 
-    virtual int IsFull(){ return 1;};
-    virtual int IsEmpty(){return 1;};
+    virtual int IsFull() = 0;
+    virtual int IsEmpty() = 0;
 
-    virtual void Lock(){};
-    virtual void Unlock(){};
-    virtual int EnQueueNoLock(T &Data){return CAPI_SUCCESS;};
-    virtual int DeQueueNoLock(T &Data){return CAPI_SUCCESS;};
+    virtual void Lock() = 0;
+    virtual void Unlock() = 0;
+    virtual int EnQueueNoLock(T &Data) = 0;
+    virtual int DeQueueNoLock(T &Data) = 0;
 
-    virtual UINT GetCountNoLock(){return 0;}; //获取队列中的数据个数
+    virtual UINT GetCountNoLock() = 0; //获取队列中的数据个数
 };
 
 
-template <class T> class CStealQueue :public CInterQueue<T> {
+template <class T> class CStealQueue :public CSubSharedQueue<T> {
 PRIVATE:
     UINT            m_uHead;     // 队列头部位置 
     UINT            m_uTail;     // 队列尾部位置 
@@ -53,8 +56,6 @@ PRIVATE:
     LONG volatile   m_lFullFlag; // 队列为满的标志
     LONG volatile   m_lEmptyFlag; // 队列为空的标志
     CFastLock       m_Lock;      // 锁
-public:
-    typedef  typename CInterQueue<T>     SubQueue1;
 public:
     CStealQueue() { m_pData = NULL; m_lFullFlag = 0; m_lEmptyFlag = 1;};
     CStealQueue(UINT uMaxSize);
@@ -68,9 +69,9 @@ public:
         }
     };
     
-    void Create(UINT uMaxSize);
-    int EnQueue(T &Data);
-    int DeQueue(T &Data);
+    virtual void Create(UINT uMaxSize);
+    virtual int EnQueue(T &Data);
+    virtual int DeQueue(T &Data);
 
     int Push(T Data) { return EnQueue(Data);};
     int Pop(T &Data) { return DeQueue(Data);};
@@ -84,7 +85,7 @@ public:
     virtual int DeQueueNoLock(T &Data);
 
     virtual UINT GetCountNoLock(); //获取队列中的数据个数
-    typename SubQueue1 *GetSubQueue() { return this; };
+    CSubSharedQueue<T> *GetSubQueue(int nIndex) { return this; };
 };
 
 
