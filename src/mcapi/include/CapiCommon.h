@@ -22,6 +22,9 @@
 #ifndef __CAPICOMMON_H__
 #define __CAPICOMMON_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 #define CACHE_LINE_SIZE     64
@@ -43,6 +46,16 @@ char *strupr(char *s);
 int stricmp(char *psz1, char *psz2);
 #endif
 
+INT BinCompare( void *str1, int str1_len, void *str2, int str2_len );
+INT StrCompare( void *pStr1, void *pStr2 );
+
+INT IntCompare(void *p1, void *p2);
+INT PointerCompare(void *p1, void *p2);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__CAPICOMMON_H__
 

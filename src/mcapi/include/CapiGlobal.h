@@ -32,9 +32,7 @@
 #else
 #include <unistd.h>
 #endif
-//#include <stdlib.h>
 #include <memory.h>
-//#include <string.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -84,18 +82,8 @@ typedef struct DOUBLENODE_st {
     void    *pData;                  /* 数据指针 */
 } DOUBLENODE;
 
-#ifdef _WIN32
-typedef unsigned int (_stdcall *THREADFUNC)(void *pArgs);
-#else
-typedef unsigned int (*THREADFUNC)(void *pArgs);
-#endif
 
-typedef struct  TASK_st {
-    THREADFUNC      func;         //任务执行函数
-    void            *pArg;        //任务函数的参数
-    DWORD           time_consume; //任务执行的耗时
-} TASK;
-
+extern const int g_ncore;
 
 /**	通用类型数据比较函数
 
@@ -151,96 +139,9 @@ typedef UINT (*GETKEYFUNC)( void *pData, UINT uKeyIndex );
 */
 typedef UINT (*HASHFUNC)(void *pKey, UINT uBucketNum);
 
-#define     EVENT           HANDLE
-#define     SEMAPHORE       HANDLE
 
-#define         MCAPI_THREAD_RUNNING      1
-#define         MCAPI_THREAD_EXIT         2
-#define         MCAPI_THREAD_SUSPEND      3
-
-HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag);
-void MCapi_WaitThread(HANDLE hThread, INT nMilliSeconds);
-void MCapi_SuspendThread(HANDLE hThread);
-void MCapi_ResumeThread(HANDLE hThread);
-void MCapi_CloseThread(HANDLE hThread);
-
-#if defined(_WIN32)
-
-//#define     LOCK            HANDLE
-
-//#define LockCreate()        CreateMutex(NULL, FALSE, NULL)
-//#define Lock(x)             (void)WaitForSingleObject((x), INFINITE)
-//#define Unlock(x)           (void)ReleaseMutex(x)
-//#define LockClose(x)        (void)CloseHandle(x)
-
-#define EventCreate()       CreateEvent(NULL, TRUE, FALSE, NULL)
-#define WaitEvent(x)        (void)WaitForSingleObject((x), INFINITE)
-#define SendEvent(x)        (void)SetEvent(x)
-#define EventClose(x)       (void)CloseHandle(x)
-
-
-#define SemaCreate(x,y)     CreateSemaphore(NULL,x,y,NULL)
-#define SemaWait(x)         WaitForSingleObject(x,INFINITE)
-#define SemaRelease(x,y)    ReleaseSemaphore(x,y,NULL)
-#define SemaClose(x)        CloseHandle(x)
-
-#define CAPI_Yield()        SwitchToThread()
-
-BOOL AtomicCAS(LONG volatile *dest, LONG newvalue, LONG oldvalue);
-
-#define AtomicIncrement(x)  InterlockedIncrement(x)
-#define AtomicDecrement(x)  InterlockedDecrement(x)
-#define AtomicWrite(x, y)     InterlockedExchange(x, y)
-
-BOOL AtomicCAS64(LONGLONG volatile *dest, LONGLONG newvalue, LONGLONG oldvalue);
-
-#define AtomicIncrement64(x)  InterlockedIncrement64(x)
-#define AtomicDecrement64(x)  InterlockedDecrement64(x)
-#define AtomicWrite64(x, y)   InterlockedExchange64(x, y)
-
-#else
-
-int AtomicCAS(LONG volatile *mem, LONG newval, LONG oldval);
-
-/* BOOL AtomicCAS(volatile void *ptr, int value, int comparand); */
-LONG AtomicWrite(LONG volatile *Target, LONG Value);
-LONG AtomicIncrement(LONG volatile *Target);
-LONG AtomicDecrement(LONG volatile *Target);
-int64_t AtomicCAS64(volatile void *ptr, int64_t value, int64_t comparand );
-
-#define CAPI_Yield()        sched_yield()
-
-#define         INFINITE                  -1
-
-
-HANDLE EventCreate();
-void WaitEvent(HANDLE hEvent);
-void SendEvent(HANDLE hEvent); 
-void EventClose(HANDLE hEvent);
-
-HANDLE SemaCreate(int nInitCount, int nMaxCount);
-void SemaWait(HANDLE hSem);
-void SemaRelease(HANDLE hSem, int nIncCount);
-void SemaClose(HANDLE hSem);
-
-#endif /* _WIN32 */
-
-BOOL TAS(LONG volatile *value);
-
-
-#ifdef _WIN32
-#define    TlsGetValueFunc   TlsGetValue
-#define    TlsSetValueFunc   TlsSetValue
-#else
-#define    TlsGetValueFunc   pthread_getspecific
-#define    TlsSetValueFunc   pthread_setspecific
-#define    TlsFree(x)        pthread_key_delete(x)
-#endif
-
-    
-
-#define    CAPI_EXIT_TASK      1
-#define    CAPI_NOT_EXIT_TASK  0
+#define CAPI_EXIT_TASK      1
+#define CAPI_NOT_EXIT_TASK  0
 
 
 /* memory allocation functions */
@@ -250,14 +151,10 @@ void CapiFree(void *p);
 
 
 /*** external functions ***/
-UINT        HashInt( void *pKey, UINT uBucketCount );
-INT         StrCompare( void *pStr1, void *pStr2 );
-INT         PointerCompare(void *p1, void *p2);
-INT         IntCompare(void *pInt1, void *pInt2);
-INT         BinCompare( void *str1, int str1_len, void *str2, int str2_len );
+UINT HashInt( void *pKey, UINT uBucketCount );
 
-UINT        HashString( void *pStr, UINT uBucketCount );
-UINT        HashBin( void *pData, UINT uLength, UINT uBucketCount );
+UINT HashString( void *pStr, UINT uBucketCount );
+UINT HashBin( void *pData, UINT uLength, UINT uBucketCount );
 
 
 UINT GetStrKeyNoCase( void *pszData, UINT uKeyIndex );
@@ -265,7 +162,9 @@ UINT GetStrKey( void *pszData, UINT uKeyIndex );
 UINT GetIntKey( void *pData, UINT uKeyIndex );
 UINT GetWordKey( UINT uData, UINT uKeyIndex );
 
-
+#include "Atomic.h"
+#include "CapiCommon.h"
+#include "mcapi_threads.h"
 
 #ifdef __cplusplus
 }
