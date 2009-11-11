@@ -16,6 +16,7 @@
 #include "CapiGlobal.h"
 #include "Parallel_For.h"
 
+const int g_ncore = omp_get_num_procs();//获取执行核的数量
 
 
 CRange::CRange(CNestTaskScheduler *p)
