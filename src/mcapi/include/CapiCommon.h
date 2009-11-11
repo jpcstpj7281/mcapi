@@ -37,5 +37,12 @@ int dtn2(int n, int min_n);
 void *GetCacheAlignedAddr(void *pAddr);
 void *GetNextCacheAlignedAddr(void *pAddr);
 
+#ifndef _WIN32
+char* itoa(int value, char *psz, int radix); 
+char *strupr(char *s);
+int stricmp(char *psz1, char *psz2);
+#endif
+
+
 #endif //__CAPICOMMON_H__
 
