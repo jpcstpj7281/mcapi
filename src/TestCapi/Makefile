@@ -26,7 +26,6 @@ OBJS	=  TestCapi.o \
     Test_CDHashAVLTree.o \
     Test_CDistributedQueue.o \
     Test_CLocalQueue.o \
-    Test_CLockFreeQueue.o \
     Test_CMsgQueue.o \
     Test_CNestTaskScheduler.o \
     Test_CQueuePool.o \
@@ -77,7 +76,6 @@ CPPSRCS =         TestCapi.cpp \
     Test_CDHashAVLTree.cpp \
     Test_CDistributedQueue.cpp \
     Test_CLocalQueue.cpp \
-    Test_CLockFreeQueue.cpp \
     Test_CMsgQueue.cpp \
     Test_CNestTaskScheduler.cpp \
     Test_CQueuePool.cpp \
