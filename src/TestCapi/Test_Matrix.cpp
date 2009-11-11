@@ -242,7 +242,7 @@ void TestCase_Blocked_Matrix_Multiply(void)
     double *C  = new double [size];
     double *D =  new double [size];
 
-    srand(time(NULL));
+    srand((unsigned int )time(NULL));
     for ( i = 0; i < size; i++ )
     {
         A[i] = (double)(rand() % SIZE);
@@ -309,7 +309,7 @@ void TestCase_Strassen_Matrix_Multiply(void)
     double *C  = new double [size];
     double *D =  new double [size];
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     for ( i = 0; i < size; i++ )
     {
         A[i] = (double)(rand() % SIZE);
@@ -347,7 +347,7 @@ void TestCase_Parallel_Blocked_Matrix_Multiply(void)
     double *C  = new double [size];
     double *D =  new double [size];
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     for ( i = 0; i < size; i++ )
     {
         A[i] = (double)(rand() % SIZE);
