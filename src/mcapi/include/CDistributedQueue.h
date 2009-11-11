@@ -1,24 +1,24 @@
 /*
-* Copyright (c) 2006-2008
-* Author: Weiming Zhou
-*
-* Permission to use, copy, modify, distribute and sell this software
-* and its documentation for any purpose is hereby granted without fee,
-* provided that the above copyright notice appear in all copies and
-* that both that copyright notice and this permission notice appear
-* in supporting documentation.  
-*/
+ * Copyright (c) 2006-2008
+ * Author: Weiming Zhou
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation.  
+ */
 
 /* 
-*	CDistributedQueue.h
-*
-*	DESCRIPTION
-*		Module for Distributed Queue class 
-*
-*	HISTORY
-*		06-08-2008	create by zhouweiming.
-*
-*/
+ *	CDistributedQueue.h
+ *
+ *	DESCRIPTION
+ *		Module for Distributed Queue class 
+ *
+ *	HISTORY
+ *		06-08-2008	create by zhouweiming.
+ *
+ */
 #ifndef __CDISTRIBUTEDQUEUE_H__
 #define __CDISTRIBUTEDQUEUE_H__
 
@@ -446,7 +446,7 @@ int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PrivatizeSharedQueu
 
     int nId = ThreadIdGet();
 
-    SubQueue *pQueue;
+    SharedQueue::SubQueue *pQueue;
 
     pQueue = m_pSharedQueue->GetSubQueue(nSharedQueueIndex);
     if ( pQueue->IsEmpty() )
