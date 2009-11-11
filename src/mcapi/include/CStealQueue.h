@@ -38,7 +38,7 @@ PRIVATE:
     LONG volatile   m_lEmptyFlag; // 队列为空的标志
     CFastLock       m_Lock;      // 锁
 public:
-    typedef  typename CStealQueue     SubQueue;
+    typedef  typename CStealQueue<T>     SubQueue;
 public:
     CStealQueue() { m_pData = NULL; m_lFullFlag = 0; m_lEmptyFlag = 1;};
     CStealQueue(UINT uMaxSize);
