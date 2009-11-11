@@ -72,7 +72,7 @@ void TestCase_CDistributedQueue_Constructor2(void)
 void TestCase_CDistributedQueue_Pop(void)
 {
     CDistributedQueue<int, CLocalQueue<int>, 
-        CQueuePool<int, CStealQueue<int> >, CStealQueue<int> > dque;
+        CQueuePool<int, CStealQueue<int> > > dque;
 
     dque.Create(16, 0, 16, 0);
 
@@ -114,8 +114,7 @@ void TestCase_CDistributedQueue_Pop(void)
 
 void TestCase_CDistributedQueue_Push(void)
 {
-    CDistributedQueue<int, CLocalQueue<int>, CStealQueue<int>, 
-    CStealQueue<int> > dque;
+    CDistributedQueue<int, CLocalQueue<int>, CStealQueue<int> > dque;
 
     dque.Create(16, 0, 16, 0);
 
