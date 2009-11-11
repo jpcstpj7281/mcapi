@@ -11,31 +11,12 @@
 
 #include <stdlib.h>
 #include "CapiGlobal.h"
+#include "CapiCommon.h"
 #include "SingleList.h"
 #include "Graph.h"
 
 
-/**	比较两个指针大小的函数
 
-    @param	void *p1 - 要比较的指针1	
-    @param	void *p2 - 要比较的指针2
-    @return	INT - 0表示相等，1表示p1>p2, -1表示p1<p2	
-*/
-INT PointerCompare(void *p1, void *p2)
-{
-    if ( p1 == p2 )
-    {
-        return 0;
-    }
-    else if ( (INT)p1 < (INT)p2 )
-    {
-        return -1;
-    }
-    else
-    {
-        return 1;
-    }
-}
 
 
 /**	图的节点创建函数
