@@ -9,6 +9,7 @@
  * in supporting documentation.  
  */
 #include <stdlib.h>
+#include <stdio.h>
 #include <omp.h>
 #include "CapiGlobal.h"
 #include "CapiCommon.h"
