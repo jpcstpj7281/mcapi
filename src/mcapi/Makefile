@@ -23,7 +23,7 @@ OBJS	=        AVLTree.o \
     DeQueue.o \
     DoubleList.o \
     DSpaceList.o \
-    Event.o \
+    mcapi_threads.o \
     Emalloc.o \
     GCPtr.o \
     Graph.o \
@@ -35,7 +35,6 @@ OBJS	=        AVLTree.o \
     QuickSort.o \
     RBTree.o \
     SerialRadixSort.o \
-    ShortMsg.o \
     SingleList.o \
     SortTable.o \
     SpaceList.o \
@@ -49,8 +48,6 @@ OBJS	=        AVLTree.o \
     CapiCommon.o \
     CDHashAVLTree.o \
     CFastRandom.o \
-    CLockFreeQueue.o \
-    CLockFreeStack.o \
     CMTask.o \
     CNestTaskScheduler.o \
     CRWLock.o \
@@ -61,7 +58,7 @@ OBJS	=        AVLTree.o \
     CThreadPool.o \
     CWaitTaskScheduler.o \
     DHashAVLTree.o \
-    Event.o \
+    mcapi_threads.o \
     Matrix.o \
     MsgQueue.o \
     MStack.o \
@@ -88,7 +85,7 @@ CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/DeQueue.c \
     ./SingleCore/DoubleList.c \
     ./SingleCore/DSpaceList.c \
-    ./MultiCore/Event.c \
+    ./MultiCore/mcapi_threads.c \
     ./SingleCore/Emalloc.c \
     ./SingleCore/Graph.c \
     ./SingleCore/HashAVLTree.c \
@@ -98,24 +95,27 @@ CSRCS	=     ./SingleCore/AVLTree.c \
     ./SingleCore/Queue.c \
     ./SingleCore/QuickSort.c \
     ./SingleCore/RBTree.c \
-    ./SingleCore/ShortMsg.c \
     ./SingleCore/SingleList.c \
     ./SingleCore/SortTable.c \
     ./SingleCore/SpaceList.c \
     ./SingleCore/SpList.c \
     ./SingleCore/Stack.c \
-    ./SingleCore/Tree.c 
-    
+    ./SingleCore/Tree.c \
+    ./MultiCore/mcapi_threads.c \
+    ./MultiCore/ArrayList.c \
+    ./MultiCore/CapiCommon.c \
+    ./MultiCore/MsgQueue.c \
+    ./MultiCore/MStack.c \
+    ./MultiCore/MTask.c \
+    ./MultiCore/MTList.c \
+    ./MultiCore/MTree.c \
+    ./MultiCore/Atomic.c \
+    ./MultiCore/ReadWriteLock.c
 
 CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./SingleCore/SerialRadixSort.cpp \
-    ./MultiCore/ArrayList.c \
-    ./MultiCore/Atomic.cpp \
-    ./MultiCore/CapiCommon.cpp \
     ./MultiCore/CDHashAVLTree.cpp \
     ./MultiCore/CFastRandom.cpp \
-    ./MultiCore/CLockFreeQueue.cpp \
-    ./MultiCore/CLockFreeStack.cpp \
     ./MultiCore/CMTask.cpp \
     ./MultiCore/CNestTaskScheduler.cpp \
     ./MultiCore/CRWLock.cpp \
@@ -126,20 +126,14 @@ CPPSRCS =     ./SingleCore/GCPtr.cpp \
     ./MultiCore/CThreadPool.cpp \
     ./MultiCore/CWaitTaskScheduler.cpp \
     ./MultiCore/DHashAVLTree.cpp \
-    ./MultiCore/Event.c \
     ./MultiCore/Matrix.cpp \
-    ./MultiCore/MsgQueue.c \
-    ./MultiCore/MStack.c \
-    ./MultiCore/MTask.c \
-    ./MultiCore/MTList.c \
-    ./MultiCore/MTree.c \
     ./MultiCore/Parallel_BubbleSort.cpp \
     ./MultiCore/Parallel_For.cpp \
     ./MultiCore/Parallel_Graph.cpp \
     ./MultiCore/Parallel_MergeSort.cpp \
     ./MultiCore/Parallel_RadixSort.cpp \
-    ./MultiCore/Parallel_Search.cpp \
-    ./MultiCore/ReadWriteLock.c
+    ./MultiCore/Parallel_Search.cpp 
+ 
 
 DMALLOC_SRC = ./dmalloc/FreeList.c \
 	./dmalloc/BigMemory.cpp \
