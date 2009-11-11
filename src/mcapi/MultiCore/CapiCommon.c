@@ -139,7 +139,7 @@ int dtn2(int n, int min_n)
     如果给定地址刚好为一个Cache行首地址，那么计算结果等于Cache行首地址
 
     @param	void *pAddr - 给定的地址	
-    @return	void * - 返回给定地址之后的第1个Cache行首地址	
+    @return	void * - 返回给定地址之后的第 1 个Cache行首地址	
 */
 void *GetCacheAlignedAddr(void *pAddr)
 {
@@ -152,10 +152,10 @@ void *GetCacheAlignedAddr(void *pAddr)
 
 
 /**	计算给定地址之后的第1个Cache行首地址
-如果给定地址刚好为一个Cache行首地址，那么计算结果等于它的下一个Cache行首地址
+    如果给定地址刚好为一个Cache行首地址，那么计算结果等于它的下一个Cache行首地址
 
-@param	void *pAddr - 给定的地址	
-@return	void * - 返回给定地址之后的第1个Cache行首地址	
+    @param	void *pAddr - 给定的地址	
+    @return	void * - 返回给定地址之后的第1个Cache行首地址	
 */
 void *GetNextCacheAlignedAddr(void *pAddr)
 {
