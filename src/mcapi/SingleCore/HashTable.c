@@ -440,48 +440,7 @@ INT BinCompare( void *str1, int str1_len, void *str2, int str2_len )
     }
 }
 
-#ifndef _WIN32
 
-char *strupr(char *s)
-{
-    int i, len;
-
-    len = strlen(s);
-
-    for ( i = 0; i < len; i++ )
-    {
-        if((s[i] >= 'a') && (s[i] <= 'z' ) )
-        {
-            s[i] = s[i] - 'a' + 'A'; 
-        }
-    }
-    return s;
-}
-
-int stricmp(char *psz1, char *psz2)
-{
-    int  ret;
-    char *pTemp1;
-    char *pTemp2;
-
-    pTemp1 = malloc(strlen(psz1) + 1);
-    pTemp2 = malloc(strlen(psz2) + 1);
-
-    strcpy(pTemp1, psz1);
-    strcpy(pTemp2, psz2);
-
-    strupr(pTemp1);
-    strupr(pTemp2);
-
-    ret = strcmp(pTemp1, pTemp2);
-
-    free(pTemp1);
-    free(pTemp2);
-
-    return ret;
-}
-
-#endif
 /*
  *	StrCompare( )
  *	Compare if two string is equal.
