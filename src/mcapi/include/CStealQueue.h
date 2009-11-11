@@ -38,7 +38,7 @@ PRIVATE:
     LONG volatile   m_lEmptyFlag; // 队列为空的标志
     CFastLock       m_Lock;      // 锁
 public:
-    typedef  typename CStealQueue<T>     SubQueue;
+    typedef  typename CStealQueue<T>     SubQueue1;
 public:
     CStealQueue() { m_pData = NULL; m_lFullFlag = 0; m_lEmptyFlag = 1;};
     CStealQueue(UINT uMaxSize);
@@ -68,7 +68,7 @@ public:
     int DeQueueNoLock(T &Data);
 
     UINT GetCountNoLock(); //获取队列中的数据个数
-    typename SubQueue *GetSubQueue() { return this; };
+    typename SubQueue1 *GetSubQueue() { return this; };
 };
 
 
