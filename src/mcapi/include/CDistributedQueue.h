@@ -446,7 +446,7 @@ int CDistributedQueue<T, LocalQueue, SharedQueue, SubQueue>::PrivatizeSharedQueu
 
     int nId = ThreadIdGet();
 
-    SharedQueue::SubQueue *pQueue;
+    typename SharedQueue::SubQueue *pQueue;
 
     pQueue = m_pSharedQueue->GetSubQueue(nSharedQueueIndex);
     if ( pQueue->IsEmpty() )
