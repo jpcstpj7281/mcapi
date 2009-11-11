@@ -250,10 +250,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Test_CLockFreeQueue.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Test_CMsgQueue.cpp"
 				>
 			</File>
