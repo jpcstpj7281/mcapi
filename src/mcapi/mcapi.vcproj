@@ -156,11 +156,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MultiCore\Atomic.cpp"
+				RelativePath=".\MultiCore\Atomic.c"
 				>
 			</File>
 			<File
-				RelativePath=".\MultiCore\CapiCommon.cpp"
+				RelativePath=".\MultiCore\CapiCommon.c"
 				>
 			</File>
 			<File
@@ -169,14 +169,6 @@
 			</File>
 			<File
 				RelativePath=".\MultiCore\CFastRandom.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MultiCore\CLockFreeQueue.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MultiCore\CLockFreeStack.cpp"
 				>
 			</File>
 			<File
@@ -220,7 +212,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MultiCore\Event.c"
+				RelativePath=".\MultiCore\mcapi_threads.c"
 				>
 			</File>
 			<File
@@ -304,6 +296,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\Atomic.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Include\AVLTree.h"
 				>
 			</File>
@@ -345,14 +341,6 @@
 			</File>
 			<File
 				RelativePath=".\Include\CLocalQueue.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Include\CLockFreeQueue.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Include\CLockFreeStack.h"
 				>
 			</File>
 			<File
@@ -448,10 +436,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\Event.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Include\FastLock.h"
 				>
 			</File>
@@ -481,6 +465,10 @@
 			</File>
 			<File
 				RelativePath=".\Include\Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\mcapi_threads.h"
 				>
 			</File>
 			<File
@@ -626,10 +614,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SingleCore\DoS.c"
-				>
-			</File>
-			<File
 				RelativePath=".\SingleCore\DoubleList.c"
 				>
 			</File>
@@ -679,10 +663,6 @@
 			</File>
 			<File
 				RelativePath=".\SingleCore\SerialRadixSort.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SingleCore\ShortMsg.c"
 				>
 			</File>
 			<File
