@@ -72,7 +72,7 @@ void *LinuxThreadFunc(void *pArg)
     @param  INT nFlag - 创建时的状态，各种状态定义如下：
                             NGTHREAD_RUNNING      1
                             NGTHREAD_EXIT         2
-                            NGTHREAD_SUSPEND      3
+                            NGTHREAD_SUSPEND      4
     @return NGTHREAD * - 成功返回NGTHREAD指针，失败返回NULL。
 */
 HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
