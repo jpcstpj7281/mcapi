@@ -55,7 +55,7 @@ void Test_Matrix()
     TestCase_Add(TestCase_Parallel_Strassen_Matrix_Multiply);
 }
 
-//REGISTER_TESTFUNC(Test_Matrix)
+REGISTER_TESTFUNC(Test_Matrix)
 
 
 int a1[2][2] = {{11, 20}, {15, 30} };
