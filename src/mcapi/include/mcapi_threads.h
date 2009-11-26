@@ -87,7 +87,7 @@ void SemaClose(HANDLE hSem);
 
 #define         MCAPI_THREAD_RUNNING      1
 #define         MCAPI_THREAD_EXIT         2
-#define         MCAPI_THREAD_SUSPEND      3
+#define         MCAPI_THREAD_SUSPEND      4
 
 
 HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag);
