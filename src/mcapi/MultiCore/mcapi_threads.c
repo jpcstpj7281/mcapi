@@ -334,9 +334,24 @@ void SemaClose(HANDLE hSem)
 HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
 {
     HANDLE  hThread;
+	int    nCreateFlag;
+
+	nCreateFlag = 0;
+	switch (nFlag)
+	{
+	case MCAPI_THREAD_SUSPEND:
+		nCreateFlag = CREATE_SUSPENDED;
+		break;
+	case MCAPI_THREAD_RUNNING:
+		nCreateFlag = 0;
+		break;
+	default:
+		break;
+	}
+
 
     hThread = (HANDLE)_beginthreadex( NULL, 0, 
-        func, args, nFlag , NULL );
+        func, args, nCreateFlag , NULL );
 
     return hThread;
 }
