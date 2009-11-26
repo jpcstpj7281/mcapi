@@ -26,7 +26,7 @@ void Test_DHashAVLTree()
 	TestCase_Add(TestCase_DHashAVLTree_TestCase2);
 }
 
-REGISTER_TESTFUNC(Test_DHashAVLTree)
+//REGISTER_TESTFUNC(Test_DHashAVLTree)
 
 void * IntCopy(void *p)
 {

@@ -91,9 +91,30 @@ void TestCase_Parallel_For_QuickSort(void)
 
     for (i = 0; i < QUICKSORT_DATA_SIZE; i++ )
     {
-        pData[i] = rand();
+        pData[i] = (int)rand();
         pCopyData[i] = pData[i];
+		//printf("pData[%d] = %d\n", i, pData[i]);
     }
+#if 0
+pData[0] = 31286;
+pData[1] = 5637;
+pData[2] = 20974;
+pData[3] = 3749;
+pData[4] = 27611;
+pData[5] = 11286;
+pData[6] = 28158;
+pData[7] = 16874;
+pData[8] = 21741;
+pData[9] = 7295;
+pData[10] = 32036;
+pData[11] = 18839;
+pData[12] = 7114;
+pData[13] = 13947;
+pData[14] = 19134;
+pData[15] = 22625;
+pData[16] = 10727;
+pData[17] = 30966;
+#endif
     CQuickSortRange<int> *pRange = new CQuickSortRange<int>(pData, 0, QUICKSORT_DATA_SIZE-1);
 
     clock_t t1, t2;
@@ -109,7 +130,7 @@ void TestCase_Parallel_For_QuickSort(void)
     for (i = 0; i < QUICKSORT_DATA_SIZE-1; i++ )
     {
         assertTrue( pData[i] <= pData[i+1] );
-        //printf("pData[%d] = %ld\n", i, pData[i]);
+//        printf("pData[%d] = %ld\n", i, pData[i]);
     }
 #if 1
     t1 = clock();

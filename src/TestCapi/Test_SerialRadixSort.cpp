@@ -26,7 +26,7 @@ void Test_SerialRadixSort()
     TestCase_Add(TestCase_SerialRadixSortPer);
 }
 
-REGISTER_TESTFUNC(Test_SerialRadixSort)
+//REGISTER_TESTFUNC(Test_SerialRadixSort)
 
 
 
