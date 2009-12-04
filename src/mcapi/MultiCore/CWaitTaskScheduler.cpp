@@ -253,21 +253,21 @@ void CWaitTaskScheduler::SpawnTaskArrayAndWait(CTaskArray *pTaskArray)
     // 等待上面的任务列表全部执行完成
     while ( pTaskArray->GetCurTaskCount() != 0 )
     {
-        //切换到其他任务上执行
+        //切换到其他任务上执行，即偷取其他任务来执行
         CWaitTask task;
-        int nRet = GetTask(task);
+        int nRet = GetTask(task); //从分布式队列中偷取任务
 
         if ( nRet == CAPI_FAILED )
         {
-            CAPI_Yield();
+            CAPI_Yield(); //将当前线程暂时切换到后台
         }
         else
         {
-            (*(task.func))(task.pArg);
+            (*(task.func))(task.pArg); //执行偷取到的任务
 
             if ( task.pCount != NULL )
             {
-                AtomicDecrement(task.pCount);
+                AtomicDecrement(task.pCount); //将任务计数减1
             } 
         }
     }
