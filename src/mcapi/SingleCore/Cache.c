@@ -154,7 +154,7 @@ void Cache_Delete(CACHE *pCache, char *pszFileName)
         pCache->uUsedSize -= pCacheFile->uFileLength;
         
         HashTable_Delete(pCache->pTable, (void *)pszFileName, 
-            HashCacheFile, CacheFileCompare, CacheFileDestroy);
+            HashString, CacheFileCompare, CacheFileDestroy);
     }
 }
 
@@ -171,7 +171,7 @@ CACHEFILE *Cache_Find(CACHE *pCache, char *pszFileName)
     CACHEFILE   *pCacheFile;
 
     pCacheFile = (CACHEFILE *)HashTable_Find(pCache->pTable, 
-        (void *)pszFileName, HashCacheFile, CacheFileCompare);
+        (void *)pszFileName, HashString, CacheFileCompare);
     if ( pCacheFile == NULL)
     {
         FILE    *fp;
@@ -246,7 +246,7 @@ void Cache_Clean(CACHE *pCache)
             pCache->uUsedSize -= pCacheFile->uFileLength;
             
             HashTable_Delete(pCache->pTable, (void *)(pCacheFile->pszFileName), 
-                HashCacheFile, CacheFileCompare, CacheFileDestroy);
+                HashString, CacheFileCompare, CacheFileDestroy);
         }
     }   
 }
