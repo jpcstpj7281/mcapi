@@ -50,7 +50,7 @@ void *LinuxThreadFunc(void *pArg)
 
     if ( pPara->nFlag == MCAPI_THREAD_SUSPEND )
     {
-        sem_wait(&(pThread->sem));
+        sem_wait(&(pPara->sem));
     }
 
     (*func)(pPara->pArg);
