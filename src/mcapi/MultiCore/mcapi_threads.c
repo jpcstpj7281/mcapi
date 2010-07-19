@@ -24,7 +24,7 @@
 typedef struct THREAD_PARA_st {
     int    nFlag;
     pthread_mutex_t *pMutex;
-    pthread_cond_t  *pCond;
+    sem_t            sem;
     THREADFUNC       func;
     void             *pArg;
 } THREAD_PARA;
@@ -33,7 +33,7 @@ typedef struct MCAPI_THREAD_st {
     pthread_t        tid;      /* 线程ID */
     INT              nState;   /* 线程状态 */
     pthread_mutex_t  mutex;    /* 用于创建时处于挂起态的互斥 */
-    pthread_cond_t   cond;     /* 用于恢复创建时就挂起的线程 */
+    sem_t            sem;     /* 用于恢复创建时就挂起的线程 */
     THREADFUNC       func;     /* 线程入口函数 */
     void            *pArg;     /* 线程入口函数的参数 */
 } MCAPI_THREAD;
@@ -50,12 +50,7 @@ void *LinuxThreadFunc(void *pArg)
 
     if ( pPara->nFlag == MCAPI_THREAD_SUSPEND )
     {
-
-        pthread_mutex_lock(pPara->pMutex);
-
-        pthread_cond_wait(pPara->pCond, pPara->pMutex);
-
-        pthread_mutex_unlock(pPara->pMutex);
+        sem_wait(&(pThread->sem));
     }
 
     (*func)(pPara->pArg);
@@ -70,9 +65,9 @@ void *LinuxThreadFunc(void *pArg)
     @param  ThreadFunc func - 线程入口函数
     @param  void * args - 用作线程入口函数的参数
     @param  INT nFlag - 创建时的状态，各种状态定义如下：
-                            NGTHREAD_RUNNING      1
-                            NGTHREAD_EXIT         2
-                            NGTHREAD_SUSPEND      4
+                            MCAPI_THREAD_RUNNING      1
+                            MCAPI_THREAD_EXIT         2
+                            MCAPI_THREAD_SUSPEND      4
     @return NGTHREAD * - 成功返回NGTHREAD指针，失败返回NULL。
 */
 HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
@@ -105,13 +100,12 @@ HANDLE MCapi_CreateThread(THREADFUNC func, void *args, INT nFlag)
     pThread->func = func;
 
     pthread_mutex_init(&(pThread->mutex), NULL);
-    pthread_cond_init(&(pThread->cond), NULL);
-
+    sem_init(&(pThread->sem), 0, 0);
 
     pPara->func = func;
     pPara->nFlag = nFlag;
     pPara->pArg = args;
-    pPara->pCond = &(pThread->cond);
+    pPara->sem = pThread->sem;
     pPara->pMutex = &(pThread->mutex);
 
     if ( pthread_create( &tid, NULL, LinuxThreadFunc, (void *)pPara) != 0 )
@@ -180,11 +174,7 @@ void MCapi_ResumeThread(HANDLE hThread)
 
     if ( pThread->nState == MCAPI_THREAD_SUSPEND )
     {
-        pthread_mutex_lock(&(pThread->mutex));
-
-        pthread_cond_signal(&(pThread->cond));
-
-        pthread_mutex_unlock(&(pThread->mutex));
+        (void)sem_post(&(pThread->sem));
 
         pThread->nState = MCAPI_THREAD_RUNNING;
     }
@@ -204,7 +194,7 @@ void MCapi_CloseThread(HANDLE hThread)
     pThread = (MCAPI_THREAD *)hThread;
     if ( pThread != NULL )
     {
-        pthread_cond_destroy(&(pThread->cond));
+        sem_destroy(&(pThread->sem));
         pthread_mutex_destroy(&(pThread->mutex));
         free(pThread);
     }
@@ -213,7 +203,7 @@ void MCapi_CloseThread(HANDLE hThread)
 
 typedef struct MCAPI_EVENT_st {
     pthread_mutex_t   mutex;
-    pthread_cond_t    cond;
+    sem_t             sem;
 } MCAPI_EVENT;
 
 HANDLE EventCreate()
@@ -224,7 +214,7 @@ HANDLE EventCreate()
         return NULL;
     }
     pthread_mutex_init(&(pEvent->mutex), NULL);
-    pthread_cond_init(&(pEvent->cond), NULL);
+    sem_init(&(pEvent->sem), NULL);
     
     return (HANDLE)pEvent;
 }
@@ -235,11 +225,8 @@ void WaitEvent(HANDLE hEvent)
 
     pEvent = (MCAPI_EVENT *)hEvent;
 
-    pthread_mutex_lock(&(pEvent->mutex));
-    
-    pthread_cond_wait(&(pEvent->cond), &(pEvent->mutex));
+    sem_wait(&(pEvent->sem));
 
-    pthread_mutex_unlock(&(pEvent->mutex));
     return;
 }
 
@@ -249,11 +236,7 @@ void SendEvent(HANDLE hEvent)
 
     pEvent = (MCAPI_EVENT *)hEvent;
 
-    pthread_mutex_lock(&(pEvent->mutex));
-
-    pthread_cond_signal(&(pEvent->cond));
-
-    pthread_mutex_unlock(&(pEvent->mutex));
+    sem_post(&(pEvent->sem));
     return;
 }
 
@@ -263,7 +246,7 @@ void EventClose(HANDLE hEvent)
 
     pEvent = (MCAPI_EVENT *)hEvent;
 
-    pthread_cond_destroy(&(pEvent->cond));
+    sem_destroy(&(pEvent->sem));
     pthread_mutex_destroy(&(pEvent->mutex));
 
     free(pEvent);
