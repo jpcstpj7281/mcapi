@@ -214,7 +214,7 @@ HANDLE EventCreate()
         return NULL;
     }
     pthread_mutex_init(&(pEvent->mutex), NULL);
-    sem_init(&(pEvent->sem), NULL);
+    sem_init(&(pEvent->sem), 0, 0);
     
     return (HANDLE)pEvent;
 }
