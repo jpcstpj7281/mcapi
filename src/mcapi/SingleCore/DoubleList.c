@@ -369,6 +369,8 @@ INT	 DoubleList_Delete( DOUBLELIST *pList,
             }
             free( pNode );
 
+            pList->uCount--;
+
             break;
         }
         pPrevNode = pNode;

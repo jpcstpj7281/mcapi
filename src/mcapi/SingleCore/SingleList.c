@@ -367,6 +367,8 @@ INT	 SingleList_Delete( SINGLELIST *pSingleList,
             }
             free( pNode );
 
+            pSingleList->uCount--;
+
             break;
         }
         pPrevNode = pNode;
