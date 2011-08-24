@@ -117,9 +117,9 @@ INT	SortTable_Add( SORTTABLE *pTable, void *pData )
 void * SortTable_FindData(SORTTABLE *pTable, const void *pData, 
                                COMPAREFUNC CompareFunc)
 {
-    UINT uLow;
-    UINT uHigh;
-    UINT uMid;
+    INT nLow;
+    INT nHigh;
+    INT nMid;
 
     if ( pTable == NULL || CompareFunc == NULL || pData == NULL 
         || pTable->uCursorCount == 0 )
@@ -127,26 +127,26 @@ void * SortTable_FindData(SORTTABLE *pTable, const void *pData,
         return NULL;
     }
 
-    uLow = 0;
-    uHigh = pTable->uCursorCount - 1;
-    uMid = 0;
-    while ( uLow <= uHigh )
+    nLow = 0;
+    nHigh = pTable->uCursorCount - 1;
+    nMid = 0;
+    while ( nLow <= nHigh )
     {
         INT nResult;
-        uMid = ( uLow + uHigh ) / 2;
-        nResult = (*CompareFunc)( pTable->ppData[uMid], (void *)pData );
+        nMid = ( nLow + nHigh ) / 2;
+        nResult = (*CompareFunc)( pTable->ppData[nMid], pData );
         if ( nResult > 0 )
         {
-            uHigh = uMid - 1;
+            nHigh = nMid - 1;
         }
         else if ( nResult < 0 )
         {
-            uLow = uMid + 1;
+            nLow = nMid + 1;
         }
         else
         {
             /* 已经发现了匹配数据，返回 */
-            return pTable->ppData[uMid];
+            return pTable->ppData[nMid];
         }
     }
 
