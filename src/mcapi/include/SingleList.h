@@ -90,6 +90,20 @@ void *	SingleList_PopHead( SINGLELIST *pSingleList );
 */
 void *	SingleList_PopTail( SINGLELIST *pSingleList );
 
+/** Method:  SingleList_Pop()
+
+	单向链表的匹配数据弹出函数
+
+	@param: SINGLELIST * pSingleList - 单向链表指针
+	@param: void * pMatchData - 要弹出的匹配数据
+	@param: COMPAREFUNC CompareFunc - 数据比较函数
+	Returns:   void * - 返回匹配的节点数据，如果没有匹配数据返回NULL
+
+*/
+void * SingleList_Pop(SINGLELIST *pSingleList,  
+                      void *pMatchData, 
+                      COMPAREFUNC CompareFunc);
+
 /**	链表的删除节点函数，它将删除和pMatchData参数有相同数据的节点
     如果有许多有相同数据的节点它将只删除第一个有相同数据的节点
 

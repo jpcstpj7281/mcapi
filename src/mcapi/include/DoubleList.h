@@ -46,6 +46,8 @@ INT DoubleList_InsertTail( DOUBLELIST *pList, void *pData );
 /* removal functions */
 void *	DoubleList_PopHead( DOUBLELIST *pList );
 void *	DoubleList_PopTail( DOUBLELIST *pList );
+void * DoubleList_Pop(DOUBLELIST *pList, void *pMatchData, COMPAREFUNC CompareFunc);
+
 
 INT	DoubleList_Delete( DOUBLELIST *pList, 
                              void *pMatchData, 

@@ -55,6 +55,19 @@ void * HashAVLTree_Find(HASHAVLTREE *pHashAVLTree, void *pData,
                        HASHFUNC HashFunc, 
                        COMPAREFUNC CompareFunc );
 
+/**	哈希AVL树的查找节点函数
+
+	@param	HASHAVLTREE *pHashAVLTree - 哈希AVL树指针	
+	@param	void *pData - 要查找的数据指针	
+	@param	HASHFUNC HashFunc - 哈希函数	
+	@param	COMPAREFUNC CompareFunc - 数据比较回调函数	
+	@return	AVLTREENODE * - 失败返回NULL，成功返回找到的节点指针	
+*/
+AVLTREENODE * HashAVLTree_FindNode(HASHAVLTREE *pHashAVLTree, void *pData, 
+                       HASHFUNC HashFunc, 
+                       COMPAREFUNC CompareFunc );
+
+
 void HashAVLTree_EnumBegin(HASHAVLTREE *pHashAVLTree);
 
 void *HashAVLTree_EnumNext(HASHAVLTREE *pHashAVLTree);
