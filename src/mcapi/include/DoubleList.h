@@ -54,16 +54,17 @@ INT	DoubleList_Delete( DOUBLELIST *pList,
 
 
 /* retrieval functions */
-void *	DoubleList_GetHead( DOUBLELIST *pList );
-void * 	DoubleList_GetTail( DOUBLELIST *pList );
+void *	DoubleList_GetHead(const DOUBLELIST *pList );
+void * 	DoubleList_GetTail(const DOUBLELIST *pList );
 
 
-void *	DoubleList_Find( DOUBLELIST *pList, void *pMatchData, 
+void *	DoubleList_Find(const DOUBLELIST *pList, void *pMatchData, 
                         COMPAREFUNC CompareFunc );
 
 
 
 void            DoubleList_EnumBegin( DOUBLELIST *pList );
+
 void       *    DoubleList_EnumNext( DOUBLELIST *pList );
 
 DOUBLENODE *    DoubleList_EnumNode( DOUBLELIST *pList );
@@ -71,8 +72,9 @@ DOUBLENODE *    DoubleList_EnumNode( DOUBLELIST *pList );
 DOUBLENODE *    DoubleList_PopNode( DOUBLELIST *pList, DOUBLENODE *pNode );
 
 
+
 /* miscellaneous functions */
-unsigned        DoubleList_GetCount( DOUBLELIST *pList );
+unsigned        DoubleList_GetCount(const DOUBLELIST *pList );
 DOUBLELIST *    DoubleList_Copy( DOUBLELIST *pList, COPYFUNC CopyFunc );
 
 /* sort functions */
@@ -93,7 +95,7 @@ INT DoubleList_RadixSort( DOUBLELIST *pList,
                          GETKEYFUNC GetKeyFunc );
 
 /* traverse functions */
-void DoubleList_Traverse( DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc );
+void DoubleList_Traverse(const DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc );
 
 #define MAX_RADIX  1000
 
@@ -102,3 +104,4 @@ void DoubleList_Traverse( DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc );
 #endif
 
 #endif /* __DOUBLELIST_H__ */
+
