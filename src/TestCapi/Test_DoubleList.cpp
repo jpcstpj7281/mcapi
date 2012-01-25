@@ -23,7 +23,16 @@ void DRV_DoubleList_PopTail(UINT i);
 void DRV_DoubleList_Find(UINT i);
 void DRV_DoubleList_InsertSort(UINT i);
 void DRV_DoubleList_MergeSort(UINT i);
-void DRV_DoubleList_RadixSort(UINT i);
+// void DRV_DoubleList_RadixSort(UINT i);
+
+void TestCase_DoubleList_Pop(void);
+void TestCase_DoubleList_Delete(void);
+
+void TestCase_DoubleList_PopHead_EnumNext(void);
+void TestCase_DoubleList_PopTail_EnumNext(void);
+void TestCase_DoubleList_Pop_EnumNext(void);
+void TestCase_DoubleList_Delete_EnumNext(void);
+
 
 void Test_DoubleList()
 {
@@ -38,9 +47,18 @@ void Test_DoubleList()
         DRV_DoubleList_Find( i);
         DRV_DoubleList_InsertSort( i);
         DRV_DoubleList_MergeSort( i);
-        DRV_DoubleList_RadixSort( i);
-    }    
+//        DRV_DoubleList_RadixSort( i);
+    }   
+
+    TestCase_Add(TestCase_DoubleList_Pop);
+    TestCase_Add(TestCase_DoubleList_Delete);
+
+    TestCase_Add(TestCase_DoubleList_PopHead_EnumNext);
+    TestCase_Add(TestCase_DoubleList_PopTail_EnumNext);
+    TestCase_Add(TestCase_DoubleList_Pop_EnumNext);
+    TestCase_Add(TestCase_DoubleList_Delete_EnumNext);
 }
+
 
 REGISTER_TESTFUNC(Test_DoubleList)
 
@@ -665,6 +683,7 @@ void DRV_DoubleList_MergeSort(UINT i)
     }
 }
 
+#if 0
 void DRV_DoubleList_RadixSort(UINT i)
 {
     DOUBLELIST *pList = NULL;
@@ -732,3 +751,410 @@ void DRV_DoubleList_RadixSort(UINT i)
         DoubleList_Destroy(pList, free);
     }
 }
+#endif
+
+
+
+void TestCase_DoubleList_Pop(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+
+    pList = DoubleList_Create();
+
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == (void *)100 
+        && pList->pHead == NULL
+        && pList->pTail == NULL
+        && pList->uCount == 0 );
+
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertTail(pList, (void *)101);
+
+    pData = DoubleList_Pop(pList, (void *)101, IntCompare);
+
+    assertTrue(pData == (void *)101 
+        && pList->pHead->pData == (void *)100
+        && pList->pHead->pPrev == NULL
+        && pList->pHead->pNext == NULL 
+        && pList->pTail->pData == (void *)100
+        && pList->pTail->pPrev == NULL
+        && pList->pTail->pNext == NULL
+        && pList->uCount == 1 );
+
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == (void *)100 
+        && pList->pHead == NULL
+        && pList->pTail == NULL
+        && pList->uCount == 0 );
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == NULL 
+        && pList->uCount == 0
+        && pList->pHead == NULL
+        && pList->pTail == NULL );
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertTail(pList, (void *)101);
+    DoubleList_InsertTail(pList, (void *)102);
+
+    pData = DoubleList_Pop(pList, (void *)101, IntCompare);
+
+    assertTrue(pData == (void *)101 
+        && pList->pHead->pData == (void *)100
+        && pList->pHead->pPrev == NULL
+        && pList->pHead->pNext == pList->pTail 
+        && pList->pTail->pData == (void *)102
+        && pList->pTail->pNext == NULL
+        && pList->pTail->pPrev == pList->pHead
+        && pList->uCount == 2 );
+
+    return;
+}
+
+
+void TestCase_DoubleList_Delete(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+    INT nRet;
+
+    pList = DoubleList_Create();
+
+    pData = DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    nRet = DoubleList_Delete(pList, (void *)100, IntCompare, NULL);
+
+    assertTrue( nRet == CAPI_SUCCESS
+        && pList->pHead == NULL
+        && pList->pTail == NULL
+        && pList->uCount == 0 );
+
+    nRet = DoubleList_Delete(pList, (void *)100, IntCompare, NULL);
+
+    assertTrue(nRet == CAPI_FAILED);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertTail(pList, (void *)101);
+
+    nRet = DoubleList_Delete(pList, (void *)101, IntCompare, NULL);
+
+    assertTrue( nRet == CAPI_SUCCESS 
+        && pList->pHead->pData == (void *)100
+        && pList->pHead->pNext == NULL 
+        && pList->pHead->pPrev == NULL
+        && pList->pTail->pData == (void *)100
+        && pList->pTail->pPrev == NULL
+        && pList->pTail->pNext == NULL
+        && pList->uCount == 1 );
+
+    nRet = DoubleList_Delete(pList, (void *)100, IntCompare, NULL);
+
+    assertTrue( nRet == CAPI_SUCCESS
+        && pList->pHead == NULL
+        && pList->pTail == NULL
+        && pList->uCount == 0 );
+    DoubleList_Delete(pList, (void *)100, IntCompare, NULL);
+
+    assertTrue(pList->uCount == 0
+        && pList->pHead == NULL
+        && pList->pTail == NULL );
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertTail(pList, (void *)101);
+    DoubleList_InsertTail(pList, (void *)102);
+
+    nRet = DoubleList_Delete(pList, (void *)101, IntCompare, NULL);
+
+    assertTrue( nRet == CAPI_SUCCESS 
+        && pList->pHead->pData == (void *)100
+        && pList->pHead->pPrev == NULL
+        && pList->pHead->pNext == pList->pTail 
+        && pList->pTail->pData == (void *)102
+        && pList->pTail->pNext == NULL
+        && pList->pTail->pPrev == pList->pHead
+        && pList->uCount == 2 );
+
+    return;
+}
+
+
+void TestCase_DoubleList_PopHead_EnumNext(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+
+    pList = DoubleList_Create();
+
+    DoubleList_EnumBegin(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_PopHead(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    DoubleList_EnumBegin(pList);
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == (void *)100);
+
+    DoubleList_PopHead(pList);
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertHead(pList, (void *)101);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_PopHead(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+
+    return;
+}
+
+
+void TestCase_DoubleList_PopTail_EnumNext(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+
+    pList = DoubleList_Create();
+
+    DoubleList_EnumBegin(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertTail(pList, (void *)100);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_PopTail(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertTail(pList, (void *)100);
+    DoubleList_InsertTail(pList, (void *)101);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_PopTail(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertTail(pList, (void *)101);
+
+    DoubleList_EnumBegin(pList);
+
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+    DoubleList_PopTail(pList);
+
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertTail(pList, (void *)101);
+    DoubleList_InsertTail(pList, (void *)102);
+
+    DoubleList_EnumBegin(pList);
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == (void *)100);
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == (void *)101);
+
+    DoubleList_PopTail(pList);
+
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == NULL);
+
+
+    return;
+
+}
+
+
+void TestCase_DoubleList_Pop_EnumNext(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+
+    pList = DoubleList_Create();
+
+    DoubleList_EnumBegin(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_Pop(pList, (void *)100, IntCompare);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertHead(pList, (void *)101);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_Pop(pList, (void *)101, IntCompare);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)101);
+    DoubleList_InsertHead(pList, (void *)102);
+
+    DoubleList_EnumBegin(pList);
+    pData = DoubleList_EnumNext(pList);
+    assertTrue(pData == (void *)102);
+
+    DoubleList_Pop(pList, (void *)101, IntCompare);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    return;
+}
+
+
+void TestCase_DoubleList_Delete_EnumNext(void)
+{
+    DOUBLELIST *pList;
+    void *pData;
+
+    pList = DoubleList_Create();
+
+    DoubleList_EnumBegin(pList);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_Delete(pList, (void *)100, IntCompare, NULL);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)100);
+    DoubleList_InsertHead(pList, (void *)101);
+
+    DoubleList_EnumBegin(pList);
+
+    DoubleList_Delete(pList, (void *)101, IntCompare, NULL);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    DoubleList_InsertHead(pList, (void *)101);
+    DoubleList_InsertHead(pList, (void *)102);
+
+    DoubleList_EnumBegin(pList);
+    pData = DoubleList_EnumNext(pList);
+
+    DoubleList_Delete(pList, (void *)101, IntCompare, NULL);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == (void *)100);
+
+    pData = DoubleList_EnumNext(pList);
+
+    assertTrue(pData == NULL);
+
+
+    return;
+}
+
