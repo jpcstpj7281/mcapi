@@ -266,12 +266,12 @@ void *	SingleList_PopTail( SINGLELIST *pSingleList )
     }
 
     /* 
-     * 判断当前节点指针是否指向尾节点，如果指向头节点的话则需要将其
-     * 指向尾节点的前一节点 
+     * 判断当前节点指针是否指向尾节点，如果指向尾节点的话则需要将其
+     * 指向尾节点的下一节点, 即指向NULL 
      */
     if ( pSingleList->pCur == pSingleList->pTail )
     {
-        pSingleList->pCur = pTailPrevNode;
+        pSingleList->pCur = NULL;
     }
 
     /* 将尾节点指针指向尾节点的前一节点 */
@@ -349,15 +349,15 @@ INT	 SingleList_Delete( SINGLELIST *pSingleList,
                      */
                     pSingleList->pTail = pPrevNode;
                 }
+            }
 
-                if ( pSingleList->pCur == pNode )
-                {
-                    /* 
-                     * 如果链表当前节点和pNode相同，表明删除的是当前节点
-                     * 此时需要将当前节点指针指向要删除节点的下一个节点
-                     */
-                    pSingleList->pCur = pNode->pNext;
-                }
+            if ( pSingleList->pCur == pNode )
+            {
+                /* 
+                 * 如果链表当前节点和pNode相同，表明删除的是当前节点
+                 * 此时需要将当前节点指针指向要删除节点的下一个节点
+                 */
+                pSingleList->pCur = pNode->pNext;
             }
 
             /* 释放节点数据和节点占用的内存 */
@@ -369,13 +369,14 @@ INT	 SingleList_Delete( SINGLELIST *pSingleList,
 
             pSingleList->uCount--;
 
-            break;
+            return CAPI_SUCCESS;
         }
         pPrevNode = pNode;
         pNode = pNode->pNext;
     }
 
-    return CAPI_SUCCESS;
+
+    return CAPI_FAILED;
 }
 
 
@@ -390,7 +391,7 @@ void *  SingleList_GetAt( SINGLELIST *pSingleList, UINT uIndex )
     UINT        i;
     SINGLENODE  *pNode;
 
-    if ( pSingleList == NULL || pSingleList->uCount >= uIndex )
+    if ( pSingleList == NULL || pSingleList->uCount <= uIndex )
     {
         return NULL; 
     }
@@ -1011,7 +1012,7 @@ UINT GetStrKeyNoCase( void *pszData, UINT uKeyIndex )
 		return 0;
     }
 
-    uKey = strlen(psz) - (uKeyIndex + 1);
+    uKey = (UINT)strlen(psz) - (uKeyIndex + 1);
 
     if( psz[uKey] >= 'a' && psz[uKey] <= 'z' )
     {
@@ -1046,7 +1047,7 @@ UINT GetStrKey( void *pszData, UINT uKeyIndex )
 		return 0;
     }
 
-    uKey = strlen(psz) - (uKeyIndex + 1);
+    uKey = (UINT)strlen(psz) - (uKeyIndex + 1);
 
     uKey = (UINT)(unsigned char)(psz[uKey]);
 
