@@ -181,6 +181,34 @@ void * HashAVLTree_Find(HASHAVLTREE *pHashAVLTree, void *pData,
 }
 
 
+/**	哈希AVL树的查找节点函数
+
+	@param	HASHAVLTREE *pHashAVLTree - 哈希AVL树指针	
+	@param	void *pData - 要查找的数据指针	
+	@param	HASHFUNC HashFunc - 哈希函数	
+	@param	COMPAREFUNC CompareFunc - 数据比较回调函数	
+	@return	AVLTREENODE * - 失败返回NULL，成功返回找到的节点指针	
+*/
+AVLTREENODE * HashAVLTree_FindNode(HASHAVLTREE *pHashAVLTree, void *pData, 
+                       HASHFUNC HashFunc, 
+                       COMPAREFUNC CompareFunc )
+{
+    UINT            uIndex;
+    AVLTREENODE *   pNode;
+    
+    if ( pHashAVLTree == NULL || HashFunc == NULL || CompareFunc == NULL )
+    {
+        return NULL;
+    }
+    
+    uIndex = (*HashFunc)( pData, pHashAVLTree->uBucketCount );
+    pNode = (pHashAVLTree->ppBucket)[uIndex];
+
+    return BinTree_FindNode(pNode, pData, CompareFunc);
+}
+
+
+
 /**	哈希AVL树的逐个节点遍历开始函数
 
 	@param	HASHAVLTREE *pHashAVLTree - 哈希AVL树指针	

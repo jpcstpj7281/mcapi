@@ -284,6 +284,88 @@ void *	DoubleList_PopTail( DOUBLELIST *pList )
 }
 
 
+void * DoubleList_Pop(DOUBLELIST *pList, void *pMatchData, COMPAREFUNC CompareFunc)
+{
+    void *pPopData;
+    DOUBLENODE *pNode;
+    DOUBLENODE *pPrevNode;
+
+    if ( pList == NULL || pList->pHead == NULL )
+    {
+        return NULL;
+    }
+
+    pPopData = NULL;
+
+    pNode = pList->pHead;
+    pPrevNode = pNode;
+
+    while ( pNode != NULL )
+    {
+        /* 比较节点数据是否和操作数据匹配 */
+        if ( (*CompareFunc)( pNode->pData, pMatchData ) == 0 )
+        {
+            if ( pPrevNode == pNode )
+            {
+                /* 头节点匹配上了，需要删除头节点 */
+                pList->pHead = pNode->pNext;
+                if ( pList->pHead != NULL )
+                {
+                    pList->pHead->pPrev = NULL;
+                }
+                else
+                {
+                    /* 
+                     * 链表里只有一个节点
+                     * 此时需要将链表尾节点指针和链表当前节点指针赋空
+                     */
+                    pList->pTail = NULL;
+                    pList->pCur = NULL;
+                }
+            }
+            else
+            {
+                pPrevNode->pNext = pNode->pNext;
+                if ( pNode->pNext != NULL )
+                {
+                    pNode->pNext->pPrev = pPrevNode;
+                }
+
+                if ( pList->pTail == pNode )
+                {
+                    /* 
+                    * 如果尾节点和pNode相同，表明删除的是尾节点
+                    * 此时需要将尾节点指针指向要删除节点的前一个节点
+                    */
+                    pList->pTail = pPrevNode;
+                }
+            }
+
+            if ( pList->pCur == pNode )
+            {
+                /* 
+                * 如果链表当前节点和pNode相同，表明删除的是当前节点
+                * 此时需要将当前节点指针指向要删除节点的前一个节点
+                */
+                pList->pCur = pNode->pNext;
+            }
+
+
+            /* 释放节点占用的内存 */
+            pPopData = pNode->pData;
+            free( pNode );
+
+            pList->uCount--;
+
+            break;
+        }
+        pPrevNode = pNode;
+        pNode = pNode->pNext;
+    }
+
+    return pPopData;
+}
+
 
 /**	链表的删除节点函数，它将删除和pMatchData参数有相同数据的节点
     如果有许多有相同数据的节点它将只删除第一个有相同数据的节点

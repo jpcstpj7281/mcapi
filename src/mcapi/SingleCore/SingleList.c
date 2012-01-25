@@ -292,6 +292,91 @@ void *	SingleList_PopTail( SINGLELIST *pSingleList )
 }
 
 
+/** Method:  SingleList_Pop()
+
+	单向链表的匹配数据弹出函数
+
+	@param: SINGLELIST * pSingleList - 单向链表指针
+	@param: void * pMatchData - 要弹出的匹配数据
+	@param: COMPAREFUNC CompareFunc - 数据比较函数
+	Returns:   void * - 返回匹配的节点数据，如果没有匹配数据返回NULL
+
+*/
+void * SingleList_Pop(SINGLELIST *pSingleList,  
+                      void *pMatchData, 
+                      COMPAREFUNC CompareFunc)
+{
+    SINGLENODE  *pNode;
+    SINGLENODE  *pPrevNode;
+    void *pData;
+
+    /* 参数校验 */
+    if ( pSingleList == NULL || CompareFunc == NULL )
+    {
+        return NULL;
+    }
+
+    pNode = pSingleList->pHead;
+    pPrevNode = pNode;
+
+    while ( pNode != NULL )
+    {
+        /* 比较节点数据是否和匹配数据匹配 */
+        if ( (*CompareFunc)( pNode->pData, pMatchData ) == 0 )
+        {
+            if ( pPrevNode == pNode )
+            {
+                /* 头节点匹配上了，需要弹出头节点 */
+                pSingleList->pHead = pNode->pNext;
+                if ( pSingleList->pTail == pNode )
+                {
+                    /* 
+                    * 如果尾节点和pNode相同，表明链表里只有一个节点
+                    * 此时需要将链表尾节点指针和链表当前节点指针赋空
+                    */
+                    pSingleList->pTail = NULL;
+                    pSingleList->pCur = NULL;
+                }
+            }
+            else
+            {
+                pPrevNode->pNext = pNode->pNext;
+                if ( pSingleList->pTail == pNode )
+                {
+                    /* 
+                    * 如果尾节点和pNode相同，表明弹出的是尾节点
+                    * 此时需要将尾节点指针指向要弹出节点的前一个节点
+                    */
+                    pSingleList->pTail = pPrevNode;
+                }
+            }
+
+            if ( pSingleList->pCur == pNode )
+            {
+                /* 
+                * 如果链表当前节点和pNode相同，表明弹出的是当前节点
+                * 此时需要将当前节点指针指向要弹出节点的下一个节点
+                */
+                pSingleList->pCur = pNode->pNext;
+            }
+
+            /* 释放节点数据和节点占用的内存 */
+            pData = pNode->pData;
+            free( pNode );
+
+            pSingleList->uCount--;
+
+            return pData;
+        }
+        pPrevNode = pNode;
+        pNode = pNode->pNext;
+    }
+
+    return NULL;
+}
+
+
+
 /**	链表的删除节点函数，它将删除和pMatchData参数有相同数据的节点
     如果有许多有相同数据的节点它将只删除第一个有相同数据的节点
 
