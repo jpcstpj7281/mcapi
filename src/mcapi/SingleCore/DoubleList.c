@@ -48,7 +48,7 @@ void DoubleList_Destroy( DOUBLELIST *pList, DESTROYFUNC DestroyFunc )
 {
     DOUBLENODE  *pNode;
 
-    if ( pList )
+    if ( pList != NULL )
     {
         /* 从头节点开始，一个接一个释放链表节点及节点数据 */
         pNode = pList->pHead;
@@ -249,7 +249,7 @@ void *	DoubleList_PopTail( DOUBLELIST *pList )
     pPopNode = pList->pTail;
     pPopData = pPopNode->pData;
 
-    /* 判断当前节点指针是否指向尾节点，如果指向头节点则需将其
+    /* 判断当前节点指针是否指向尾节点，如果指向尾节点则需将其
      * 指向空节点 
      */
     if ( pList->pCur == pList->pTail )
@@ -275,6 +275,7 @@ void *	DoubleList_PopTail( DOUBLELIST *pList )
    
     /* 将链表节点数量减1 */
     pList->uCount--;
+
 
     /* 释放弹出的节点, 注意这里并没有释放节点数据指针 */
     free( pPopNode );
@@ -302,12 +303,15 @@ INT	 DoubleList_Delete( DOUBLELIST *pList,
 {
     DOUBLENODE  *pNode;
     DOUBLENODE  *pPrevNode;
+    INT          nRet;
 
     /* 参数校验 */
     if ( pList == NULL || CompareFunc == NULL )
     {
         return CAPI_FAILED;
     }
+
+    nRet = CAPI_FAILED;
 
     pNode = pList->pHead;
     pPrevNode = pNode;
@@ -352,14 +356,15 @@ INT	 DoubleList_Delete( DOUBLELIST *pList,
                     pList->pTail = pPrevNode;
                 }
 
-                if ( pList->pCur == pNode )
-                {
-                    /* 
-                     * 如果链表当前节点和pNode相同，表明删除的是当前节点
-                     * 此时需要将当前节点指针指向要删除节点的前一个节点
-                     */
-                    pList->pCur = pNode->pNext;
-                }
+            }
+
+            if ( pList->pCur == pNode )
+            {
+                /* 
+                 * 如果链表当前节点和pNode相同，表明删除的是当前节点
+                 * 此时需要将当前节点指针指向要删除节点的前一个节点
+                 */
+                pList->pCur = pNode->pNext;
             }
 
             /* 释放节点数据和节点占用的内存 */
@@ -371,13 +376,14 @@ INT	 DoubleList_Delete( DOUBLELIST *pList,
 
             pList->uCount--;
 
+            nRet = CAPI_SUCCESS;
             break;
         }
         pPrevNode = pNode;
         pNode = pNode->pNext;
     }
 
-    return CAPI_SUCCESS;
+    return nRet;
 }
 
 
@@ -387,7 +393,7 @@ INT	 DoubleList_Delete( DOUBLELIST *pList,
 	@return	UINT - 链表节点数量，为0表示链表是空的没有节点在链表里面
                    或者参数非法	
 */
-UINT DoubleList_GetCount(DOUBLELIST *pList)
+UINT DoubleList_GetCount(const DOUBLELIST *pList)
 {
     if ( pList == NULL )
     {
@@ -402,7 +408,7 @@ UINT DoubleList_GetCount(DOUBLELIST *pList)
 	@param	DOUBLELIST *pList - 要操作的双向链表指针	
 	@return	void * - 头节点的数据指针	
 */
-void *	DoubleleList_GetHead( DOUBLELIST *pList )
+void *	DoubleList_GetHead(const DOUBLELIST *pList )
 {
     if ( pList == NULL )
     {
@@ -423,7 +429,7 @@ void *	DoubleleList_GetHead( DOUBLELIST *pList )
 	@param	DOUBLELIST *pList - 要操作的双向链表指针	
 	@return	void * - 尾节点的数据指针	
 */
-void * 	DoubleList_GetTail( DOUBLELIST *pList )
+void * 	DoubleList_GetTail(const DOUBLELIST *pList )
 {
     if ( pList == NULL )
     {
@@ -447,7 +453,7 @@ void * 	DoubleList_GetTail( DOUBLELIST *pList )
 	@param	COMPAREFUNC CompareFunc - 数据匹配比较函数	
 	@return	void * - 查找到的在双向链表中的匹配数据	
 */
-void * DoubleList_Find( DOUBLELIST *pList, void *pMatchData, 
+void * DoubleList_Find(const DOUBLELIST *pList, void *pMatchData, 
                        COMPAREFUNC CompareFunc )
 {
 	DOUBLENODE	*pNode;
@@ -467,7 +473,7 @@ void * DoubleList_Find( DOUBLELIST *pList, void *pMatchData,
 	return NULL;
 }
 
-/**	双向链表的枚举初始化函数
+/**	双向链表的枚举初始化函数（在头部）
 
 	@param	SINGLELIST *pSingleList - 要操作的双向链表指针
 	@return	void - 无	
@@ -840,7 +846,7 @@ INT DoubleList_MergeSort(DOUBLELIST *pList,
 	@param	TRAVERSEFUNC TraverseFunc - 节点数据的遍历操作函数	
 	@return	INT - 成功返回1，失败返回0	
 */
-void DoubleList_Traverse( DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc )
+void DoubleList_Traverse(const DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc )
 {
     DOUBLENODE  *pNode;
 
@@ -869,7 +875,7 @@ void DoubleList_Traverse( DOUBLELIST *pList, TRAVERSEFUNC TraverseFunc )
 	@param	GETKEYFUNC GetKeyFunc - 获取数据的第uKeyIndex位上的元素值	
 	@return	void - 无。	
 */
-void DoubleList_Distribute(DOUBLELIST *pList,
+void DoubleList_Distribute(const DOUBLELIST *pList,
                           UINT       uRadix,
                           UINT       uKeyIndex,
                           DOUBLENODE **ppHead,
@@ -921,8 +927,8 @@ void DoubleList_Distribute(DOUBLELIST *pList,
 */
 void DoubleList_Collect(DOUBLELIST *pList,
                        UINT        uRadix,
-                       DOUBLENODE **ppHead,
-                       DOUBLENODE **ppTail )
+                       DOUBLENODE * const *ppHead,
+                       DOUBLENODE * const *ppTail )
 {
     DOUBLENODE  *pHead;
     DOUBLENODE  *pTail;
@@ -1024,3 +1030,4 @@ INT DoubleList_RadixSort( DOUBLELIST *pList,
     
     return CAPI_SUCCESS;
 }
+

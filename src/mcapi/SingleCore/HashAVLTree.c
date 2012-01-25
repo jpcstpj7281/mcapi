@@ -133,6 +133,7 @@ INT HashAVLTree_Delete(HASHAVLTREE *pHashAVLTree, void *pData,
                       DESTROYFUNC DestroyFunc)
 {
     UINT	    uIndex;
+    AVLTREENODE *pCursor;
     
     if ( pHashAVLTree == NULL || pData == NULL || HashFunc == NULL 
         || CompareFunc == NULL )
@@ -142,9 +143,11 @@ INT HashAVLTree_Delete(HASHAVLTREE *pHashAVLTree, void *pData,
     
     uIndex = (*HashFunc)( pData, pHashAVLTree->uBucketCount );
 
-    if ( AVLTreeNode_Delete(&((pHashAVLTree->ppBucket)[uIndex]), pData, 
+    pCursor = pHashAVLTree->pCurEntry;
+    if ( AVLTreeNode_Delete(&((pHashAVLTree->ppBucket)[uIndex]), &pCursor, pData, 
         CompareFunc, DestroyFunc) != CAPI_NOT_FOUND )
     {
+        pHashAVLTree->pCurEntry = pCursor;
         pHashAVLTree->uNodeCount -= 1;
     }
 

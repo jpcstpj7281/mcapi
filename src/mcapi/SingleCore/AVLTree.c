@@ -29,6 +29,7 @@ AVLTREE *AVLTree_Create(void)
     {
         pTree->pRoot = NULL;
         pTree->uNodeCount = 0;
+        pTree->pCursor = NULL;
     }
     return pTree;
 }
@@ -430,24 +431,42 @@ INT AVLTreeNode_Insert(AVLTREENODE **ppRootNode, void *pData,
             nRetVal = (*CompareFunc)(pCNode->pData, pData) ;
             if ( nRetVal > 0 )
             { 
+                /* 新节点插在 C 节点的左子树中的情况 */
                 pCNode->nMagic += 1;
             }
             else if ( nRetVal < 0 )
             {
+                /* 新节点插在 C 节点的右子树中的情况 */
                 pCNode->nMagic -= 1;
             }
+
+            /* 双旋转操作，A、B、C 节点的 nMagic 值已经填充正确 */
             AVLTree_RotateLeftRight(ppRootNode, pANode);
+
+            /* Fixed by fanxueqiang on 2011-11-28 */
+            /* NOTE: AVLTree_FixBalance() 会影响根节点， 而根节点已经在
+             * AVLTree_RotateRightLeft() 函数中填写正确，不能再修改 */
             if ( nRetVal > 0 )
             {
-                AVLTree_FixBalance(pBNode, pData, CompareFunc);
+                /* 新节点插在 C 节点的左子树中的情况 */
+                /* AVLTree_FixBalance() 的操作只对在插入后会使整棵树的高度 + 1
+                 * 的情况有效（如在一棵满二叉树插入），其他情况都可能有错误。
+                 * 而在这里的情况，不一定使以 B 节点为整棵树时的高度 + 1，
+                 * 只能确保 B 节点的右子树的高度 + 1，
+                 * 所以从 B 节点的右子树开始 */
+                /*AVLTree_FixBalance(pBNode, pData, CompareFunc);*/
+                AVLTree_FixBalance(pBNode->pRight, pData, CompareFunc);
             }
             else if ( nRetVal < 0 )
             {
-                AVLTree_FixBalance(pANode, pData, CompareFunc);
+                /* 新节点插在 C 节点的右子树中的情况 */
+                /*AVLTree_FixBalance(pANode, pData, CompareFunc);*/
+                AVLTree_FixBalance(pANode->pLeft, pData, CompareFunc);
             }
             else
             {
             }
+
             pCNode->uCount = pANode->uCount;
             pBNode->uCount = AVLTree_GetSubTreeCount(pBNode) + 1;
             pANode->uCount = AVLTree_GetSubTreeCount(pANode) + 1;
@@ -471,18 +490,23 @@ INT AVLTreeNode_Insert(AVLTREENODE **ppRootNode, void *pData,
             {
                 pCNode->nMagic -= 1;
             }
+
             AVLTree_RotateRightLeft(ppRootNode, pANode);
+
             if ( nRetVal > 0 )
             {
-                AVLTree_FixBalance(pANode, pData, CompareFunc);
+                /*AVLTree_FixBalance(pANode, pData, CompareFunc);*/
+                AVLTree_FixBalance(pANode->pRight, pData, CompareFunc);
             }
             else if ( nRetVal < 0 )
             {
-                AVLTree_FixBalance(pBNode, pData, CompareFunc);
+                /*AVLTree_FixBalance(pBNode, pData, CompareFunc);*/
+                AVLTree_FixBalance(pBNode->pLeft, pData, CompareFunc);
             }
             else
             {
             }
+
             pCNode->uCount = pANode->uCount;
             pBNode->uCount = AVLTree_GetSubTreeCount(pBNode) + 1;
             pANode->uCount = AVLTree_GetSubTreeCount(pANode) + 1;
@@ -716,20 +740,45 @@ void AVLTree_AdjustBalanceForDelete(AVLTREENODE **ppRoot, AVLTREENODE *pNode,
 INT AVLTree_Delete(AVLTREE *pTree, void *pData, COMPAREFUNC CompareFunc,
                    DESTROYFUNC DestroyFunc)
 {
+    AVLTREENODE *pCursor;
+    void *pPopData;
+
     if ( pTree->pRoot == NULL || pData == NULL 
         || CompareFunc == NULL )
     {
         return CAPI_FAILED;
     }
     
-    if ( AVLTreeNode_Delete(&(pTree->pRoot), pData, CompareFunc, DestroyFunc)
-        != CAPI_NOT_FOUND )
+    pCursor = pTree->pCursor;
+
+    pPopData = AVLTreeNode_Pop(&(pTree->pRoot), &pCursor, pData, CompareFunc);
+    if ( pPopData != NULL )
     {
+        pTree->pCursor = pCursor;
+
+        if ( pCursor != NULL )
+        {
+            if ( (*CompareFunc)(pCursor->pData, pData) < 0 )
+            {
+                AVLTree_EnumNext(pTree);
+            }
+        }
+
+        if ( DestroyFunc != NULL )
+        {
+            (*DestroyFunc)(pPopData);
+        }
+
         pTree->uNodeCount -= 1;
+
+        return CAPI_SUCCESS;
     }
-    
-    return CAPI_SUCCESS;
+    else
+    {
+        return CAPI_NOT_FOUND;
+    }
 }
+
 
 /**	AVL树的删除节点函数
 
@@ -739,7 +788,7 @@ INT AVLTree_Delete(AVLTREE *pTree, void *pData, COMPAREFUNC CompareFunc,
 	@param	DESTROYFUNC DestroyFunc - 数据释放回调函数	
 	@return	INT - CAPI_FAILED表示失败，CAPI_SUCCESS表示成功		
 */
-INT AVLTreeNode_Delete(AVLTREENODE **ppRoot, void *pData, 
+INT AVLTreeNode_Delete(AVLTREENODE **ppRoot, AVLTREENODE **ppCursor, void *pData, 
                        COMPAREFUNC CompareFunc, DESTROYFUNC DestroyFunc)
 {
 
@@ -850,10 +899,16 @@ INT AVLTreeNode_Delete(AVLTREENODE **ppRoot, void *pData,
             }
         }
     }
-    
+   
     /* 删除对应节点 */
     if ( pDelNode != NULL )
     {
+        if ( pDelNode == *ppCursor )
+        {
+            AVLTREENODE *pNextNode = AVLTreeNode_GetNext(pDelNode);
+
+            *ppCursor = pNextNode;
+        }
         if ( DestroyFunc != NULL )
         {
             (*DestroyFunc)(pDelData);
@@ -873,6 +928,200 @@ INT AVLTreeNode_Delete(AVLTREENODE **ppRoot, void *pData,
 }
 
 
+
+/**	AVL树的删除节点函数
+
+	@param	AVLTREENODE **ppRoot - 指向AVL树根节点指针的指针	
+	@param	void *pData - 要删除的数据	
+	@param	COMPAREFUNC CompareFunc - 数据比较回调函数	
+	@return	void * - NULL表示失败，非空表示弹出的对应节点数据		
+*/
+void * AVLTreeNode_Pop(AVLTREENODE **ppRoot, AVLTREENODE **ppCursor, void *pData, 
+                       COMPAREFUNC CompareFunc)
+{
+
+    AVLTREENODE  *pNode;
+    AVLTREENODE  *pANode;
+    AVLTREENODE  *pDelNode;
+    void         *pDelData;
+    INT         nRet = 0;
+
+    pNode = *ppRoot;
+
+    while ( pNode != NULL )
+    {
+        nRet = (*CompareFunc)(pNode->pData, pData);
+        if ( nRet < 0 )
+        {
+            pNode = pNode->pRight;
+        }
+        else if ( nRet > 0 )
+        {
+            pNode = pNode->pLeft;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if ( pNode == NULL )
+    {
+        return NULL;
+    }
+
+    pDelData = pNode->pData;
+    if ( pNode->pLeft != NULL && pNode->pRight != NULL )
+    {
+        /* 处理查找到的pNode有两个子节点的情况 */
+        pDelNode = pNode->pLeft;   
+        while (pDelNode->pRight != 0)
+        {
+            pDelNode = pDelNode->pRight;
+        }
+        pANode = pDelNode->pParent;  
+
+        pNode->pData = pDelNode->pData;
+        
+		if ( pDelNode == pANode->pLeft )
+        {
+            pANode->nMagic -= 1;
+        }
+        else
+        {
+            pANode->nMagic += 1;
+        }
+        
+		if (pDelNode != pNode->pLeft) 
+        {
+            pANode->pRight = pDelNode->pLeft;
+        }
+        else
+        {
+            pANode->pLeft = pDelNode->pLeft;
+        }
+
+        if ( pDelNode->pLeft != NULL )
+        {
+            pDelNode->pLeft->pParent = pANode;
+        }
+    }
+    else
+    {
+        pANode = pNode;
+        /* 处理最多只有一个子节点的情况 */
+        if ( pNode->pLeft != NULL )
+        {
+            /* 只有左节点的情况 */
+            pDelNode = pNode->pLeft;
+            pNode->pData = pDelNode->pData;
+            pNode->pLeft = NULL;
+            pANode->nMagic -= 1;
+        }
+        else if ( pNode->pRight != NULL )
+        {
+            /* 只有右节点的情况 */
+            pDelNode = pNode->pRight;
+            pNode->pData = pDelNode->pData;
+            pNode->pRight = NULL;
+            pANode->nMagic += 1;
+        }
+        else
+        {
+            /* 处理删除节点的左右子节点都不存在的情况 */
+            pANode = pNode->pParent;
+            pDelNode = pNode;
+            if ( pANode == NULL )
+            {
+                *ppRoot = pANode;
+            }
+            else if ( pANode->pLeft == pNode )
+            {
+                pANode->pLeft = NULL;
+                pANode->nMagic -= 1;
+            }
+            else
+            {
+                pANode->pRight = NULL;
+                pANode->nMagic += 1;
+            }
+        }
+    }
+   
+    /* 删除对应节点 */
+    if ( pDelNode != NULL )
+    {
+        if ( pDelNode == *ppCursor )
+        {
+            AVLTREENODE *pNextNode = AVLTreeNode_GetNext(pDelNode);
+
+            *ppCursor = pNextNode;
+        }
+        free(pDelNode);
+    }
+
+    AVLTree_FixCountForDelete(pANode);
+
+    /* 调整平衡 */
+    if ( pANode != NULL )
+    {
+        AVLTree_AdjustBalanceForDelete(ppRoot, pANode, pData, CompareFunc);
+    }
+    
+    return pDelData;
+}
+
+
+
+
+static int AVLTree_CheckMagic_Rec(AVLTREENODE *pNode, VISITFUNC VisitFunc)
+{
+    int nLeftDeep, nRightDeep;
+    int nDepth = 0;
+
+    if (pNode == NULL)
+    {
+        return 0;
+    }
+
+    nLeftDeep = AVLTree_CheckMagic_Rec(pNode->pLeft, VisitFunc);
+    nRightDeep = AVLTree_CheckMagic_Rec(pNode->pRight, VisitFunc);
+
+    if ( nLeftDeep == -1 || nRightDeep == -1 )
+    {
+        return -1;
+    }
+
+    if (nLeftDeep > nRightDeep)
+    {
+        nDepth = nLeftDeep + 1;
+    }
+    else
+    {
+        nDepth = nRightDeep + 1;
+    }
+
+    if ( pNode->nMagic == nLeftDeep - nRightDeep )
+    {
+        return nDepth;
+    }
+    else
+    {
+        if ( VisitFunc != NULL )
+        {
+            (*VisitFunc)(pNode->pData);
+        }
+        return -1;
+    }
+
+    return nDepth;
+}
+
+int AVLTree_CheckMagic(AVLTREE *pTree, VISITFUNC VisitFunc)
+{
+    int nRet = AVLTree_CheckMagic_Rec(pTree->pRoot, VisitFunc);
+    return nRet != -1;
+}
 
 
 #if 0
@@ -972,3 +1221,101 @@ AVLTree_Delete()
     } //while
 }
 #endif
+
+/**	AVL树的枚举开始函数
+
+	@param	AVLTREE *pTree - AVL树指针	
+	@return	void - 无	
+*/
+void AVLTree_EnumBegin(AVLTREE *pTree)
+{
+    BINTREEBASENODE *pCursor;
+
+    pCursor = pTree->pRoot;
+    if ( pCursor != NULL )
+    {
+        while ( pCursor->pLeft != NULL )
+        {
+            pCursor = pCursor->pLeft;
+        }
+    }
+    pTree->pCursor = pCursor;
+}
+
+
+/**	AVL树的枚举下一个元素函数
+    按照中序遍历顺序依次获取下一个元素
+
+	@param	AVLTREE *pTree - AVL树指针	
+	@return	void * - 返回获取的下一个元素，如果下一个元素不存在则返回空	
+*/
+void * AVLTree_EnumNext(AVLTREE *pTree)
+{
+    void *pData;
+    AVLTREENODE *pCursor;
+
+    if ( pTree->pCursor == NULL )
+    {
+        return NULL;
+    }
+
+    pCursor = pTree->pCursor;
+    pData = pCursor->pData;
+
+    if ( pCursor->pRight != NULL )
+    {
+        pCursor = pCursor->pRight;
+        while ( pCursor->pLeft != NULL )
+        {
+            pCursor = pCursor->pLeft;
+        }
+    }
+    else
+    {
+        AVLTREENODE *pParent = pCursor->pParent;
+        while ( pParent != NULL && pParent->pRight == pCursor )
+        {
+            pCursor = pParent;
+            pParent = pParent->pParent;
+        }
+        pCursor = pParent;
+    }
+    pTree->pCursor = pCursor;
+
+    return pData;
+}
+
+
+AVLTREENODE *AVLTreeNode_GetNext(AVLTREENODE *pCurNode)
+{
+    AVLTREENODE *pCursor;
+
+    if ( pCurNode == NULL )
+    {
+        return NULL;
+    }
+
+    pCursor = pCurNode;
+
+    if ( pCursor->pRight != NULL )
+    {
+        pCursor = pCursor->pRight;
+        while ( pCursor->pLeft != NULL )
+        {
+            pCursor = pCursor->pLeft;
+        }
+    }
+    else
+    {
+        AVLTREENODE *pParent = pCursor->pParent;
+        while ( pParent != NULL && pParent->pRight == pCursor )
+        {
+            pCursor = pParent;
+            pParent = pParent->pParent;
+        }
+        pCursor = pParent;
+    }
+
+    return pCursor;
+}
+
