@@ -24,7 +24,7 @@ typedef struct MEMORYPOOL_st {
 
 MEMORYPOOL   g_MemoryPool[MAX_MEMORY_CLASS];
 
-UINT g_auMemSize[MAX_MEMORY_CLASS] = { 8, 16, 32, 40, 48, 56, 64, 72, 96, 128,
+UINT g_auMemSize[MAX_MEMORY_CLASS] = { 8, 16, 24, 32, 40, 48, 56, 64, 72, 96, 128,
 192, 256, 384, 512, 1024, 2048, 4096, 8192, 16384};
 
 
